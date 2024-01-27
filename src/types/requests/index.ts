@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { Asset, TxInParameter } from '@meshsdk/core';
 
 export type CreateAccountRequest = {
@@ -11,7 +10,7 @@ export type SignInRequest = {
 
 export type BuildDepositTransactionRequest = {
     deposit_amount: Asset[];
-    input_utxos: TxInParameter[];
+    input_utxos: Required<TxInParameter>[];
 };
 
 export type SubmitDepositTransactionRequest = {

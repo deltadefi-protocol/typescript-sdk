@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios';
 import {
+    convertTxInParameter,
     CreateAccountRequest,
     CreateAccountResponse,
     SignInRequest,
@@ -28,7 +29,11 @@ export class Accounts {
     public buildDepositTransaction(
         data: BuildDepositTransactionRequest,
     ): Promise<BuildDepositTransactionResponse> {
-        return this.axiosInstance.post('/accounts/deposit/build', data);
+        const input_utxos = data.input_utxos.map(convertTxInParameter);
+        return this.axiosInstance.post('/accounts/deposit/build', {
+            deposit_amount: data.deposit_amount,
+            input_utxos,
+        });
     }
 
     public submitDepositTransaction(
