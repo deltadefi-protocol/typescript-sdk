@@ -23,7 +23,12 @@ export class Accounts {
     }
 
     public signIn(data: SignInRequest): Promise<SignInResponse> {
-        return this.axiosInstance.post('/accounts/signin', data);
+        const { auth_key, wallet_address } = data;
+        return this.axiosInstance.post(
+            '/accounts/signin',
+            { wallet_address },
+            { headers: { auth_key } },
+        );
     }
 
     public buildDepositTransaction(

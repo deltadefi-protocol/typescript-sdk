@@ -6,6 +6,7 @@ export type CreateAccountRequest = {
 
 export type SignInRequest = {
     wallet_address: string;
+    auth_key: string;
 };
 
 export type BuildDepositTransactionRequest = {
