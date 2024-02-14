@@ -10,11 +10,13 @@ import {
     SubmitDepositTransactionRequest,
     SubmitDepositTransactionResponse,
 } from '../../types';
+import { Api } from '../api';
 
-export class Accounts {
+export class Accounts extends Api {
     private axiosInstance: AxiosInstance;
 
     constructor(axiosInstance: AxiosInstance) {
+        super();
         this.axiosInstance = axiosInstance;
     }
 
@@ -24,26 +26,29 @@ export class Accounts {
 
     public signIn(data: SignInRequest): Promise<SignInResponse> {
         const { auth_key, wallet_address } = data;
-        return this.axiosInstance.post(
+        const res = this.axiosInstance.post(
             '/accounts/signin',
             { wallet_address },
             { headers: { auth_key } },
         );
+        return this.resolveAxiosData(res);
     }
 
     public buildDepositTransaction(
         data: BuildDepositTransactionRequest,
     ): Promise<BuildDepositTransactionResponse> {
         const input_utxos = data.input_utxos.map(convertTxInParameter);
-        return this.axiosInstance.post('/accounts/deposit/build', {
+        const res = this.axiosInstance.post('/accounts/deposit/build', {
             deposit_amount: data.deposit_amount,
             input_utxos,
         });
+        return this.resolveAxiosData(res);
     }
 
     public submitDepositTransaction(
         data: SubmitDepositTransactionRequest,
     ): Promise<SubmitDepositTransactionResponse> {
-        return this.axiosInstance.post('/accounts/deposit/submit', data);
+        const res = this.axiosInstance.post('/accounts/deposit/submit', data);
+        return this.resolveAxiosData(res);
     }
 }
