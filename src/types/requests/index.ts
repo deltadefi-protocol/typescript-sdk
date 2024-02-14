@@ -1,4 +1,4 @@
-import { Asset, TxInParameter } from '@meshsdk/core';
+import { Asset, UTxO } from '@meshsdk/core';
 
 export type CreateAccountRequest = {
     wallet_address: string;
@@ -11,7 +11,7 @@ export type SignInRequest = {
 
 export type BuildDepositTransactionRequest = {
     deposit_amount: Asset[];
-    input_utxos: Required<TxInParameter>[];
+    input_utxos: Required<UTxO>[];
 };
 
 export type SubmitDepositTransactionRequest = {
