@@ -17,3 +17,11 @@ export type BuildDepositTransactionRequest = {
 export type SubmitDepositTransactionRequest = {
     signed_tx: string;
 };
+
+export type BuildPostOrderTransactionRequest = {
+    pair: 'ADAUSDX';
+    side: 'buy' | 'sell';
+    type: 'limit' | 'market';
+    quantity: number;
+    price: number;
+};

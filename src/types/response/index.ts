@@ -13,3 +13,7 @@ export type BuildDepositTransactionResponse = {
 export type SubmitDepositTransactionResponse = {
     tx_hash: string;
 };
+
+export type BuildPostOrderTransactionResponse = {
+    tx_hexes: string[];
+};
