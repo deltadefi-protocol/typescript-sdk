@@ -17,7 +17,7 @@ export class Orders extends Api {
         return this.resolveAxiosData(res);
     }
 
-    // public submitDepositTransaction(
+    // public submitPostOrderTransactionRequest(
     //     data: SubmitDepositTransactionRequest,
     // ): Promise<SubmitDepositTransactionResponse> {
     //     const res = this.axiosInstance.post('/accounts/deposit/submit', data);
