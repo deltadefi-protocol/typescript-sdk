@@ -15,5 +15,6 @@ export type SubmitDepositTransactionResponse = {
 };
 
 export type BuildPostOrderTransactionResponse = {
+    tx_id: string;
     tx_hexes: string[];
 };
