@@ -1,4 +1,5 @@
 import { Asset, UTxO } from '@meshsdk/core';
+import { TradingPair, TradingSide, TradingType } from '../constant';
 
 export type CreateAccountRequest = {
     wallet_address: string;
@@ -19,9 +20,14 @@ export type SubmitDepositTransactionRequest = {
 };
 
 export type BuildPostOrderTransactionRequest = {
-    pair: 'ADAUSDX';
-    side: 'buy' | 'sell';
-    type: 'limit' | 'market';
+    pair: TradingPair;
+    side: TradingSide;
+    type: TradingType;
     quantity: number;
     price: number;
+};
+
+export type SubmitPostOrderTransactionRequest = {
+    order_id: string;
+    signed_txs: string[];
 };

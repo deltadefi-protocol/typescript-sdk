@@ -1,5 +1,10 @@
 import { AxiosInstance } from 'axios';
-import { BuildPostOrderTransactionRequest, BuildPostOrderTransactionResponse } from '../../types';
+import {
+    BuildPostOrderTransactionRequest,
+    BuildPostOrderTransactionResponse,
+    SubmitPostOrderTransactionRequest,
+    SubmitPostOrderTransactionResponse,
+} from '../../types';
 import { Api } from '../api';
 
 export class Orders extends Api {
@@ -17,10 +22,10 @@ export class Orders extends Api {
         return this.resolveAxiosData(res);
     }
 
-    // public submitPostOrderTransactionRequest(
-    //     data: SubmitDepositTransactionRequest,
-    // ): Promise<SubmitDepositTransactionResponse> {
-    //     const res = this.axiosInstance.post('/accounts/deposit/submit', data);
-    //     return this.resolveAxiosData(res);
-    // }
+    public submitPostOrderTransactionRequest(
+        data: SubmitPostOrderTransactionRequest,
+    ): Promise<SubmitPostOrderTransactionResponse> {
+        const res = this.axiosInstance.post('/order/submit', data);
+        return this.resolveAxiosData(res);
+    }
 }
