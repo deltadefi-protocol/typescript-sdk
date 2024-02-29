@@ -1,4 +1,4 @@
-import WebSocket from 'ws';
+// import WebSocket from 'ws';
 import { Api } from '../api';
 
 type EventHandler = (data?: any) => void;
@@ -30,21 +30,23 @@ export class Markets extends Api {
         const url = `${this.baseWebSocketUrl}/markets/${pair}`;
         this.ws = new WebSocket(url);
 
-        this.ws.on('open', () => {
+        this.ws.onopen = () => {
             this.eventHandlers.open.forEach((handler) => handler());
-        });
+        };
 
-        this.ws.on('message', (data: WebSocket.Data) => {
-            this.eventHandlers.message.forEach((handler) => handler(data));
-        });
+        this.ws.onmessage = (event) => {
+            this.eventHandlers.message.forEach((handler) => handler(event.data));
+        };
 
-        this.ws.on('close', (code: number, reason: string) => {
-            this.eventHandlers.close.forEach((handler) => handler({ code, reason }));
-        });
+        this.ws.onclose = (event) => {
+            this.eventHandlers.close.forEach((handler) =>
+                handler({ code: event.code, reason: event.reason }),
+            );
+        };
 
-        this.ws.on('error', (err: Error) => {
-            this.eventHandlers.error.forEach((handler) => handler(err));
-        });
+        this.ws.onerror = (event) => {
+            this.eventHandlers.error.forEach((handler) => handler(event));
+        };
     }
 
     public closeConnection() {
@@ -55,7 +57,14 @@ export class Markets extends Api {
 }
 
 // Usage:
-// sdk.on('open', () => console.log('Connection opened'));
-// sdk.on('message', data => console.log('Received:', data));
-// sdk.on('close', ({ code, reason }) => console.log(`Connection closed, code: ${code}, reason: ${reason}`));
-// sdk.connectToMarketPair('ADAUSDX');
+// Create a new instance of the Markets class
+// const markets = new Markets('ws://your-base-url');
+
+// // Add event handlers
+// markets.on('open', () => console.log('Connection opened'));
+// markets.on('message', data => console.log('Received:', data));
+// markets.on('close', ({ code, reason }) => console.log(`Connection closed, code: ${code}, reason: ${reason}`));
+// markets.on('error', err => console.error('Error:', err));
+
+// // Subscribe to a market pair
+// markets.subscribeToMarketPair('ADAUSDX');
