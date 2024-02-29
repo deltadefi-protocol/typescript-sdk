@@ -31,3 +31,17 @@ export type SubmitPostOrderTransactionRequest = {
     order_id: string;
     signed_txs: string[];
 };
+
+export type GetDepthRequest = {
+    pair: string;
+};
+
+type MarketDepth = {
+    price: number;
+    quantity: number;
+};
+
+export type GetDepthResponse = {
+    bids: MarketDepth[];
+    asks: MarketDepth[];
+};
