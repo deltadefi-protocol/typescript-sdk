@@ -9,6 +9,7 @@ import {
     SubmitDepositTransactionRequest,
     SubmitDepositTransactionResponse,
     convertUTxOs,
+    BuildSendRefScriptsTransactionRequest,
 } from '../../types';
 import { Api } from '../api';
 
@@ -31,6 +32,23 @@ export class Accounts extends Api {
             { wallet_address },
             { headers: { auth_key } },
         );
+        return this.resolveAxiosData(res);
+    }
+
+    public buildSendRefScriptsTransaction(
+        data: BuildSendRefScriptsTransactionRequest,
+    ): Promise<BuildSendRefScriptsTransactionRequest> {
+        const input_utxos = convertUTxOs(data.input_utxos);
+        const res = this.axiosInstance.post('/accounts/ref-scripts/build', {
+            input_utxos,
+        });
+        return this.resolveAxiosData(res);
+    }
+
+    public submitSendRefScriptsTransaction(
+        data: SubmitDepositTransactionRequest,
+    ): Promise<SubmitDepositTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/deposit/submit', data);
         return this.resolveAxiosData(res);
     }
 

@@ -10,6 +10,14 @@ export type SignInRequest = {
     auth_key: string;
 };
 
+export type BuildSendRefScriptsTransactionRequest = {
+    input_utxos: Required<UTxO>[];
+};
+
+export type SubmitSendRefScriptsTransactionRequest = {
+    signed_tx: string;
+};
+
 export type BuildDepositTransactionRequest = {
     deposit_amount: Asset[];
     input_utxos: Required<UTxO>[];
