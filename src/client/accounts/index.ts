@@ -10,6 +10,9 @@ import {
     SubmitDepositTransactionResponse,
     convertUTxOs,
     BuildSendRefScriptsTransactionRequest,
+    BuildSendRefScriptsTransactionResponse,
+    SubmitSendRefScriptsTransactionRequest,
+    SubmitSendRefScriptsTransactionResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -37,7 +40,7 @@ export class Accounts extends Api {
 
     public buildSendRefScriptsTransaction(
         data: BuildSendRefScriptsTransactionRequest,
-    ): Promise<BuildSendRefScriptsTransactionRequest> {
+    ): Promise<BuildSendRefScriptsTransactionResponse> {
         const input_utxos = convertUTxOs(data.input_utxos);
         const res = this.axiosInstance.post('/accounts/ref-scripts/build', {
             input_utxos,
@@ -46,9 +49,9 @@ export class Accounts extends Api {
     }
 
     public submitSendRefScriptsTransaction(
-        data: SubmitDepositTransactionRequest,
-    ): Promise<SubmitDepositTransactionResponse> {
-        const res = this.axiosInstance.post('/accounts/deposit/submit', data);
+        data: SubmitSendRefScriptsTransactionRequest,
+    ): Promise<SubmitSendRefScriptsTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/ref-scripts/submit', data);
         return this.resolveAxiosData(res);
     }
 

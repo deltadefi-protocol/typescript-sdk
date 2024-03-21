@@ -6,6 +6,14 @@ export type CreateAccountResponse = {
     message: string;
 };
 
+export type BuildSendRefScriptsTransactionResponse = {
+    tx_hex: string;
+};
+
+export type SubmitSendRefScriptsTransactionResponse = {
+    tx_hash: string;
+};
+
 export type BuildDepositTransactionResponse = {
     tx_hex: string;
 };
