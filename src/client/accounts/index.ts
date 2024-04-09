@@ -13,6 +13,7 @@ import {
     BuildSendRefScriptsTransactionResponse,
     SubmitSendRefScriptsTransactionRequest,
     SubmitSendRefScriptsTransactionResponse,
+    GetBalanceResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -35,6 +36,11 @@ export class Accounts extends Api {
             { wallet_address },
             { headers: { auth_key } },
         );
+        return this.resolveAxiosData(res);
+    }
+
+    public getBalance(): Promise<GetBalanceResponse> {
+        const res = this.axiosInstance.get('/accounts/balance');
         return this.resolveAxiosData(res);
     }
 

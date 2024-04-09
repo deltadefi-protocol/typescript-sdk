@@ -6,6 +6,16 @@ export type CreateAccountResponse = {
     message: string;
 };
 
+export type GetBalanceResponse = {
+    balance: {
+        total: Record<string, number>;
+        available: Record<string, number>;
+        heldForOrder: Record<string, number>;
+        spendingSettling: Record<string, number>;
+        depositingSettling: Record<string, number>;
+    };
+};
+
 export type BuildSendRefScriptsTransactionResponse = {
     tx_hex: string;
 };
