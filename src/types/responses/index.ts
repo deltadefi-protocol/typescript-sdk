@@ -1,18 +1,15 @@
 export type SignInResponse = {
     token: string;
-};
-
-export type CreateAccountResponse = {
-    message: string;
+    is_ready: boolean;
 };
 
 export type GetBalanceResponse = {
     balance: {
         total: Record<string, number>;
         available: Record<string, number>;
-        heldForOrder: Record<string, number>;
-        spendingSettling: Record<string, number>;
-        depositingSettling: Record<string, number>;
+        held_for_order: Record<string, number>;
+        spending_settling: Record<string, number>;
+        depositing_settling: Record<string, number>;
     };
 };
 

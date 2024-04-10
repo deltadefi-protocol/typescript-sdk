@@ -1,7 +1,5 @@
 import { AxiosInstance } from 'axios';
 import {
-    CreateAccountRequest,
-    CreateAccountResponse,
     SignInRequest,
     SignInResponse,
     BuildDepositTransactionRequest,
@@ -23,10 +21,6 @@ export class Accounts extends Api {
     constructor(axiosInstance: AxiosInstance) {
         super();
         this.axiosInstance = axiosInstance;
-    }
-
-    public create(data: CreateAccountRequest): Promise<CreateAccountResponse> {
-        return this.axiosInstance.post('/accounts/create', data);
     }
 
     public signIn(data: SignInRequest): Promise<SignInResponse> {

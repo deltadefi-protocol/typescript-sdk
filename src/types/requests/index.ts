@@ -1,10 +1,6 @@
 import { Asset, UTxO } from '@meshsdk/core';
 import { TradingPair, TradingSide, TradingType } from '../constant';
 
-export type CreateAccountRequest = {
-    wallet_address: string;
-};
-
 export type SignInRequest = {
     wallet_address: string;
     auth_key: string;
