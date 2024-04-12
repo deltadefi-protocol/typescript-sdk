@@ -1,7 +1,7 @@
 {
   "name": "utxo-orderbook-sdk",
   "description": "",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "license": "Apache-2.0",
   "main": "dist/cjs/index.js",
   "module": "dist/mjs/index.js",
@@ -13,7 +13,7 @@
   },
   "author": {
     "name": "hinson",
-    "email": "hinson@sidan.io"
+    "email": "hinson.wong@deltadefi.io"
   },
   "files": [
     "dist"

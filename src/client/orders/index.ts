@@ -28,4 +28,9 @@ export class Orders extends Api {
         const res = this.axiosInstance.post('/order/submit', data);
         return this.resolveAxiosData(res);
     }
+
+    public cancelOrder(orderId: string): Promise<void> {
+        const res = this.axiosInstance.delete(`/order/${orderId}`);
+        return this.resolveAxiosData(res);
+    }
 }

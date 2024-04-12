@@ -38,3 +38,7 @@ export type SubmitPostOrderTransactionResponse = {
     order: string;
     tx_hexes: string[];
 };
+
+export type CancelOrderResponse = {
+    message: string;
+};
