@@ -23,6 +23,15 @@ export type SubmitDepositTransactionRequest = {
     signed_tx: string;
 };
 
+export type BuildWithdrawalTransactionRequest = {
+    withdrawal_amount: Asset[];
+    input_utxos: Required<UTxO>[];
+};
+
+export type SubmitWithdrawalTransactionRequest = {
+    signed_tx: string;
+};
+
 export type BuildPostOrderTransactionRequest = {
     pair: TradingPair;
     side: TradingSide;

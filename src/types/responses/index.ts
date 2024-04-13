@@ -29,6 +29,14 @@ export type SubmitDepositTransactionResponse = {
     tx_hash: string;
 };
 
+export type BuildWithdrawalTransactionResponse = {
+    tx_hex: string;
+};
+
+export type SubmitWithdrawalTransactionResponse = {
+    tx_hash: string;
+};
+
 export type BuildPostOrderTransactionResponse = {
     order_id: string;
     tx_hexes: string[];

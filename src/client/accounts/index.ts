@@ -12,6 +12,10 @@ import {
     SubmitSendRefScriptsTransactionRequest,
     SubmitSendRefScriptsTransactionResponse,
     GetBalanceResponse,
+    BuildWithdrawalTransactionRequest,
+    BuildWithdrawalTransactionResponse,
+    SubmitWithdrawalTransactionRequest,
+    SubmitWithdrawalTransactionResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -70,6 +74,24 @@ export class Accounts extends Api {
         data: SubmitDepositTransactionRequest,
     ): Promise<SubmitDepositTransactionResponse> {
         const res = this.axiosInstance.post('/accounts/deposit/submit', data);
+        return this.resolveAxiosData(res);
+    }
+
+    public buildWithdrawalTransaction(
+        data: BuildWithdrawalTransactionRequest,
+    ): Promise<BuildWithdrawalTransactionResponse> {
+        const input_utxos = convertUTxOs(data.input_utxos);
+        const res = this.axiosInstance.post('/accounts/withdrawal/build', {
+            withdrawal_amount: data.withdrawal_amount,
+            input_utxos,
+        });
+        return this.resolveAxiosData(res);
+    }
+
+    public submitWithdrawalTransaction(
+        data: SubmitWithdrawalTransactionRequest,
+    ): Promise<SubmitWithdrawalTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/withdrawal/submit', data);
         return this.resolveAxiosData(res);
     }
 }
