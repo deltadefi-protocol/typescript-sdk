@@ -42,6 +42,11 @@ export class Accounts extends Api {
         return this.resolveAxiosData(res);
     }
 
+    public updateBalance(): Promise<GetBalanceResponse> {
+        const res = this.axiosInstance.get('/accounts/balance/update');
+        return this.resolveAxiosData(res);
+    }
+
     public buildSendRefScriptsTransaction(
         data: BuildSendRefScriptsTransactionRequest,
     ): Promise<BuildSendRefScriptsTransactionResponse> {
