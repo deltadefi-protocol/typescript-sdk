@@ -6,8 +6,7 @@ export type SignInResponse = {
 export type GetBalanceResponse = {
     balance: {
         total: Record<string, number>;
-        available_for_trade: Record<string, number>;
-        available_for_withdrawal: Record<string, number>;
+        available: Record<string, number>;
         held_for_order: Record<string, number>;
         spending_settling: Record<string, number>;
         depositing_settling: Record<string, number>;
