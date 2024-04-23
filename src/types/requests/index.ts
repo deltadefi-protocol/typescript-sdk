@@ -44,3 +44,7 @@ export type SubmitPostOrderTransactionRequest = {
     order_id: string;
     signed_txs: string[];
 };
+
+export type GetDepthRequest = {
+    pair: string;
+};
