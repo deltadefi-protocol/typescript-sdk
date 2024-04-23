@@ -1,3 +1,5 @@
+import { Order } from '../models';
+
 export type SignInResponse = {
     token: string;
     is_ready: boolean;
@@ -12,6 +14,10 @@ export type GetBalanceResponse = {
         spending_settling: Record<string, number>;
         depositing_settling: Record<string, number>;
     };
+};
+
+export type GetOrdersResponse = {
+    orders: Order[];
 };
 
 export type BuildSendRefScriptsTransactionResponse = {

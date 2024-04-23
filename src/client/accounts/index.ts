@@ -16,6 +16,7 @@ import {
     BuildWithdrawalTransactionResponse,
     SubmitWithdrawalTransactionRequest,
     SubmitWithdrawalTransactionResponse,
+    GetOrdersResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -39,6 +40,11 @@ export class Accounts extends Api {
 
     public getBalance(): Promise<GetBalanceResponse> {
         const res = this.axiosInstance.get('/accounts/balance');
+        return this.resolveAxiosData(res);
+    }
+
+    public getOrders(): Promise<GetOrdersResponse> {
+        const res = this.axiosInstance.get('/accounts/orders');
         return this.resolveAxiosData(res);
     }
 
