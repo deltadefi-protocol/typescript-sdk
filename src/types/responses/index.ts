@@ -58,3 +58,13 @@ export type SubmitPostOrderTransactionResponse = {
 export type CancelOrderResponse = {
     message: string;
 };
+
+export type MarketDepth = {
+    price: number;
+    quantity: number;
+};
+
+export type GetDepthResponse = {
+    bids: MarketDepth[];
+    asks: MarketDepth[];
+};
