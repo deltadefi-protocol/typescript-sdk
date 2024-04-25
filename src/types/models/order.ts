@@ -4,11 +4,12 @@ export type OrderStatus =
     | 'build'
     | 'pending'
     | 'open'
-    | 'pending_cancel'
+    // | 'pending_cancel'
     | 'cancelled'
-    | 'pending_settle'
     | 'partial_filled'
-    | 'fully_filled';
+    | 'pending_settle'
+    | 'fully_filled'
+    | 'failed';
 
 export type Order = {
     pair: TradingPair;
