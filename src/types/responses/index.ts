@@ -46,6 +46,7 @@ export type SubmitWithdrawalTransactionResponse = {
 
 export type BuildPostOrderTransactionResponse = {
     order_id: string;
+    chained_txs: string[];
     tx_hexes: string[];
 };
 
