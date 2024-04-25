@@ -15,4 +15,9 @@ describe('Account APIs', () => {
         const res = await api.accounts.signIn({ wallet_address, auth_key });
         expect(res.token).not.toBe('');
     });
+    test('Get Orders', async () => {
+        const api = new ApiClient(baseURL, { apiKey });
+        const res = await api.accounts.getOrders();
+        console.log(res);
+    });
 });
