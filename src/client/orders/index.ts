@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios';
 import {
     BuildPostOrderTransactionRequest,
     BuildPostOrderTransactionResponse,
+    CancelOrderResponse,
     SubmitPostOrderTransactionRequest,
     SubmitPostOrderTransactionResponse,
 } from '../../types';
@@ -29,7 +30,7 @@ export class Orders extends Api {
         return this.resolveAxiosData(res);
     }
 
-    public cancelOrder(orderId: string): Promise<void> {
+    public cancelOrder(orderId: string): Promise<CancelOrderResponse> {
         const res = this.axiosInstance.delete(`/order/${orderId}`);
         return this.resolveAxiosData(res);
     }
