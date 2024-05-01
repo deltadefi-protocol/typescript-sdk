@@ -68,3 +68,7 @@ export type GetDepthResponse = {
     bids: MarketDepth[];
     asks: MarketDepth[];
 };
+
+export type GetMarketPriceResponse = {
+    price: number;
+};

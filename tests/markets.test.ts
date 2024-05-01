@@ -2,6 +2,7 @@
 import dotenv from 'dotenv';
 import { ApiClient } from '../src';
 import { GetDepthResponse, MarketDepth } from '../src/types';
+import { GetMarketPriceResponse } from '../src/types';
 
 dotenv.config();
 
@@ -34,5 +35,32 @@ describe('GetDepthResponse', () => {
             expect(typeof ask.quantity).toBe('number');
             expect(ask.quantity).toBeGreaterThanOrEqual(0);
         });
+    });
+});
+
+describe('GetMarketPriceRequest', () => {
+    test('Buying price should have correct data format and non-negative vaule', async () => {
+        const api = new ApiClient(baseURL, { apiKey });
+        const res = await api.markets.getMarketPrice({ pair: 'ADAUSDX', side: 'buy' });
+
+        console.log('response', res);
+
+        // Check that buying price is a number
+        expect(typeof res.price).toBe('number');
+
+        // Check that buying price is non-negative
+        expect(res.price).toBeGreaterThanOrEqual(0);
+    });
+    test('Selling price should have correct data format and non-negative vaule', async () => {
+        const api = new ApiClient(baseURL, { apiKey });
+        const res = await api.markets.getMarketPrice({ pair: 'ADAUSDX', side: 'sell' });
+
+        console.log('response', res);
+
+        // Check that selling price is a number
+        expect(typeof res.price).toBe('number');
+
+        // Check that selling price is non-negative
+        expect(res.price).toBeGreaterThanOrEqual(0);
     });
 });

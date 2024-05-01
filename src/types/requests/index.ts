@@ -48,3 +48,8 @@ export type SubmitPostOrderTransactionRequest = {
 export type GetDepthRequest = {
     pair: string;
 };
+
+export type GetMarketPriceRequest = {
+    pair: string;
+    side: string;
+};
