@@ -72,3 +72,14 @@ export type GetDepthResponse = {
 export type GetMarketPriceResponse = {
     price: number;
 };
+
+export type Trade = {
+    bucket: string;
+    symbol: string;
+    open: string;
+    high: string;
+    low: string;
+    close: string;
+    volume: string;
+};
+export type GetAggregatedPriceResponse = Trade[];
