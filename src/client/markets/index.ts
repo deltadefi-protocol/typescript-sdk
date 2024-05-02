@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { Api } from '../api';
 import { GetDepthRequest, GetDepthResponse } from '../../types';
+import { GetMarketPriceRequest, GetMarketPriceResponse } from '../../types';
 
 export class Markets extends Api {
     private axiosInstance: AxiosInstance;
@@ -13,6 +14,12 @@ export class Markets extends Api {
     public getDepth(data: GetDepthRequest): Promise<GetDepthResponse> {
         const { pair } = data;
         const res = this.axiosInstance.get(`/market/depth?pair=${pair}`);
+        return this.resolveAxiosData(res);
+    }
+
+    public getMarketPrice(data: GetMarketPriceRequest): Promise<GetMarketPriceResponse> {
+        const { pair, side } = data;
+        const res = this.axiosInstance.get(`/market/market-price?pair=${pair}&side=${side}`);
         return this.resolveAxiosData(res);
     }
 }
