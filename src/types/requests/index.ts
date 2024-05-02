@@ -1,13 +1,17 @@
 import { Asset, UTxO } from '@meshsdk/core';
 import { TradingPair, TradingSide, TradingType } from '../constant';
 
-export type CreateAccountRequest = {
-    wallet_address: string;
-};
-
 export type SignInRequest = {
     wallet_address: string;
     auth_key: string;
+};
+
+export type BuildSendRefScriptsTransactionRequest = {
+    input_utxos: Required<UTxO>[];
+};
+
+export type SubmitSendRefScriptsTransactionRequest = {
+    signed_tx: string;
 };
 
 export type BuildDepositTransactionRequest = {
@@ -16,6 +20,15 @@ export type BuildDepositTransactionRequest = {
 };
 
 export type SubmitDepositTransactionRequest = {
+    signed_tx: string;
+};
+
+export type BuildWithdrawalTransactionRequest = {
+    withdrawal_amount: Asset[];
+    input_utxos: Required<UTxO>[];
+};
+
+export type SubmitWithdrawalTransactionRequest = {
     signed_tx: string;
 };
 
@@ -44,4 +57,8 @@ type MarketDepth = {
 export type GetDepthResponse = {
     bids: MarketDepth[];
     asks: MarketDepth[];
+};
+export type GetMarketPriceRequest = {
+    pair: string;
+    side: string;
 };
