@@ -24,8 +24,8 @@ export class Markets extends Api {
     }
 
     public getMarketPrice(data: GetMarketPriceRequest): Promise<GetMarketPriceResponse> {
-        const { pair, side } = data;
-        const res = this.axiosInstance.get(`/market/market-price?pair=${pair}&side=${side}`);
+        const { pair } = data;
+        const res = this.axiosInstance.get(`/market/market-price?pair=${pair}`);
         return this.resolveAxiosData(res);
     }
 

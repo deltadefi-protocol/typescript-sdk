@@ -56,7 +56,6 @@ type MarketDepth = {
 
 export type GetMarketPriceRequest = {
     pair: string;
-    side: string;
 };
 
 export type Interval = '15m' | '30m' | '1h' | '1d' | '1w' | '1M';
