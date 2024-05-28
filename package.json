@@ -1,7 +1,7 @@
 {
-    "name": "utxo-orderbook-sdk",
-    "description": "",
-    "version": "0.1.24",
+    "name": "@deltadefi/typescript-sdk",
+    "description": "The Typescript SDK for interacting with DeltaDeFi protocol",
+    "version": "0.1.0",
     "license": "Apache-2.0",
     "main": "dist/cjs/index.js",
     "module": "dist/mjs/index.js",
@@ -15,10 +15,17 @@
         "name": "hinson",
         "email": "hinson.wong@deltadefi.io"
     },
+    "homepage": "https://www.deltadefi.io/",
     "files": [
         "dist"
     ],
-    "keywords": [],
+    "keywords": [
+        "DeltaDeFi",
+        "Cardano",
+        "Typescript",
+        "DeFi",
+        "SDL"
+    ],
     "scripts": {
         "build": "rm -fr dist/* && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
         "ci": "yarn && yarn lint && yarn build",
@@ -28,7 +35,7 @@
         "prepare": "husky install"
     },
     "dependencies": {
-        "@meshsdk/core": "^1.5.14",
+        "@meshsdk/core": "^1.5.17",
         "axios": "^1.4.0"
     },
     "devDependencies": {
