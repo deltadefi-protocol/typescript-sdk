@@ -17,6 +17,8 @@ import {
     SubmitWithdrawalTransactionRequest,
     SubmitWithdrawalTransactionResponse,
     GetOrdersResponse,
+    GetAccountInfoResponse,
+    GetNewApiKeyResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -103,6 +105,16 @@ export class Accounts extends Api {
         data: SubmitWithdrawalTransactionRequest,
     ): Promise<SubmitWithdrawalTransactionResponse> {
         const res = this.axiosInstance.post('/accounts/withdrawal/submit', data);
+        return this.resolveAxiosData(res);
+    }
+
+    public getAccountInfo(): Promise<GetAccountInfoResponse> {
+        const res = this.axiosInstance.get('/accounts/info');
+        return this.resolveAxiosData(res);
+    }
+
+    public getNewApiKey(): Promise<GetNewApiKeyResponse> {
+        const res = this.axiosInstance.get('/accounts/new-api-key');
         return this.resolveAxiosData(res);
     }
 }
