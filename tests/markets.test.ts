@@ -2,14 +2,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import dotenv from 'dotenv';
 import { ApiClient } from '../src';
-import { GetDepthResponse, MarketDepth } from '../src/types';
-import { GetMarketPriceResponse } from '../src/types';
+import { MarketDepth } from '../src/types';
 
 dotenv.config();
 
-const wallet_address = process.env.WALLET_ADDRESS || '';
+// const wallet_address = process.env.WALLET_ADDRESS || '';
 const baseURL = process.env.BASE_URL || 'http://localhost:8080';
-const auth_key = process.env.AUTH_KEY || '';
+// const auth_key = process.env.AUTH_KEY || '';
 const apiKey = process.env.API_KEY || '';
 
 describe('GetDepthResponse', () => {
@@ -42,7 +41,7 @@ describe('GetDepthResponse', () => {
 describe('GetMarketPriceRequest', () => {
     test('Buying price should have correct data format and non-negative vaule', async () => {
         const api = new ApiClient(baseURL, { apiKey });
-        const res = await api.markets.getMarketPrice({ pair: 'ADAUSDX', side: 'buy' });
+        const res = await api.markets.getMarketPrice({ pair: 'ADAUSDX' });
 
         console.log('response', res);
 
@@ -54,7 +53,7 @@ describe('GetMarketPriceRequest', () => {
     });
     test('Selling price should have correct data format and non-negative vaule', async () => {
         const api = new ApiClient(baseURL, { apiKey });
-        const res = await api.markets.getMarketPrice({ pair: 'ADAUSDX', side: 'sell' });
+        const res = await api.markets.getMarketPrice({ pair: 'ADAUSDX' });
 
         console.log('response', res);
 

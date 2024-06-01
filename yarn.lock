@@ -797,10 +797,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@meshsdk/core@^1.5.17":
-  version "1.5.17"
-  resolved "https://registry.yarnpkg.com/@meshsdk/core/-/core-1.5.17.tgz#2cad4a668d819ff218389053c5ec0686f04144c6"
-  integrity sha512-GetWfApUvwvuyUhcrUMu0x+/Am+1a/HJdeVGNpL1cn5s6Cdz2X0DUMk3P0lOncq2r+d6iLMPTQ2pwMPMTnw8mw==
+"@meshsdk/core@^1.5.21":
+  version "1.5.21"
+  resolved "https://registry.yarnpkg.com/@meshsdk/core/-/core-1.5.21.tgz#5b638b9a6a63ad0cbe529afcb8befd4afa058e93"
+  integrity sha512-mfq81F7LdVYCLneXcmohaRTvqbkgm+fnABeiMsRXd9KgC5Tuhc6xeWpEf6h3qhO/Xbl6Hr2M95kw9BzulIyllA==
   dependencies:
     "@emurgo/cardano-message-signing-browser" "1.0.1"
     "@emurgo/cardano-message-signing-nodejs" "1.0.1"
