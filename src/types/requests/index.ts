@@ -45,14 +45,16 @@ export type SubmitPostOrderTransactionRequest = {
     signed_txs: string[];
 };
 
+export type PostOrderRequest = BuildPostOrderTransactionRequest;
+
 export type GetDepthRequest = {
     pair: string;
 };
 
-type MarketDepth = {
-    price: number;
-    quantity: number;
-};
+// type MarketDepth = {
+//     price: number;
+//     quantity: number;
+// };
 
 export type GetMarketPriceRequest = {
     pair: string;

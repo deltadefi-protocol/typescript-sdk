@@ -51,9 +51,11 @@ export type BuildPostOrderTransactionResponse = {
 };
 
 export type SubmitPostOrderTransactionResponse = {
-    order: string;
+    order: string; // TODO: update type when backend api return json ser type fixed
     tx_hexes: string[];
 };
+
+export type PostOrderResponse = SubmitPostOrderTransactionResponse;
 
 export type CancelOrderResponse = {
     message: string;
