@@ -1,17 +1,17 @@
-import { AppWalletKeyType, MeshWallet } from '@meshsdk/core';
+import { AppWalletKeyType, AppWallet } from '@meshsdk/core';
 
 export class DeFiWallet {
-    private wallet: MeshWallet;
+    private wallet: AppWallet;
 
     constructor(key: AppWalletKeyType, networkId: 0 | 1) {
-        this.wallet = new MeshWallet({
+        this.wallet = new AppWallet({
             networkId,
             key,
         });
     }
 
-    public async signTx(txHex: string): Promise<string> {
-        const signedTx = this.wallet.signTx(txHex, true);
+    public signTx(txHex: string): string {
+        const signedTx = this.wallet.signTxSync(txHex, true);
         return signedTx;
     }
 
