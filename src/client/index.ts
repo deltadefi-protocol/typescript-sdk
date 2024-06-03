@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { ApiConfig, ApiHeaders } from '../types';
+import { ApiConfig, ApiHeaders, PostOrderRequest, PostOrderResponse } from '../types';
 import { Accounts } from './accounts';
 import { Orders } from './orders';
 import { Markets } from './markets';
@@ -42,5 +42,18 @@ export class ApiClient {
         this.accounts = new Accounts(this.axiosInstance);
         this.orders = new Orders(this.axiosInstance);
         this.markets = new Markets(this.axiosInstance);
+    }
+
+    public async postOrder(data: PostOrderRequest): Promise<PostOrderResponse> {
+        if (!this.wallet) {
+            throw new Error('Wallet is not initialized');
+        }
+        const buildRes = await this.orders.buildPostOrderTransaction(data);
+        const signedTxs = this.wallet.signTxs(buildRes.tx_hexes);
+        const submitRes: PostOrderResponse = await this.orders.submitPostOrderTransactionRequest({
+            order_id: buildRes.order_id,
+            signed_txs: signedTxs,
+        });
+        return submitRes;
     }
 }

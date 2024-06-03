@@ -15,8 +15,12 @@ export class DeFiWallet {
         return signedTx;
     }
 
-    public async signTxs(txHexes: string[]): Promise<string[]> {
-        const signedTxs = this.wallet.signTxs(txHexes, true);
+    public signTxs(txHexes: string[]): string[] {
+        const signedTxs: string[] = [];
+        txHexes.forEach((txHex) => {
+            const signedTx = this.wallet.signTxSync(txHex, true);
+            signedTxs.push(signedTx);
+        });
         return signedTxs;
     }
 }
