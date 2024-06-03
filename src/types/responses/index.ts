@@ -83,3 +83,16 @@ export type Trade = {
     volume: string;
 };
 export type GetAggregatedPriceResponse = Trade[];
+
+export type GetAccountInfoResponse = {
+    api_key: string;
+    api_limit: string;
+    created_at: string;
+    updated_at: string;
+    wallet_address: string;
+    is_ready: boolean;
+};
+
+export type GetNewApiKeyResponse = {
+    api_key: string;
+};
