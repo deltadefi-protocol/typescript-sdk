@@ -1,5 +1,5 @@
 {
-    "name": "@deltadefi/typescript-sdk",
+    "name": "@deltadefi-protocol/typescript-sdk",
     "description": "The Typescript SDK for interacting with DeltaDeFi protocol",
     "version": "0.1.0",
     "license": "Apache-2.0",
