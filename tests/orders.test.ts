@@ -7,7 +7,6 @@ import { ApiClient } from '../src';
 
 dotenv.config();
 
-const baseURL = process.env.BASE_URL || 'http://localhost:8080';
 const apiKey = process.env.API_KEY || '';
 
 const signingKey: AppWalletKeyType = {
@@ -17,7 +16,7 @@ const signingKey: AppWalletKeyType = {
 
 describe('Orders APIs', () => {
     test('Orders should be successfully placed and cancelled programmatically', async () => {
-        const api = new ApiClient(baseURL, { apiKey, signingKey });
+        const api = new ApiClient({ apiKey, signingKey, network: 'preprod' });
         const buildRes = await api.orders.buildPostOrderTransaction({
             pair: 'ADAUSDX',
             side: 'sell',
@@ -43,7 +42,7 @@ describe('Orders APIs', () => {
     });
 
     test('Orders should be successfully placed and cancelled programmatically in one api', async () => {
-        const api = new ApiClient(baseURL, { apiKey, signingKey });
+        const api = new ApiClient({ apiKey, signingKey, network: 'preprod' });
         const buildRes = await api.postOrder({
             pair: 'ADAUSDX',
             side: 'sell',
