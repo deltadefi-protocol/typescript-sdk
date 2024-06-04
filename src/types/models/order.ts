@@ -14,10 +14,11 @@ export type OrderStatus =
 export type Order = {
     pair: TradingPair;
     order_id: string;
-    slippage: number;
     price: string;
+    slippage: number;
     orig_qty: string;
     executed_qty: string;
+    settling_qty: string;
     status: OrderStatus;
     time_in_force: TimeInForce;
     expiry_time: number;

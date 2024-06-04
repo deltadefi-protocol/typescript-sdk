@@ -51,7 +51,7 @@ describe('Orders APIs', () => {
             price: 0.62,
         });
 
-        const cancelRes = await api.orders.cancelOrder((buildRes.order as any).ID); // TODO: Fix this cast when backend api updated
+        const cancelRes = await api.orders.cancelOrder(buildRes.order.order_id);
         console.log('cancel order response', cancelRes);
     });
 });
