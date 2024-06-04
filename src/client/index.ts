@@ -8,7 +8,7 @@ import { DeFiWallet } from './wallet';
 export class ApiClient {
     private axiosInstance: AxiosInstance;
 
-    public networkId = 0;
+    public networkId: 0 | 1 = 0;
 
     public accounts: Accounts;
 
@@ -18,12 +18,17 @@ export class ApiClient {
 
     public wallet?: DeFiWallet;
 
-    constructor(baseURL: string, { networkId, jwt, apiKey, signingKey }: ApiConfig) {
+    constructor({ network, jwt, apiKey, signingKey }: ApiConfig, ProvidedBaseURL?: string) {
+        let baseURL = 'https://api-dev.deltadefi.io';
         const headers: ApiHeaders = {
             'Content-Type': 'application/json',
         };
-        if (networkId) {
-            this.networkId = networkId;
+        if (network) {
+            this.networkId = network === 'mainnet' ? 1 : 0;
+            baseURL =
+                network === 'mainnet'
+                    ? 'https://api-dev.deltadefi.io'
+                    : 'https://api-dev.deltadefi.io'; // TODO: input production link once available
         }
         if (jwt) {
             headers.Authorization = jwt;
@@ -32,7 +37,10 @@ export class ApiClient {
             headers['X-API-KEY'] = apiKey;
         }
         if (signingKey) {
-            this.wallet = new DeFiWallet(signingKey, networkId || 0);
+            this.wallet = new DeFiWallet(signingKey, this.networkId);
+        }
+        if (ProvidedBaseURL) {
+            baseURL = ProvidedBaseURL;
         }
         this.axiosInstance = axios.create({
             baseURL,

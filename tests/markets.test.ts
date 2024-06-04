@@ -6,14 +6,11 @@ import { MarketDepth } from '../src/types';
 
 dotenv.config();
 
-// const wallet_address = process.env.WALLET_ADDRESS || '';
-const baseURL = process.env.BASE_URL || 'http://localhost:8080';
-// const auth_key = process.env.AUTH_KEY || '';
 const apiKey = process.env.API_KEY || '';
 
 describe('GetDepthResponse', () => {
     test('should have correct structure and non-negative values', async () => {
-        const api = new ApiClient(baseURL, { apiKey });
+        const api = new ApiClient({ apiKey, network: 'preprod' });
         const res = await api.markets.getDepth({ pair: 'ADAUSDX' });
 
         console.log('response', res);
@@ -40,7 +37,7 @@ describe('GetDepthResponse', () => {
 
 describe('GetMarketPriceRequest', () => {
     test('Buying price should have correct data format and non-negative vaule', async () => {
-        const api = new ApiClient(baseURL, { apiKey });
+        const api = new ApiClient({ apiKey, network: 'preprod' });
         const res = await api.markets.getMarketPrice({ pair: 'ADAUSDX' });
 
         console.log('response', res);
@@ -52,7 +49,7 @@ describe('GetMarketPriceRequest', () => {
         expect(res.price).toBeGreaterThanOrEqual(0);
     });
     test('Selling price should have correct data format and non-negative vaule', async () => {
-        const api = new ApiClient(baseURL, { apiKey });
+        const api = new ApiClient({ apiKey, network: 'preprod' });
         const res = await api.markets.getMarketPrice({ pair: 'ADAUSDX' });
 
         console.log('response', res);
