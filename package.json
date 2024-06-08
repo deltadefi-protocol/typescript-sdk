@@ -1,7 +1,7 @@
 {
     "name": "@deltadefi-protocol/typescript-sdk",
     "description": "The Typescript SDK for interacting with DeltaDeFi protocol",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "license": "Apache-2.0",
     "main": "dist/cjs/index.js",
     "module": "dist/mjs/index.js",
@@ -35,7 +35,7 @@
         "prepare": "husky install"
     },
     "dependencies": {
-        "@meshsdk/core": "^1.5.24-alpha.2",
+        "@meshsdk/core": "^1.5.24-alpha.3",
         "axios": "^1.4.0"
     },
     "devDependencies": {

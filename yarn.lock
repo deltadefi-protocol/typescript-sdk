@@ -792,10 +792,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@meshsdk/core@^1.5.24-alpha.2":
-  version "1.5.24-alpha.2"
-  resolved "https://registry.yarnpkg.com/@meshsdk/core/-/core-1.5.24-alpha.2.tgz#8af25f1c0cc682e67acd8263e0622e2be03dadfa"
-  integrity sha512-vAv1pMi7G/vPMKsqnnvKoo0okCKaFyC38lGAyNPVGrB0iBwD8cujx0mPZYsOfMDCCxI1bizjOESbMFrQdMWnvw==
+"@meshsdk/core@^1.5.24-alpha.3":
+  version "1.5.24-alpha.3"
+  resolved "https://registry.yarnpkg.com/@meshsdk/core/-/core-1.5.24-alpha.3.tgz#97dc0a1bcf266c554f97206bd14ac972ee4c1b84"
+  integrity sha512-5ZIt7ngVwY9r2Qh/kz6ILCvwBNjxH8M/dBA7vFsEJY/nAxXy1GuLMF3kgoyMX+2kj6XDxBXATC+yVWmIM+WJWA==
   dependencies:
     "@emurgo/cardano-message-signing-browser" "1.0.1"
     "@emurgo/cardano-message-signing-nodejs" "1.0.1"
