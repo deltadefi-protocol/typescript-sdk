@@ -61,6 +61,7 @@ export class Accounts extends Api {
         const input_utxos = convertUTxOs(data.input_utxos);
         const res = this.axiosInstance.post('/accounts/ref-scripts/build', {
             input_utxos,
+            total_deposit_amount: data.total_deposit_amount,
         });
         return this.resolveAxiosData(res);
     }
