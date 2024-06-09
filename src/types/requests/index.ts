@@ -8,6 +8,7 @@ export type SignInRequest = {
 
 export type BuildSendRefScriptsTransactionRequest = {
     input_utxos: Required<UTxO>[];
+    total_deposit_amount: Asset[];
 };
 
 export type SubmitSendRefScriptsTransactionRequest = {
