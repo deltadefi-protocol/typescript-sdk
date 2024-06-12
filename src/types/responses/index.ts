@@ -76,13 +76,13 @@ export type GetMarketPriceResponse = {
 };
 
 export type Trade = {
-    bucket: string;
+    time: string;
     symbol: string;
-    open: string;
-    high: string;
-    low: string;
-    close: string;
-    volume: string;
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    volume: number;
 };
 export type GetAggregatedPriceResponse = Trade[];
 
