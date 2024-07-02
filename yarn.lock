@@ -469,6 +469,14 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@deltadefi-protocol/typescript-sdk@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@deltadefi-protocol/typescript-sdk/-/typescript-sdk-0.1.5.tgz#4a16d2c3b965d8421d3b6ac64760ff92a2572657"
+  integrity sha512-sHmtyP/hdzOaYnv23uLqSJdBKHO9BlO9UYbAMFgqCEtBoTrmgC/T9yISLvEMFjObDKFQlwfpcJGwUtV3mNNJRw==
+  dependencies:
+    "@meshsdk/core" "^1.5.24"
+    axios "^1.4.0"
+
 "@emurgo/cardano-message-signing-browser@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@emurgo/cardano-message-signing-browser/-/cardano-message-signing-browser-1.0.1.tgz#fb0a481575131d15bf15bb8781cb03bd3f7d56b0"
