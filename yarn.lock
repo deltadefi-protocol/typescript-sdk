@@ -804,6 +804,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@meshsdk/common@^1.0.0-alpha.12":
+  version "1.0.0-alpha.12"
+  resolved "https://registry.yarnpkg.com/@meshsdk/common/-/common-1.0.0-alpha.12.tgz#9907deeeccb898e763014f1d756422bdd56c742c"
+  integrity sha512-bAioWoAdAg+PxyJlURH0OJzed2UHoQf6vVZ1bImFylRAvIozIPhvL9BeEnqi7wXjw3dz5eACMMoxLlqUmMMSNA==
+
 "@meshsdk/core@^1.5.24":
   version "1.5.24"
   resolved "https://registry.yarnpkg.com/@meshsdk/core/-/core-1.5.24.tgz#1804c03b90a1984442aa2bed2f95726426da0c67"
