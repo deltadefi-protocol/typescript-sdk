@@ -56,7 +56,7 @@ describe('Orders APIs', () => {
         const randomlyPlacingOrder = async (i: number) => {
             const startTime = 100 * i + Math.random() * 100;
             const cancelTime = Math.random() * 10000;
-            await sleep(startTime);
+            // await sleep(startTime);
             const api = new ApiClient({ apiKey, signingKey, network: 'preprod' });
             const orderSide = Math.floor(Math.random() * 10000) % 2 === 0 ? 'buy' : 'sell';
             const buyPrices = [0.49, 0.485, 0.48, 0.45, 0.3];
@@ -64,7 +64,7 @@ describe('Orders APIs', () => {
             const priceChoice = Math.floor(Math.random() * 1000000) % 5;
             const orderQuantity =
                 Math.floor(Math.random() * 10000) % 2 === 0 ? 500_000_000 : 1_000_000_000;
-            await sleep(cancelTime);
+            // await sleep(cancelTime);
             const buildRes = await api
                 .postOrder({
                     pair: 'ADAUSDX',
@@ -84,7 +84,7 @@ describe('Orders APIs', () => {
             console.log('cancel order response', cancelRes);
         };
         const orderPromises: Promise<void>[] = [];
-        for (let i = 0; i < 20; i += 1) {
+        for (let i = 0; i < 40; i += 1) {
             orderPromises.push(randomlyPlacingOrder(i));
         }
         await Promise.all(orderPromises);

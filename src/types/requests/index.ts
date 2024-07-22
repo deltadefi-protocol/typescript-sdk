@@ -38,7 +38,8 @@ export type BuildPostOrderTransactionRequest = {
     side: TradingSide;
     type: TradingType;
     quantity: number;
-    price: number;
+    price?: number;
+    basis_point?: number;
 };
 
 export type SubmitPostOrderTransactionRequest = {
