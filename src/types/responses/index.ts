@@ -37,7 +37,7 @@ export type SubmitDepositTransactionResponse = {
 };
 
 export type BuildWithdrawalTransactionResponse = {
-    tx_hex: string;
+    tx_hexes: string[];
 };
 
 export type SubmitWithdrawalTransactionResponse = {
