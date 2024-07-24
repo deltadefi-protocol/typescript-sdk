@@ -30,7 +30,7 @@ export type BuildWithdrawalTransactionRequest = {
 };
 
 export type SubmitWithdrawalTransactionRequest = {
-    signed_tx: string;
+    signed_txs: string[];
 };
 
 export type BuildPostOrderTransactionRequest = {
