@@ -1,5 +1,13 @@
 import { Asset } from '@meshsdk/core';
 
+/**
+ * DeltaDeFiOrderInfo is a type that represents the information of a DeltaDeFi order.
+ * @property {Asset[]} assetsToPay - The assets that are to be paid from orders in current transaction.
+ * @property {Asset[]} assetsToReturn - The assets that are to be received from orders in current transaction.
+ * @property {string} txFee - The transaction fee.
+ * @property {string} tradingFee - The trading fee.
+ */
+
 export type DeltaDeFiOrderInfo = {
     assetsToPay: Asset[];
     assetsToReturn: Asset[];
