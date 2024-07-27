@@ -4,3 +4,4 @@ export * from './auth';
 export * from './conversion';
 export * from './models';
 export * from './api';
+export * from './value';

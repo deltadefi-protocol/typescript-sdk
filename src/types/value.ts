@@ -146,32 +146,32 @@ export class Value {
      * @param unit
      * @returns
      */
-    get = (unit: string): Asset => {
-        if (this.value[unit]) {
-            // Check if the unit exists in the value object
-            return { unit: unit, quantity: BigInt(this.value[unit]) };
-            // If the unit exists, return an Asset object with the unit and its quantity
-        } 
-        console.error(`Unit ${unit} does not exist.`);
-        return { unit: unit, quantity: '0' };
-        // If the unit does not exist, return an Asset object with the unit and a quantity of '0'
-        }
-    };
+    // get = (unit: string): Asset => {
+    //     if (this.value[unit]) {
+    //         // Check if the unit exists in the value object
+    //         return { unit: unit, quantity: BigInt(this.value[unit]) };
+    //         // If the unit exists, return an Asset object with the unit and its quantity
+    //     }
+    //     console.error(`Unit ${unit} does not exist.`);
+    //     return { unit: unit, quantity: '0' };
+    //     // If the unit does not exist, return an Asset object with the unit and a quantity of '0'
+    //     }
+    // };
 
     /**
      * Get all assets (return Record of Asset[])
      * @returns
      */
-    units = (): Record<string, Asset[]> => {
-        const result: Record<string, Asset[]> = {};
-        Object.keys(this.value).forEach(unit => {
-            if (!result[unit]) {
-                result[unit] = [];
-            }
-            result[unit].push({ unit: unit, quantity: BigInt(this.value[unit]) });
-        });
-        return result;
-    };
+    // units = (): Record<string, Asset[]> => {
+    //     const result: Record<string, Asset[]> = {};
+    //     Object.keys(this.value).forEach((unit) => {
+    //         if (!result[unit]) {
+    //             result[unit] = [];
+    //         }
+    //         result[unit].push({ unit: unit, quantity: BigInt(this.value[unit]) });
+    //     });
+    //     return result;
+    // };
 
     /**
      * Check if the value is greater than or equal to an inputted value
