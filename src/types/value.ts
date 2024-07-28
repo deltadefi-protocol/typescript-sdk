@@ -32,7 +32,7 @@ import { Asset } from '@meshsdk/core';
 export class Value {
     value: Record<string, bigint>;
 
-    constructor(assets: Asset[]) {
+    constructor() {
         this.value = {};
     }
 
