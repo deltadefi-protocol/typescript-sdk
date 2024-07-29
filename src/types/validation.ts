@@ -7,7 +7,6 @@ import { Asset } from '@meshsdk/core';
  * @property {string} txFee - The transaction fee.
  * @property {string} tradingFee - The trading fee.
  */
-
 export type DeltaDeFiOrderInfo = {
     assetsToPay: Asset[];
     assetsToReturn: Asset[];

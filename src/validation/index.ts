@@ -1,6 +1,7 @@
 /* eslint-disable arrow-body-style */
 import { Asset } from '@meshsdk/core';
 import { DeltaDeFiOrderInfo, DeltaDeFiTxInfo } from '../types/validation';
+import { Value } from '../src/types/responses';
 
 /**
  * Todo: Implement the function parseCurrentTxInfo.
@@ -10,13 +11,7 @@ import { DeltaDeFiOrderInfo, DeltaDeFiTxInfo } from '../types/validation';
  */
 export const parseCurrentTxInfo = (txHex: string): DeltaDeFiTxInfo => {
     console.log('txHex', txHex);
-
-    return {
-        accountInput: [],
-        accountOutput: [],
-        dexInput: [],
-        dexOutput: [],
-    };
+    return Value.parseTxHex(txHex);
 };
 
 /**
@@ -26,8 +21,20 @@ export const parseCurrentTxInfo = (txHex: string): DeltaDeFiTxInfo => {
  * @returns
  */
 export const txAccountNetInflow = (txInfo: DeltaDeFiTxInfo): Asset[] => {
-    return [];
+    const inflow = Value.calculateInflow(txInfo);
+    const outflow = Value.calculateOutflow(txInfo);
+    return inflow.map((asset, index) => ({
+        ...asset,
+        amount: asset.amount - (outflow[index]?.amount || 0),
+    }));
 };
+
+/**
+ * Todo: Implement the function txDexNetInflow.
+ * This function should calculate the net inflow of the DEX from the given transaction information.
+ * @param txInfo
+ * @returns
+ */
 
 export const txOrderInfo = (txInfo: DeltaDeFiTxInfo): DeltaDeFiOrderInfo => {
     return {
