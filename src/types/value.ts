@@ -2,33 +2,6 @@
 /* eslint-disable class-methods-use-this */
 import { Asset } from '@meshsdk/core';
 
-// interface Asset {
-//     unit: string;
-//     quantity: bigint;
-// }
-
-// Record Samples:
-// const utxoAssets = [
-//     {
-//         unit: 'lovelace',
-//         quantity: '1172320',
-//     },
-//     {
-//         unit: 'a5bb0e5bb275a573d744a021f9b3bff73595468e002755b447e01559484f534b594361736847726162303030303435353736',
-//         quantity: '1',
-//     },
-// ];
-// const utxoAssets2 = [
-//     {
-//         unit: 'lovelace',
-//         quantity: '117662320',
-//     },
-//     {
-//         unit: 'a5bb0e5bb275a573d744a021f9b3bff73595468e002755b447e01559484f534b59436173684772616230303030546653736',
-//         quantity: '1',
-//     },
-// ];
-
 export class Value {
     value: Record<string, bigint>;
 
@@ -48,18 +21,15 @@ export class Value {
      * @returns this
      */
     addAsset = (asset: Asset): this => {
-        // Defines a method named 'addAsset' on the class, which takes an 'asset' parameter of type 'Asset' and returns an instance of the class itself ('this').
-        if (this.value[asset.unit]) {
-            // Checks if the 'unit' property of the 'asset' object already exists as a key in the 'value' object of the class. If it does, the block inside will execute.
-            this.value[asset.unit] += BigInt(asset.quantity);
-            // If the unit exists, it adds the 'quantity' of the 'asset' to the existing quantity. The 'quantity' is converted to a BigInt before addition to handle large numbers or to ensure consistency in number type.
+        const quantity = BigInt(asset.quantity);
+        const { unit } = asset;
+
+        if (this.value[unit]) {
+            this.value[unit] += quantity;
         } else {
-            // If the unit does not exist in the 'value' object, this block will execute.
-            this.value[asset.unit] = BigInt(asset.quantity);
-            // It creates a new key in the 'value' object with the name of the unit and sets its value to the 'quantity' of the 'asset', converting the 'quantity' to a BigInt.
+            this.value[unit] = quantity;
         }
         return this;
-        // Returns the instance of the class, allowing for method chaining.
     };
 
     /**
@@ -75,20 +45,10 @@ export class Value {
      * @returns this
      */
     addAssets = (assets: Asset[]): this => {
-        // Defines a method named 'addAssets' on the class, which takes an 'assets' parameter of type 'Asset[]' (an array of assets) and returns an instance of the class itself ('this').
         assets.forEach((asset) => {
-            if (this.value[asset.unit]) {
-                // Checks if the 'unit' property of the 'asset' object already exists as a key in the 'value' object of the class. If it does, the block inside will execute.
-                this.value[asset.unit] += BigInt(asset.quantity);
-                // If the unit exists, add the quantity to the existing quantity
-            } else {
-                // If the unit does not exist, initialize it with the asset's quantity
-                this.value[asset.unit] = BigInt(asset.quantity);
-                // It creates a new key in the 'value' object with the name of the unit and sets its value to the 'quantity' of the 'asset', converting the 'quantity' to a BigInt.
-            }
+            this.addAsset(asset);
         });
         return this;
-        // Allows for method chaining by returning the instance of the class
     };
 
     /**
@@ -102,22 +62,15 @@ export class Value {
      * @returns this
      */
     negateAsset = (asset: Asset): this => {
-        // Defines a method named 'negateAsset' on the class, which takes an 'asset' parameter of type 'Asset' and returns an instance of the class itself ('this').
-        if (this.value[asset.unit]) {
-            // Checks if the 'unit' property of the 'asset' object already exists as a key in the 'value' object of the class. If it does, the block inside will execute.
-            const newQuantity = this.value[asset.unit] - BigInt(asset.quantity);
-            // Subtracts the 'quantity' of the 'asset' from the existing quantity for that unit in the 'value' object. The 'quantity' is converted to a BigInt to handle large numbers or ensure consistency in number type.
-            if (newQuantity > 0n) {
-                this.value[asset.unit] = newQuantity;
-                // If the resulting quantity is greater than 0, update the quantity for that unit in the 'value' object.
-            } else if (newQuantity === 0n) {
-                delete this.value[asset.unit];
-                // If the resulting quantity is equal to 0, delete the unit from the 'value' object, effectively removing the asset unit.
-            } else {
-                this.value[asset.unit] = newQuantity;
-            }
+        const { unit, quantity } = asset;
+
+        const currentQuantity = this.value[unit] || BigInt(0);
+        const newQuantity = currentQuantity - BigInt(quantity);
+
+        if (newQuantity === 0n) {
+            delete this.value[unit];
         } else {
-            this.value[asset.unit] = -BigInt(asset.quantity);
+            this.value[unit] = newQuantity;
         }
         return this;
     };
@@ -130,18 +83,7 @@ export class Value {
      */
     negateAssets = (assets: Asset[]): this => {
         assets.forEach((asset) => {
-            if (this.value[asset.unit]) {
-                const newQuantity = this.value[asset.unit] - BigInt(asset.quantity);
-                if (newQuantity > 0n) {
-                    this.value[asset.unit] = newQuantity;
-                } else if (newQuantity === 0n) {
-                    delete this.value[asset.unit];
-                } else {
-                    this.value[asset.unit] = newQuantity;
-                }
-            } else {
-                this.value[asset.unit] = -BigInt(asset.quantity);
-            }
+            this.negateAsset(asset);
         });
         return this;
     };
@@ -152,14 +94,7 @@ export class Value {
      * @returns
      */
     get = (unit: string): bigint => {
-        if (this.value[unit]) {
-            // Check if the unit exists in the value object
-            return BigInt(this.value[unit]);
-            // If the unit exists, return an Asset object with the unit and its quantity
-        }
-        console.error(`Unit ${unit} does not exist.`);
-        return BigInt(0);
-        // If the unit does not exist, return an Asset object with the unit and a quantity of '0'
+        return this.value[unit] ? BigInt(this.value[unit]) : 0n;
     };
 
     /**
@@ -168,20 +103,14 @@ export class Value {
      * @returns Record<string, Asset[]>
      */
     units = (): Record<string, { unit: string; quantity: bigint }[]> => {
-        // Defines a method named 'units' on the class, which returns a Record object where the keys are the units and the values are an array of objects containing the unit and quantity.
         const result: Record<string, { unit: string; quantity: bigint }[]> = {};
-        // Initializes an empty Record object named result to store the result
         Object.keys(this.value).forEach((unit) => {
-            // Iterates over each key in the 'value' object of the class
             if (!result[unit]) {
                 result[unit] = [];
             }
-            // If the unit does not exist in the result object, initialize it as an empty array
             result[unit].push({ unit, quantity: BigInt(this.value[unit]) });
-            //
         });
         return result;
-        // Returns the result object containing the units and their quantities
     };
 
     /**
@@ -190,32 +119,40 @@ export class Value {
      * @param other - The value to compare against
      * @returns boolean
      */
+    // geq = (unit: string, other: Value): boolean => {
+    //     const thisValue = this.get(unit);
+    //     const otherValue = other.get(unit);
+    //     return thisValue >= otherValue;
+    // };
+
     geq = (unit: string, other: Value): boolean => {
-        // Defines a method named 'geq' on the class, which takes a 'unit' parameter of type 'string' and an 'other' parameter of type 'Value' and returns a boolean value.
         if (this.value[unit] === undefined || other.value[unit] === undefined) {
-            // Checks if the unit does not exist in either the current value object or the value object of the 'other' parameter.
             return false;
-            // If the unit does not exist in either object, return false.
         }
         return BigInt(this.value[unit]) >= BigInt(other.value[unit]);
-        // Compares the quantity of the unit in the current value object with the quantity of the same unit in the 'other' value object. The comparison is done using BigInt to handle large numbers or ensure consistency in number type.
     };
 
     /**
-     * Check if the value is less than the inputted value
+     * Check if the value is less than or equal to an inputted value
      * @param unit - The unit to compare (e.g., "ADA")
      * @param other - The value to compare against
      * @returns boolean
      */
+    // leq = (unit: string, other: Value): boolean => {
+    //     const thisValue = this.get(unit);
+    //     const otherValue = other.get(unit);
+    //     if (otherValue === undefined) {
+    //         return false;
+    //     }
+
+    //     return thisValue <= otherValue;
+    // };
+
     leq = (unit: string, other: Value): boolean => {
-        // Defines a method named 'leq' on the class, which takes a 'unit' parameter of type 'string' and an 'other' parameter of type 'Value' and returns a boolean value.
         if (this.value[unit] === undefined || other.value[unit] === undefined) {
-            // Checks if the unit does not exist in either the current value object or the value object of the 'other' parameter.
             return false;
-            // If the unit does not exist in either object, return false.
         }
         return BigInt(this.value[unit]) <= BigInt(other.value[unit]);
-        // Compares the quantity of the unit in the current value object with the quantity of the same unit in the 'other' value object. The comparison is done using BigInt to handle large numbers or ensure consistency in number type.
     };
 
     /**
@@ -225,7 +162,6 @@ export class Value {
      */
     isEmpty = (): boolean => {
         return Object.keys(this.value).length === 0;
-        // Returns a boolean value indicating whether the 'value' object of the class is empty (i.e., has no keys).
     };
 
     /**
@@ -234,24 +170,15 @@ export class Value {
      * @returns this
      */
     merge = (values: Value | Value[]): this => {
-        // Ensure values is always an array
         const valuesArray = Array.isArray(values) ? values : [values];
-        // If the 'values' parameter is an array, assign it to 'valuesArray'; otherwise, create an array with 'values' as the only element.
 
         valuesArray.forEach((other) => {
-            // Iterate over each 'other' value in the 'valuesArray'
             Object.entries(other.value).forEach(([key, value]) => {
-                // Iterate over each key-value pair in the 'value' object of the 'other' value
-                if (this.value[key] === undefined) {
-                    this.value[key] = BigInt(value);
-                    // If the key does not exist in the 'value' object of the class, add the key and its value to the 'value' object.
-                } else {
-                    this.value[key] = BigInt(this.value[key]) + BigInt(value);
-                    // If the key already exists in the 'value' object, add the value to the existing value for that key.
-                }
+                this.value[key] =
+                    (this.value[key] !== undefined ? BigInt(this.value[key]) : 0n) + BigInt(value);
             });
         });
+
         return this;
-        // Return the instance of the class to allow for method chaining.
     };
 }

@@ -231,7 +231,7 @@ describe('Value class', () => {
             expect(value.geq('BTC', target)).toBe(true);
         });
 
-        it('should return false if the unit does not exist in either value', () => {
+        it('should return false if the unit does not exist in value.value', () => {
             const value = new Value();
             value.value = { ADA: 20n, BTC: 10n };
             const target = new Value();
@@ -267,7 +267,7 @@ describe('Value class', () => {
             expect(value.leq('BTC', target)).toBe(true);
         });
 
-        it('should return false if the unit does not exist in either value', () => {
+        it('should return false if the unit does not exist in value.value', () => {
             const value = new Value();
             value.value = { ADA: 20n, BTC: 10n };
             const target = new Value();
