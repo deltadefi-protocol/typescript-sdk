@@ -1,7 +1,7 @@
 {
     "name": "@deltadefi-protocol/typescript-sdk",
     "description": "The Typescript SDK for interacting with DeltaDeFi protocol",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "license": "Apache-2.0",
     "main": "dist/cjs/index.js",
     "module": "dist/mjs/index.js",
@@ -58,7 +58,7 @@
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-prettier": "^4.2.1",
         "husky": "^8.0.3",
-        "jest": "^29.5.0",
+        "jest": "^29.7.0",
         "prettier": "^2.8.8",
         "ts-jest": "^29.1.0",
         "ts-node": "^10.9.2",
