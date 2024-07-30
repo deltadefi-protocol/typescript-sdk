@@ -30,7 +30,7 @@ export type BuildWithdrawalTransactionRequest = {
 };
 
 export type SubmitWithdrawalTransactionRequest = {
-    signed_tx: string;
+    signed_txs: string[];
 };
 
 export type BuildPostOrderTransactionRequest = {
@@ -38,7 +38,8 @@ export type BuildPostOrderTransactionRequest = {
     side: TradingSide;
     type: TradingType;
     quantity: number;
-    price: number;
+    price?: number;
+    basis_point?: number;
 };
 
 export type SubmitPostOrderTransactionRequest = {
