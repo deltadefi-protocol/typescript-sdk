@@ -67,7 +67,7 @@ export class Value {
         const currentQuantity = this.value[unit] || BigInt(0);
         const newQuantity = currentQuantity - BigInt(quantity);
 
-        if (newQuantity === 0n) {
+        if (newQuantity === BigInt(0)) {
             delete this.value[unit];
         } else {
             this.value[unit] = newQuantity;
@@ -94,7 +94,7 @@ export class Value {
      * @returns
      */
     get = (unit: string): bigint => {
-        return this.value[unit] ? BigInt(this.value[unit]) : 0n;
+        return this.value[unit] ? BigInt(this.value[unit]) : BigInt(0);
     };
 
     /**
@@ -175,7 +175,8 @@ export class Value {
         valuesArray.forEach((other) => {
             Object.entries(other.value).forEach(([key, value]) => {
                 this.value[key] =
-                    (this.value[key] !== undefined ? BigInt(this.value[key]) : 0n) + BigInt(value);
+                    (this.value[key] !== undefined ? BigInt(this.value[key]) : BigInt(0)) +
+                    BigInt(value);
             });
         });
 
