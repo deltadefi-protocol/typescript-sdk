@@ -5,6 +5,11 @@ import { Asset } from '@meshsdk/core';
 export class Value {
     value: Record<string, bigint>;
 
+    // static fromAsset(asset: Asset): Value {
+    //     let value = new Value();
+    //     return value;
+    // }
+
     constructor() {
         this.value = {};
     }
@@ -182,4 +187,8 @@ export class Value {
 
         return this;
     };
+
+    toRecord(): Record<string, bigint> {
+        return this.value;
+    }
 }
