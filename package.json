@@ -35,9 +35,7 @@
         "prepare": "husky install"
     },
     "dependencies": {
-        "@deltadefi-protocol/typescript-sdk": "^0.1.5",
-        "@meshsdk/common": "^1.0.0-alpha.12",
-        "@meshsdk/core": "^1.5.24",
+        "@meshsdk/core": "^1.6.7",
         "axios": "^1.4.0"
     },
     "devDependencies": {
