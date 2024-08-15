@@ -26,7 +26,6 @@ import {
     GetDepositInfoResponse,
 } from '../../types';
 import { Api } from '../api';
-import { Asset } from '@meshsdk/core';
 
 export class Accounts extends Api {
     private axiosInstance: AxiosInstance;
@@ -151,7 +150,7 @@ export class Accounts extends Api {
                         quantity: '2000000000',
                     },
                 ],
-                postDepositBalance: {
+                post_deposit_balance: {
                     total: {
                         lovelace: 1_500_000_000n,
                         '5066154a102ee037390c5236f78db23239b49c5748d3d349f3ccf04b55534458':
@@ -190,7 +189,7 @@ export class Accounts extends Api {
                         quantity: '200000000',
                     },
                 ],
-                postDepositBalance: {
+                post_deposit_balance: {
                     total: {
                         lovelace: 1_600_000_000n,
                         '5066154a102ee037390c5236f78db23239b49c5748d3d349f3ccf04b55534458':

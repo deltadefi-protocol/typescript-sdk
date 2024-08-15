@@ -111,6 +111,6 @@ export type SubmitDeleteAccountTransactionResponse = {
 };
 
 export type GetDepositInfoResponse = {
-    total_deposit: { amount: Asset[]; postDepositBalance: Balance };
-    suggested_deposit: { amount: Asset[]; postDepositBalance: Balance };
+    total_deposit: { amount: Asset[]; post_deposit_balance: Balance };
+    suggested_deposit: { amount: Asset[]; post_deposit_balance: Balance };
 };
