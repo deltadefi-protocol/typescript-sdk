@@ -1,3 +1,4 @@
+import { Asset } from '@meshsdk/core';
 import { Order } from '../models';
 
 export type SignInResponse = {
@@ -5,15 +6,17 @@ export type SignInResponse = {
     is_ready: boolean;
 };
 
+export type Balance = {
+    total: Record<string, bigint>;
+    available_for_trade: Record<string, bigint>;
+    available_for_withdrawal: Record<string, bigint>;
+    held_for_order: Record<string, bigint>;
+    spending_settling: Record<string, bigint>;
+    depositing_settling: Record<string, bigint>;
+};
+
 export type GetBalanceResponse = {
-    balance: {
-        total: Record<string, number>;
-        available_for_trade: Record<string, number>;
-        available_for_withdrawal: Record<string, number>;
-        held_for_order: Record<string, number>;
-        spending_settling: Record<string, number>;
-        depositing_settling: Record<string, number>;
-    };
+    balance: Balance;
 };
 
 export type GetOrdersResponse = {
@@ -97,4 +100,17 @@ export type GetAccountInfoResponse = {
 
 export type GetNewApiKeyResponse = {
     api_key: string;
+};
+
+export type BuildDeleteAccountTransactionResponse = {
+    tx_hex: string;
+};
+
+export type SubmitDeleteAccountTransactionResponse = {
+    tx_hash: string;
+};
+
+export type GetDepositInfoResponse = {
+    total_deposit: { amount: Asset[]; post_deposit_balance: Balance };
+    suggested_deposit: { amount: Asset[]; post_deposit_balance: Balance };
 };

@@ -6,10 +6,12 @@ import { MarketDepth } from '../src/types';
 
 dotenv.config();
 
+const skipApiTests = process.env.SKIP_API_TESTS === 'true';
 const apiKey = process.env.API_KEY || '';
 
 describe('GetDepthResponse', () => {
     test('should have correct structure and non-negative values', async () => {
+        if (skipApiTests) return;
         const api = new ApiClient({ apiKey, network: 'preprod' });
         const res = await api.markets.getDepth({ pair: 'ADAUSDX' });
 
@@ -37,6 +39,7 @@ describe('GetDepthResponse', () => {
 
 describe('GetMarketPriceRequest', () => {
     test('Buying price should have correct data format and non-negative vaule', async () => {
+        if (skipApiTests) return;
         const api = new ApiClient({ apiKey, network: 'preprod' });
         const res = await api.markets.getMarketPrice({ pair: 'ADAUSDX' });
 
@@ -49,6 +52,7 @@ describe('GetMarketPriceRequest', () => {
         expect(res.price).toBeGreaterThanOrEqual(0);
     });
     test('Selling price should have correct data format and non-negative vaule', async () => {
+        if (skipApiTests) return;
         const api = new ApiClient({ apiKey, network: 'preprod' });
         const res = await api.markets.getMarketPrice({ pair: 'ADAUSDX' });
 
