@@ -19,6 +19,11 @@ import {
     GetOrdersResponse,
     GetAccountInfoResponse,
     GetNewApiKeyResponse,
+    BuildDeleteAccountTransactionResponse,
+    SubmitDeleteAccountTransactionRequest,
+    SubmitDeleteAccountTransactionResponse,
+    GetDepositInfoRequest,
+    GetDepositInfoResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -116,6 +121,23 @@ export class Accounts extends Api {
 
     public getNewApiKey(): Promise<GetNewApiKeyResponse> {
         const res = this.axiosInstance.get('/accounts/new-api-key');
+        return this.resolveAxiosData(res);
+    }
+
+    public buildDeleteAccountTransaction(): Promise<BuildDeleteAccountTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/delete/build', {});
+        return this.resolveAxiosData(res);
+    }
+
+    public submitDeleteAccountTransaction(
+        data: SubmitDeleteAccountTransactionRequest,
+    ): Promise<SubmitDeleteAccountTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/delete/submit', data);
+        return this.resolveAxiosData(res);
+    }
+
+    public getDepositInfo(data: GetDepositInfoRequest): Promise<GetDepositInfoResponse> {
+        const res = this.axiosInstance.post('/accounts/deposit/info', data);
         return this.resolveAxiosData(res);
     }
 }

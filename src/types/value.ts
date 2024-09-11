@@ -4,12 +4,7 @@ import { Asset } from '@meshsdk/core';
 
 export class Value {
     value: Record<string, bigint>;
-
-    // static fromAsset(asset: Asset): Value {
-    //     let value = new Value();
-    //     return value;
-    // }
-
+    
     constructor() {
         this.value = {};
     }

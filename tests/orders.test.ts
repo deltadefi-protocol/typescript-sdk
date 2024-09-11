@@ -7,6 +7,7 @@ import { ApiClient } from '../src';
 
 dotenv.config();
 
+const skipApiTests = process.env.SKIP_API_TESTS === 'true';
 const apiKey = process.env.API_KEY || '';
 
 const signingKey: AppWalletKeyType = {
@@ -16,6 +17,7 @@ const signingKey: AppWalletKeyType = {
 
 describe('Orders APIs', () => {
     test('Orders should be successfully placed and cancelled programmatically', async () => {
+        if (skipApiTests) return;
         const api = new ApiClient({ apiKey, signingKey, network: 'preprod' });
         const buildRes = await api.orders.buildPostOrderTransaction({
             pair: 'ADAUSDX',
@@ -37,6 +39,7 @@ describe('Orders APIs', () => {
         console.log('cancel order response', cancelRes);
     });
     test('Orders should be successfully placed and cancelled programmatically in one api', async () => {
+        if (skipApiTests) return;
         const api = new ApiClient({ apiKey, signingKey, network: 'preprod' });
         const buildRes = await api.postOrder({
             pair: 'ADAUSDX',
@@ -53,6 +56,7 @@ describe('Orders APIs', () => {
             setTimeout(resolve, ms);
         });
     test('Randomly placing order at api', async () => {
+        if (skipApiTests) return;
         const randomlyPlacingOrder = async (i: number) => {
             const startTime = 100 * i + Math.random() * 100;
             const cancelTime = Math.random() * 10000;
