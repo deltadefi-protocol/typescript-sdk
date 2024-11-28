@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import {
-    BuildPostOrderTransactionRequest,
-    BuildPostOrderTransactionResponse,
+    BuildPlaceOrderTransactionRequest,
+    BuildPlaceOrderTransactionResponse,
     CancelOrderResponse,
     SubmitPostOrderTransactionRequest,
     SubmitPostOrderTransactionResponse,
@@ -16,9 +16,9 @@ export class Orders extends Api {
         this.axiosInstance = axiosInstance;
     }
 
-    public buildPostOrderTransaction(
-        data: BuildPostOrderTransactionRequest,
-    ): Promise<BuildPostOrderTransactionResponse> {
+    public buildPlaceOrderTransaction(
+        data: BuildPlaceOrderTransactionRequest,
+    ): Promise<BuildPlaceOrderTransactionResponse> {
         const res = this.axiosInstance.post('/order/build', data);
         return this.resolveAxiosData(res);
     }

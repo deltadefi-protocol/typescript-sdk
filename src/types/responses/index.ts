@@ -14,12 +14,6 @@ export type SubmitSendRefScriptsTransactionResponse = {
     tx_hash: string;
 };
 
-export type BuildPostOrderTransactionResponse = {
-    order_id: string;
-    chained_txs: string[];
-    tx_hexes: string[];
-};
-
 export type SubmitPostOrderTransactionResponse = {
     order: Order;
     tx_hexes: string[];
@@ -124,3 +118,8 @@ export type GetMarketPriceResponse = {
 };
 
 export type GetAggregatedPriceResponse = Trade[];
+
+export type BuildPlaceOrderTransactionResponse = {
+    order_id: string;
+    tx_hex: string;
+};

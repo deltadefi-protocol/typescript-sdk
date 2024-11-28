@@ -1,5 +1,5 @@
 import { Asset, UTxO } from '@meshsdk/core';
-import { TradingPair, TradingSide, TradingType } from '../constant';
+import { TradingSymbol, OrderSide, OrderType } from '../models/order';
 
 export type SignInRequest = {
     wallet_address: string;
@@ -13,15 +13,6 @@ export type BuildSendRefScriptsTransactionRequest = {
 
 export type SubmitSendRefScriptsTransactionRequest = {
     signed_tx: string;
-};
-
-export type BuildPostOrderTransactionRequest = {
-    pair: TradingPair;
-    side: TradingSide;
-    type: TradingType;
-    quantity: number;
-    price?: number;
-    basis_point?: number;
 };
 
 export type SubmitPostOrderTransactionRequest = {
@@ -60,7 +51,7 @@ export type SubmitWithdrawalTransactionRequest = {
 };
 
 export type GetMarketDepthRequest = {
-    pair: TradingPair;
+    pair: TradingSymbol;
 };
 
 export type GetMarketPriceRequest = {
@@ -72,4 +63,13 @@ export type GetAggregatedPriceRequest = {
     interval: Interval;
     start?: number; // timestamp
     end?: number; // timestamp
+};
+
+export type BuildPlaceOrderTransactionRequest = {
+    pair: TradingSymbol;
+    side: OrderSide;
+    type: OrderType;
+    quantity: number;
+    price?: number;
+    basis_point?: number;
 };
