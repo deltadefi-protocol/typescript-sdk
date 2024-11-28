@@ -19,10 +19,6 @@ export type GetBalanceResponse = {
     balance: Balance;
 };
 
-export type GetOrdersResponse = {
-    orders: Order[];
-};
-
 export type BuildSendRefScriptsTransactionResponse = {
     tx_hex: string;
 };
@@ -121,3 +117,10 @@ export type GetDepositRecordsResponse = DepositRecord[];
 export type GetOrderRecordResponse = {
     Orders: OrderJSON[];
 };
+
+type WithdrawalRecord = {
+    created_at: string;
+    assets: Asset[];
+};
+
+export type GetWithdrawalRecordsResponse = WithdrawalRecord[];
