@@ -123,3 +123,5 @@ export type SubmitWithdrawalTransactionResponse = {
 export type GetTermsAndConditionResponse = {
     value: string;
 };
+
+export type ConfirmTxResponse = 'success';
