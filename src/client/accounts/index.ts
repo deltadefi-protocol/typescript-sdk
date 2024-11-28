@@ -68,13 +68,6 @@ export class Accounts extends Api {
         return this.resolveAxiosData(res);
     }
 
-    public submitDepositTransaction(
-        data: SubmitDepositTransactionRequest,
-    ): Promise<SubmitDepositTransactionResponse> {
-        const res = this.axiosInstance.post('/accounts/deposit/submit', data);
-        return this.resolveAxiosData(res);
-    }
-
     public submitWithdrawalTransaction(
         data: SubmitWithdrawalTransactionRequest,
     ): Promise<SubmitWithdrawalTransactionResponse> {
@@ -140,6 +133,13 @@ export class Accounts extends Api {
         const res = this.axiosInstance.post('/accounts/withdrawal/build', {
             withdrawal_amount: data.withdrawal_amount,
         });
+        return this.resolveAxiosData(res);
+    }
+
+    public submitDepositTransaction(
+        data: SubmitDepositTransactionRequest,
+    ): Promise<SubmitDepositTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/deposit/submit', data);
         return this.resolveAxiosData(res);
     }
 }

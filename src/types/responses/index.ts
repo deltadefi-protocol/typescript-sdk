@@ -14,10 +14,6 @@ export type SubmitSendRefScriptsTransactionResponse = {
     tx_hash: string;
 };
 
-export type SubmitDepositTransactionResponse = {
-    tx_hash: string;
-};
-
 export type SubmitWithdrawalTransactionResponse = {
     tx_hash: string;
 };
@@ -118,4 +114,8 @@ export type BuildDepositTransactionResponse = {
 
 export type BuildWithdrawalTransactionResponse = {
     tx_hex: string;
+};
+
+export type SubmitDepositTransactionResponse = {
+    tx_hash: string;
 };
