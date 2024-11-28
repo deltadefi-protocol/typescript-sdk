@@ -15,11 +15,6 @@ export type SubmitSendRefScriptsTransactionRequest = {
     signed_tx: string;
 };
 
-export type BuildDepositTransactionRequest = {
-    deposit_amount: Asset[];
-    input_utxos: Required<UTxO>[];
-};
-
 export type SubmitDepositTransactionRequest = {
     signed_tx: string;
 };
@@ -73,4 +68,9 @@ export type GetAggregatedPriceRequest = {
 
 export type SubmitDeleteAccountTransactionRequest = {
     signed_tx: string;
+};
+
+export type BuildDepositTransactionRequest = {
+    deposit_amount: Asset[];
+    input_utxos: UTxO[];
 };

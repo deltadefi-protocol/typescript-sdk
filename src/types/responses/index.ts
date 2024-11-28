@@ -14,10 +14,6 @@ export type SubmitSendRefScriptsTransactionResponse = {
     tx_hash: string;
 };
 
-export type BuildDepositTransactionResponse = {
-    tx_hex: string;
-};
-
 export type SubmitDepositTransactionResponse = {
     tx_hash: string;
 };
@@ -118,4 +114,8 @@ export type GetAccountBalanceResponse = AssetBalance[];
 
 export type GenerateNewAPIKeyResponse = {
     api_key: string;
+};
+
+export type BuildDepositTransactionResponse = {
+    tx_hex: string;
 };
