@@ -36,10 +36,6 @@ export type PostOrderRequest = BuildPostOrderTransactionRequest;
 //     quantity: number;
 // };
 
-export type GetMarketPriceRequest = {
-    pair: string;
-};
-
 export type Interval = '15m' | '30m' | '1h' | '1d' | '1w' | '1M';
 
 export type GetAggregatedPriceRequest = {
@@ -72,4 +68,8 @@ export type SubmitWithdrawalTransactionRequest = {
 
 export type GetMarketDepthRequest = {
     pair: TradingPair;
+};
+
+export type GetMarketPriceRequest = {
+    pair: string;
 };

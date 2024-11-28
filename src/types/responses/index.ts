@@ -31,10 +31,6 @@ export type CancelOrderResponse = {
     message: string;
 };
 
-export type GetMarketPriceResponse = {
-    price: number;
-};
-
 export type Trade = {
     time: string;
     symbol: string;
@@ -122,4 +118,8 @@ export type MarketDepth = {
 export type GetMarketDepthResponse = {
     bids: MarketDepth[];
     asks: MarketDepth[];
+};
+
+export type GetMarketPriceResponse = {
+    price: number;
 };
