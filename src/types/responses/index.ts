@@ -40,7 +40,6 @@ export type Trade = {
     close: number;
     volume: number;
 };
-export type GetAggregatedPriceResponse = Trade[];
 
 export type GetAccountInfoResponse = {
     api_key: string;
@@ -123,3 +122,5 @@ export type GetMarketDepthResponse = {
 export type GetMarketPriceResponse = {
     price: number;
 };
+
+export type GetAggregatedPriceResponse = Trade[];
