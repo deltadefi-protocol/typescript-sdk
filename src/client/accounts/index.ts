@@ -16,7 +16,7 @@ import {
     BuildWithdrawalTransactionResponse,
     SubmitWithdrawalTransactionRequest,
     SubmitWithdrawalTransactionResponse,
-    GetOrdersResponse,
+    GetOrderRecordResponse,
     GetAccountInfoResponse,
     GetNewApiKeyResponse,
     BuildDeleteAccountTransactionResponse,
@@ -46,11 +46,6 @@ export class Accounts extends Api {
 
     public getBalance(): Promise<GetBalanceResponse> {
         const res = this.axiosInstance.get('/accounts/balance');
-        return this.resolveAxiosData(res);
-    }
-
-    public getOrders(): Promise<GetOrdersResponse> {
-        const res = this.axiosInstance.get('/accounts/orders');
         return this.resolveAxiosData(res);
     }
 
@@ -137,6 +132,11 @@ export class Accounts extends Api {
 
     public getDepositRecords(): Promise<GetDepositRecordsResponse> {
         const res = this.axiosInstance.get('/accounts/deposit-records');
+        return this.resolveAxiosData(res);
+    }
+
+    public getOrderRecords(): Promise<GetOrderRecordResponse> {
+        const res = this.axiosInstance.get('/accounts/order-records');
         return this.resolveAxiosData(res);
     }
 }

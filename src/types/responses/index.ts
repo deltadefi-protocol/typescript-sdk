@@ -1,5 +1,5 @@
 import { Asset } from '@meshsdk/core';
-import { Order } from '../models';
+import { OrderJSON } from '../models/order';
 
 export type SignInResponse = {
     token: string;
@@ -117,3 +117,7 @@ type DepositRecord = {
 };
 
 export type GetDepositRecordsResponse = DepositRecord[];
+
+export type GetOrderRecordResponse = {
+    Orders: OrderJSON[];
+};
