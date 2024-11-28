@@ -1,29 +1,33 @@
-import { TimeInForce, TradingPair, TradingSide, TradingType } from '../constant';
+export type TradingSymbol = 'ADAUSDX';
 
-export type OrderStatus =
-    | 'build'
-    | 'pending'
-    | 'open'
-    // | 'pending_cancel'
-    | 'cancelled'
-    | 'partial_filled'
-    | 'pending_settle'
-    | 'fully_filled'
-    | 'failed';
+export type OrderStatus = 'building' | 'open' | 'closed' | 'failed';
 
-export type Order = {
-    pair: TradingPair;
+export type OrderSide = 'buy' | 'sell';
+
+export const OrderSides = {
+    BuyOrder: 'buy' as OrderSide,
+    SellOrder: 'sell' as OrderSide,
+};
+
+export type OrderType = 'market' | 'limit';
+
+export const OrderTypes = {
+    MarketOrder: 'market' as OrderType,
+    LimitOrder: 'limit' as OrderType,
+};
+
+export type OrderJSON = {
     order_id: string;
-    price: string;
-    slippage: number;
+    status: OrderStatus;
+    symbol: TradingSymbol;
     orig_qty: string;
     executed_qty: string;
-    settling_qty: string;
-    status: OrderStatus;
-    time_in_force: TimeInForce;
-    expiry_time: number;
-    type: TradingType;
-    side: TradingSide;
+    side: OrderSide;
+    price: string;
+    type: OrderType;
+    fee_amount: number;
+    executed_price: number;
+    slippage: string;
     create_time: number;
     update_time: number;
 };
