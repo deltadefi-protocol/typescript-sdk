@@ -3,9 +3,8 @@ import {
     BuildCancelOrderTransactionResponse,
     BuildPlaceOrderTransactionRequest,
     BuildPlaceOrderTransactionResponse,
-    CancelOrderResponse,
-    SubmitPostOrderTransactionRequest,
-    SubmitPostOrderTransactionResponse,
+    SubmitPlaceOrderTransactionRequest,
+    SubmitPlaceOrderTransactionResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -31,9 +30,9 @@ export class Orders extends Api {
         return this.resolveAxiosData(res);
     }
 
-    public submitPostOrderTransactionRequest(
-        data: SubmitPostOrderTransactionRequest,
-    ): Promise<SubmitPostOrderTransactionResponse> {
+    public submitPlaceOrderTransactionRequest(
+        data: SubmitPlaceOrderTransactionRequest,
+    ): Promise<SubmitPlaceOrderTransactionResponse> {
         const res = this.axiosInstance.post('/order/submit', data);
         return this.resolveAxiosData(res);
     }

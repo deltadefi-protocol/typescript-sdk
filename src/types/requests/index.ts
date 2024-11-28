@@ -15,11 +15,6 @@ export type SubmitSendRefScriptsTransactionRequest = {
     signed_tx: string;
 };
 
-export type SubmitPostOrderTransactionRequest = {
-    order_id: string;
-    signed_txs: string[];
-};
-
 export type PostOrderRequest = BuildPostOrderTransactionRequest;
 
 // type MarketDepth = {
@@ -72,4 +67,9 @@ export type BuildPlaceOrderTransactionRequest = {
     quantity: number;
     price?: number;
     basis_point?: number;
+};
+
+export type SubmitPlaceOrderTransactionRequest = {
+    order_id: string;
+    signed_tx: string;
 };

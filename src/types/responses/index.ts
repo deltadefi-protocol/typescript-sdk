@@ -14,11 +14,6 @@ export type SubmitSendRefScriptsTransactionResponse = {
     tx_hash: string;
 };
 
-export type SubmitPostOrderTransactionResponse = {
-    order: Order;
-    tx_hexes: string[];
-};
-
 export type PostOrderResponse = SubmitPostOrderTransactionResponse;
 
 export type Trade = {
@@ -122,4 +117,8 @@ export type BuildPlaceOrderTransactionResponse = {
 
 export type BuildCancelOrderTransactionResponse = {
     tx_hex: string;
+};
+
+export type SubmitPlaceOrderTransactionResponse = {
+    order: OrderJSON;
 };
