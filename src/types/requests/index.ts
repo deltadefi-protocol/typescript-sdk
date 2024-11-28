@@ -74,7 +74,3 @@ export type GetAggregatedPriceRequest = {
 export type SubmitDeleteAccountTransactionRequest = {
     signed_tx: string;
 };
-
-export type GetDepositInfoRequest = {
-    total_deposit_amount: Asset[];
-};

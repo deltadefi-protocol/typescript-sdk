@@ -110,7 +110,10 @@ export type SubmitDeleteAccountTransactionResponse = {
     tx_hash: string;
 };
 
-export type GetDepositInfoResponse = {
-    total_deposit: { amount: Asset[]; post_deposit_balance: Balance };
-    suggested_deposit: { amount: Asset[]; post_deposit_balance: Balance };
+type DepositRecord = {
+    created_at: string;
+    assets: Asset[];
+    tx_hash: string;
 };
+
+export type GetDepositRecordsResponse = DepositRecord[];
