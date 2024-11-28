@@ -15,10 +15,6 @@ export type SubmitSendRefScriptsTransactionRequest = {
     signed_tx: string;
 };
 
-export type SubmitWithdrawalTransactionRequest = {
-    signed_txs: string[];
-};
-
 export type BuildPostOrderTransactionRequest = {
     pair: TradingPair;
     side: TradingSide;
@@ -72,4 +68,8 @@ export type BuildWithdrawalTransactionRequest = {
 
 export type SubmitDepositTransactionRequest = {
     signed_tx: string;
+};
+
+export type SubmitWithdrawalTransactionRequest = {
+    signed_txs: string[];
 };
