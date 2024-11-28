@@ -25,9 +25,6 @@ import {
     GetAccountBalanceResponse,
     GenerateNewAPIKeyResponse,
     GetTermsAndConditionResponse,
-    ConfirmTxResponse,
-    HydraCloseResponse,
-    HydraOpenResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -149,21 +146,6 @@ export class Accounts extends Api {
 
     public getTermsAndCondition(): Promise<GetTermsAndConditionResponse> {
         const res = this.axiosInstance.get('/accounts/terms-and-condition');
-        return this.resolveAxiosData(res);
-    }
-
-    public confirmTx(): Promise<ConfirmTxResponse> {
-        const res = this.axiosInstance.get('/accounts/confirm-tx');
-        return this.resolveAxiosData(res);
-    }
-
-    public hydraClose(): Promise<HydraCloseResponse> {
-        const res = this.axiosInstance.get('/accounts/hydraClose');
-        return this.resolveAxiosData(res);
-    }
-
-    public hydraOpen(): Promise<HydraOpenResponse> {
-        const res = this.axiosInstance.get('/accounts/hydraOpen');
         return this.resolveAxiosData(res);
     }
 }

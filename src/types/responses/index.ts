@@ -123,9 +123,3 @@ export type SubmitWithdrawalTransactionResponse = {
 export type GetTermsAndConditionResponse = {
     value: string;
 };
-
-export type ConfirmTxResponse = 'success';
-
-export type HydraCloseResponse = '';
-
-export type HydraOpenResponse = '';
