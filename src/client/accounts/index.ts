@@ -75,17 +75,6 @@ export class Accounts extends Api {
         return this.resolveAxiosData(res);
     }
 
-    public buildWithdrawalTransaction(
-        data: BuildWithdrawalTransactionRequest,
-    ): Promise<BuildWithdrawalTransactionResponse> {
-        const input_utxos = convertUTxOs(data.input_utxos);
-        const res = this.axiosInstance.post('/accounts/withdrawal/build', {
-            withdrawal_amount: data.withdrawal_amount,
-            input_utxos,
-        });
-        return this.resolveAxiosData(res);
-    }
-
     public submitWithdrawalTransaction(
         data: SubmitWithdrawalTransactionRequest,
     ): Promise<SubmitWithdrawalTransactionResponse> {
@@ -141,6 +130,15 @@ export class Accounts extends Api {
         const res = this.axiosInstance.post('/accounts/deposit/build', {
             deposit_amount: data.deposit_amount,
             input_utxos: data.input_utxos,
+        });
+        return this.resolveAxiosData(res);
+    }
+
+    public buildWithdrawalTransaction(
+        data: BuildWithdrawalTransactionRequest,
+    ): Promise<BuildWithdrawalTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/withdrawal/build', {
+            withdrawal_amount: data.withdrawal_amount,
         });
         return this.resolveAxiosData(res);
     }

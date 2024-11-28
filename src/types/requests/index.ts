@@ -19,11 +19,6 @@ export type SubmitDepositTransactionRequest = {
     signed_tx: string;
 };
 
-export type BuildWithdrawalTransactionRequest = {
-    withdrawal_amount: Asset[];
-    input_utxos: Required<UTxO>[];
-};
-
 export type SubmitWithdrawalTransactionRequest = {
     signed_txs: string[];
 };
@@ -73,4 +68,8 @@ export type SubmitDeleteAccountTransactionRequest = {
 export type BuildDepositTransactionRequest = {
     deposit_amount: Asset[];
     input_utxos: UTxO[];
+};
+
+export type BuildWithdrawalTransactionRequest = {
+    withdrawal_amount: Asset[];
 };

@@ -18,10 +18,6 @@ export type SubmitDepositTransactionResponse = {
     tx_hash: string;
 };
 
-export type BuildWithdrawalTransactionResponse = {
-    tx_hexes: string[];
-};
-
 export type SubmitWithdrawalTransactionResponse = {
     tx_hash: string;
 };
@@ -117,5 +113,9 @@ export type GenerateNewAPIKeyResponse = {
 };
 
 export type BuildDepositTransactionResponse = {
+    tx_hex: string;
+};
+
+export type BuildWithdrawalTransactionResponse = {
     tx_hex: string;
 };
