@@ -5,6 +5,8 @@ import {
     BuildPlaceOrderTransactionResponse,
     SubmitPlaceOrderTransactionRequest,
     SubmitPlaceOrderTransactionResponse,
+    SubmitCancelOrderTransactionRequest,
+    SubmitCancelOrderTransactionResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -34,6 +36,13 @@ export class Orders extends Api {
         data: SubmitPlaceOrderTransactionRequest,
     ): Promise<SubmitPlaceOrderTransactionResponse> {
         const res = this.axiosInstance.post('/order/submit', data);
+        return this.resolveAxiosData(res);
+    }
+
+    public submitCancelOrderTransactionRequest(
+        data: SubmitCancelOrderTransactionRequest,
+    ): Promise<SubmitCancelOrderTransactionResponse> {
+        const res = this.axiosInstance.delete('/order/submit', { data });
         return this.resolveAxiosData(res);
     }
 }

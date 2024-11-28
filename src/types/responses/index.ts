@@ -122,3 +122,7 @@ export type BuildCancelOrderTransactionResponse = {
 export type SubmitPlaceOrderTransactionResponse = {
     order: OrderJSON;
 };
+
+export type SubmitCancelOrderTransactionResponse = {
+    txhash: string;
+};

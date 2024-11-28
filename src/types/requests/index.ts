@@ -73,3 +73,7 @@ export type SubmitPlaceOrderTransactionRequest = {
     order_id: string;
     signed_tx: string;
 };
+
+export type SubmitCancelOrderTransactionRequest = {
+    signed_tx: string;
+};
