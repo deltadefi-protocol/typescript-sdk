@@ -24,6 +24,7 @@ import {
     GetWithdrawalRecordsResponse,
     GetAccountBalanceResponse,
     GenerateNewAPIKeyResponse,
+    GetTermsAndConditionResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -140,6 +141,11 @@ export class Accounts extends Api {
         data: SubmitWithdrawalTransactionRequest,
     ): Promise<SubmitWithdrawalTransactionResponse> {
         const res = this.axiosInstance.post('/accounts/withdrawal/submit', data);
+        return this.resolveAxiosData(res);
+    }
+
+    public getTermsAndCondition(): Promise<GetTermsAndConditionResponse> {
+        const res = this.axiosInstance.get('/accounts/terms-and-condition');
         return this.resolveAxiosData(res);
     }
 }

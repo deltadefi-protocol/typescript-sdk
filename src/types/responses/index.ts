@@ -119,3 +119,7 @@ export type SubmitDepositTransactionResponse = {
 export type SubmitWithdrawalTransactionResponse = {
     tx_hash: string;
 };
+
+export type GetTermsAndConditionResponse = {
+    value: string;
+};
