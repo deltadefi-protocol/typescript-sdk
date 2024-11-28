@@ -127,3 +127,5 @@ export type GetTermsAndConditionResponse = {
 export type ConfirmTxResponse = 'success';
 
 export type HydraCloseResponse = '';
+
+export type HydraOpenResponse = '';

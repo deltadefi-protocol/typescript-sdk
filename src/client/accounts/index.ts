@@ -27,6 +27,7 @@ import {
     GetTermsAndConditionResponse,
     ConfirmTxResponse,
     HydraCloseResponse,
+    HydraOpenResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -158,6 +159,11 @@ export class Accounts extends Api {
 
     public hydraClose(): Promise<HydraCloseResponse> {
         const res = this.axiosInstance.get('/accounts/hydraClose');
+        return this.resolveAxiosData(res);
+    }
+
+    public hydraOpen(): Promise<HydraOpenResponse> {
+        const res = this.axiosInstance.get('/accounts/hydraOpen');
         return this.resolveAxiosData(res);
     }
 }
