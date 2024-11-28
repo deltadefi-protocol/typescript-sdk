@@ -23,6 +23,7 @@ import {
     SubmitDeleteAccountTransactionRequest,
     SubmitDeleteAccountTransactionResponse,
     GetDepositRecordsResponse,
+    GetWithdrawalRecordsResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -132,6 +133,11 @@ export class Accounts extends Api {
 
     public getDepositRecords(): Promise<GetDepositRecordsResponse> {
         const res = this.axiosInstance.get('/accounts/deposit-records');
+        return this.resolveAxiosData(res);
+    }
+
+    public getWithdrawalRecords(): Promise<GetWithdrawalRecordsResponse> {
+        const res = this.axiosInstance.get('/accounts/withdrawal-records');
         return this.resolveAxiosData(res);
     }
 
