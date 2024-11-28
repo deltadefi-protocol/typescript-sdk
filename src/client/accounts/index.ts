@@ -17,13 +17,13 @@ import {
     SubmitWithdrawalTransactionResponse,
     GetOrderRecordResponse,
     GetAccountInfoResponse,
-    GetNewApiKeyResponse,
     BuildDeleteAccountTransactionResponse,
     SubmitDeleteAccountTransactionRequest,
     SubmitDeleteAccountTransactionResponse,
     GetDepositRecordsResponse,
     GetWithdrawalRecordsResponse,
     GetAccountBalanceResponse,
+    GenerateNewAPIKeyResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -109,11 +109,6 @@ export class Accounts extends Api {
         return this.resolveAxiosData(res);
     }
 
-    public getNewApiKey(): Promise<GetNewApiKeyResponse> {
-        const res = this.axiosInstance.get('/accounts/new-api-key');
-        return this.resolveAxiosData(res);
-    }
-
     public buildDeleteAccountTransaction(): Promise<BuildDeleteAccountTransactionResponse> {
         const res = this.axiosInstance.post('/accounts/delete/build', {});
         return this.resolveAxiosData(res);
@@ -143,6 +138,11 @@ export class Accounts extends Api {
 
     public getAccountBalance(): Promise<GetAccountBalanceResponse> {
         const res = this.axiosInstance.get('/accounts/balance');
+        return this.resolveAxiosData(res);
+    }
+
+    public createNewApiKey(): Promise<GenerateNewAPIKeyResponse> {
+        const res = this.axiosInstance.get('/accounts/new-api-key');
         return this.resolveAxiosData(res);
     }
 }

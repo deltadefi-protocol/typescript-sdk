@@ -81,10 +81,6 @@ export type GetAccountInfoResponse = {
     is_ready: boolean;
 };
 
-export type GetNewApiKeyResponse = {
-    api_key: string;
-};
-
 export type BuildDeleteAccountTransactionResponse = {
     tx_hex: string;
 };
@@ -119,3 +115,7 @@ type AssetBalance = {
 };
 
 export type GetAccountBalanceResponse = AssetBalance[];
+
+export type GenerateNewAPIKeyResponse = {
+    api_key: string;
+};
