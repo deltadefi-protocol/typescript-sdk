@@ -31,16 +31,6 @@ export type CancelOrderResponse = {
     message: string;
 };
 
-export type MarketDepth = {
-    price: number;
-    quantity: number;
-};
-
-export type GetDepthResponse = {
-    bids: MarketDepth[];
-    asks: MarketDepth[];
-};
-
 export type GetMarketPriceResponse = {
     price: number;
 };
@@ -122,4 +112,14 @@ export type SubmitWithdrawalTransactionResponse = {
 
 export type GetTermsAndConditionResponse = {
     value: string;
+};
+
+export type MarketDepth = {
+    price: number;
+    quantity: number;
+};
+
+export type GetMarketDepthResponse = {
+    bids: MarketDepth[];
+    asks: MarketDepth[];
 };

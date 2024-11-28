@@ -31,10 +31,6 @@ export type SubmitPostOrderTransactionRequest = {
 
 export type PostOrderRequest = BuildPostOrderTransactionRequest;
 
-export type GetDepthRequest = {
-    pair: string;
-};
-
 // type MarketDepth = {
 //     price: number;
 //     quantity: number;
@@ -72,4 +68,8 @@ export type SubmitDepositTransactionRequest = {
 
 export type SubmitWithdrawalTransactionRequest = {
     signed_txs: string[];
+};
+
+export type GetMarketDepthRequest = {
+    pair: TradingPair;
 };

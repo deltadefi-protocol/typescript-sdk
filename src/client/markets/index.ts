@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios';
 import { Api } from '../api';
 import {
-    GetDepthRequest,
-    GetDepthResponse,
+    GetMarketDepthRequest,
+    GetMarketDepthResponse,
     GetMarketPriceRequest,
     GetMarketPriceResponse,
     GetAggregatedPriceResponse,
@@ -17,7 +17,7 @@ export class Markets extends Api {
         this.axiosInstance = axiosInstance;
     }
 
-    public getDepth(data: GetDepthRequest): Promise<GetDepthResponse> {
+    public getDepth(data: GetMarketDepthRequest): Promise<GetMarketDepthResponse> {
         const { pair } = data;
         const res = this.axiosInstance.get(`/market/depth?pair=${pair}`);
         return this.resolveAxiosData(res);
