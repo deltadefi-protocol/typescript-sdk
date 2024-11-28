@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios';
 import {
+    BuildCancelOrderTransactionResponse,
     BuildPlaceOrderTransactionRequest,
     BuildPlaceOrderTransactionResponse,
     CancelOrderResponse,
@@ -23,15 +24,17 @@ export class Orders extends Api {
         return this.resolveAxiosData(res);
     }
 
+    public buildCancelOrderTransaction(
+        orderId: string,
+    ): Promise<BuildCancelOrderTransactionResponse> {
+        const res = this.axiosInstance.delete(`/order/${orderId}/build`);
+        return this.resolveAxiosData(res);
+    }
+
     public submitPostOrderTransactionRequest(
         data: SubmitPostOrderTransactionRequest,
     ): Promise<SubmitPostOrderTransactionResponse> {
         const res = this.axiosInstance.post('/order/submit', data);
-        return this.resolveAxiosData(res);
-    }
-
-    public cancelOrder(orderId: string): Promise<CancelOrderResponse> {
-        const res = this.axiosInstance.delete(`/order/${orderId}`);
         return this.resolveAxiosData(res);
     }
 }

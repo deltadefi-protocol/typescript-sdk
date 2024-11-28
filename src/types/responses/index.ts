@@ -21,10 +21,6 @@ export type SubmitPostOrderTransactionResponse = {
 
 export type PostOrderResponse = SubmitPostOrderTransactionResponse;
 
-export type CancelOrderResponse = {
-    message: string;
-};
-
 export type Trade = {
     time: string;
     symbol: string;
@@ -121,5 +117,9 @@ export type GetAggregatedPriceResponse = Trade[];
 
 export type BuildPlaceOrderTransactionResponse = {
     order_id: string;
+    tx_hex: string;
+};
+
+export type BuildCancelOrderTransactionResponse = {
     tx_hex: string;
 };
