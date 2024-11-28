@@ -6,19 +6,6 @@ export type SignInResponse = {
     is_ready: boolean;
 };
 
-export type Balance = {
-    total: Record<string, bigint>;
-    available_for_trade: Record<string, bigint>;
-    available_for_withdrawal: Record<string, bigint>;
-    held_for_order: Record<string, bigint>;
-    spending_settling: Record<string, bigint>;
-    depositing_settling: Record<string, bigint>;
-};
-
-export type GetBalanceResponse = {
-    balance: Balance;
-};
-
 export type BuildSendRefScriptsTransactionResponse = {
     tx_hex: string;
 };
@@ -124,3 +111,11 @@ type WithdrawalRecord = {
 };
 
 export type GetWithdrawalRecordsResponse = WithdrawalRecord[];
+
+type AssetBalance = {
+    asset: string;
+    free: bigint;
+    locked: bigint;
+};
+
+export type GetAccountBalanceResponse = AssetBalance[];
