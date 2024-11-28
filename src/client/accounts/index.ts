@@ -26,6 +26,7 @@ import {
     GenerateNewAPIKeyResponse,
     GetTermsAndConditionResponse,
     ConfirmTxResponse,
+    HydraCloseResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -152,6 +153,11 @@ export class Accounts extends Api {
 
     public confirmTx(): Promise<ConfirmTxResponse> {
         const res = this.axiosInstance.get('/accounts/confirm-tx');
+        return this.resolveAxiosData(res);
+    }
+
+    public hydraClose(): Promise<HydraCloseResponse> {
+        const res = this.axiosInstance.get('/accounts/hydraClose');
         return this.resolveAxiosData(res);
     }
 }
