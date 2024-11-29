@@ -16,32 +16,22 @@ export type SubmitSendRefScriptsTransactionResponse = {
 
 export type PostOrderResponse = SubmitPostOrderTransactionResponse;
 
-export type Trade = {
-    time: string;
-    symbol: string;
-    open: number;
-    high: number;
-    low: number;
-    close: number;
-    volume: number;
-};
+// export type GetAccountInfoResponse = {
+//     api_key: string;
+//     api_limit: string;
+//     created_at: string;
+//     updated_at: string;
+//     wallet_address: string;
+//     is_ready: boolean;
+// };
 
-export type GetAccountInfoResponse = {
-    api_key: string;
-    api_limit: string;
-    created_at: string;
-    updated_at: string;
-    wallet_address: string;
-    is_ready: boolean;
-};
+// export type BuildDeleteAccountTransactionResponse = {
+//     tx_hex: string;
+// };
 
-export type BuildDeleteAccountTransactionResponse = {
-    tx_hex: string;
-};
-
-export type SubmitDeleteAccountTransactionResponse = {
-    tx_hash: string;
-};
+// export type SubmitDeleteAccountTransactionResponse = {
+//     tx_hash: string;
+// };
 
 type DepositRecord = {
     created_at: string;
@@ -106,6 +96,16 @@ export type GetMarketDepthResponse = {
 
 export type GetMarketPriceResponse = {
     price: number;
+};
+
+export type Trade = {
+    time: string;
+    symbol: string;
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    volume: number;
 };
 
 export type GetAggregatedPriceResponse = Trade[];

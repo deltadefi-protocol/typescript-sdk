@@ -6,20 +6,11 @@ import {
     BuildDepositTransactionResponse,
     SubmitDepositTransactionRequest,
     SubmitDepositTransactionResponse,
-    convertUTxOs,
-    BuildSendRefScriptsTransactionRequest,
-    BuildSendRefScriptsTransactionResponse,
-    SubmitSendRefScriptsTransactionRequest,
-    SubmitSendRefScriptsTransactionResponse,
     BuildWithdrawalTransactionRequest,
     BuildWithdrawalTransactionResponse,
     SubmitWithdrawalTransactionRequest,
     SubmitWithdrawalTransactionResponse,
     GetOrderRecordResponse,
-    GetAccountInfoResponse,
-    BuildDeleteAccountTransactionResponse,
-    SubmitDeleteAccountTransactionRequest,
-    SubmitDeleteAccountTransactionResponse,
     GetDepositRecordsResponse,
     GetWithdrawalRecordsResponse,
     GetAccountBalanceResponse,
@@ -36,6 +27,7 @@ export class Accounts extends Api {
         this.axiosInstance = axiosInstance;
     }
 
+    // SignIn to be refactored
     public signIn(data: SignInRequest): Promise<SignInResponse> {
         const { auth_key, wallet_address } = data;
         const res = this.axiosInstance.post(
@@ -46,45 +38,45 @@ export class Accounts extends Api {
         return this.resolveAxiosData(res);
     }
 
-    public updateBalance(): Promise<GetBalanceResponse> {
-        const res = this.axiosInstance.get('/accounts/balance/update');
-        return this.resolveAxiosData(res);
-    }
+    // public updateBalance(): Promise<GetBalanceResponse> {
+    //     const res = this.axiosInstance.get('/accounts/balance/update');
+    //     return this.resolveAxiosData(res);
+    // }
 
-    public buildSendRefScriptsTransaction(
-        data: BuildSendRefScriptsTransactionRequest,
-    ): Promise<BuildSendRefScriptsTransactionResponse> {
-        const input_utxos = convertUTxOs(data.input_utxos);
-        const res = this.axiosInstance.post('/accounts/ref-scripts/build', {
-            input_utxos,
-            total_deposit_amount: data.total_deposit_amount,
-        });
-        return this.resolveAxiosData(res);
-    }
+    // public buildSendRefScriptsTransaction(
+    //     data: BuildSendRefScriptsTransactionRequest,
+    // ): Promise<BuildSendRefScriptsTransactionResponse> {
+    //     const input_utxos = convertUTxOs(data.input_utxos);
+    //     const res = this.axiosInstance.post('/accounts/ref-scripts/build', {
+    //         input_utxos,
+    //         total_deposit_amount: data.total_deposit_amount,
+    //     });
+    //     return this.resolveAxiosData(res);
+    // }
 
-    public submitSendRefScriptsTransaction(
-        data: SubmitSendRefScriptsTransactionRequest,
-    ): Promise<SubmitSendRefScriptsTransactionResponse> {
-        const res = this.axiosInstance.post('/accounts/ref-scripts/submit', data);
-        return this.resolveAxiosData(res);
-    }
+    // public submitSendRefScriptsTransaction(
+    //     data: SubmitSendRefScriptsTransactionRequest,
+    // ): Promise<SubmitSendRefScriptsTransactionResponse> {
+    //     const res = this.axiosInstance.post('/accounts/ref-scripts/submit', data);
+    //     return this.resolveAxiosData(res);
+    // }
 
-    public getAccountInfo(): Promise<GetAccountInfoResponse> {
-        const res = this.axiosInstance.get('/accounts/info');
-        return this.resolveAxiosData(res);
-    }
+    // public getAccountInfo(): Promise<GetAccountInfoResponse> {
+    //     const res = this.axiosInstance.get('/accounts/info');
+    //     return this.resolveAxiosData(res);
+    // }
 
-    public buildDeleteAccountTransaction(): Promise<BuildDeleteAccountTransactionResponse> {
-        const res = this.axiosInstance.post('/accounts/delete/build', {});
-        return this.resolveAxiosData(res);
-    }
+    // public buildDeleteAccountTransaction(): Promise<BuildDeleteAccountTransactionResponse> {
+    //     const res = this.axiosInstance.post('/accounts/delete/build', {});
+    //     return this.resolveAxiosData(res);
+    // }
 
-    public submitDeleteAccountTransaction(
-        data: SubmitDeleteAccountTransactionRequest,
-    ): Promise<SubmitDeleteAccountTransactionResponse> {
-        const res = this.axiosInstance.post('/accounts/delete/submit', data);
-        return this.resolveAxiosData(res);
-    }
+    // public submitDeleteAccountTransaction(
+    //     data: SubmitDeleteAccountTransactionRequest,
+    // ): Promise<SubmitDeleteAccountTransactionResponse> {
+    //     const res = this.axiosInstance.post('/accounts/delete/submit', data);
+    //     return this.resolveAxiosData(res);
+    // }
 
     public getDepositRecords(): Promise<GetDepositRecordsResponse> {
         const res = this.axiosInstance.get('/accounts/deposit-records');

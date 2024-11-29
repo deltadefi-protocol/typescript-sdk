@@ -1,32 +1,31 @@
 import { Asset, UTxO } from '@meshsdk/core';
 import { TradingSymbol, OrderSide, OrderType } from '../models/order';
 
+// SignInRequest to be refactored
 export type SignInRequest = {
     wallet_address: string;
     auth_key: string;
 };
 
-export type BuildSendRefScriptsTransactionRequest = {
-    input_utxos: Required<UTxO>[];
-    total_deposit_amount: Asset[];
-};
+// export type BuildSendRefScriptsTransactionRequest = {
+//     input_utxos: Required<UTxO>[];
+//     total_deposit_amount: Asset[];
+// };
 
-export type SubmitSendRefScriptsTransactionRequest = {
-    signed_tx: string;
-};
+// export type SubmitSendRefScriptsTransactionRequest = {
+//     signed_tx: string;
+// };
 
-export type PostOrderRequest = BuildPostOrderTransactionRequest;
+// export type PostOrderRequest = BuildPostOrderTransactionRequest;
 
 // type MarketDepth = {
 //     price: number;
 //     quantity: number;
 // };
 
-export type Interval = '15m' | '30m' | '1h' | '1d' | '1w' | '1M';
-
-export type SubmitDeleteAccountTransactionRequest = {
-    signed_tx: string;
-};
+// export type SubmitDeleteAccountTransactionRequest = {
+//     signed_tx: string;
+// };
 
 export type BuildDepositTransactionRequest = {
     deposit_amount: Asset[];
@@ -52,6 +51,8 @@ export type GetMarketDepthRequest = {
 export type GetMarketPriceRequest = {
     pair: string;
 };
+
+export type Interval = '15m' | '30m' | '1h' | '1d' | '1w' | '1M';
 
 export type GetAggregatedPriceRequest = {
     pair: string;
