@@ -6,15 +6,15 @@ export type SignInResponse = {
     is_ready: boolean;
 };
 
-export type BuildSendRefScriptsTransactionResponse = {
-    tx_hex: string;
-};
+// export type BuildSendRefScriptsTransactionResponse = {
+//     tx_hex: string;
+// };
 
-export type SubmitSendRefScriptsTransactionResponse = {
-    tx_hash: string;
-};
+// export type SubmitSendRefScriptsTransactionResponse = {
+//     tx_hash: string;
+// };
 
-export type PostOrderResponse = SubmitPostOrderTransactionResponse;
+// export type PostOrderResponse = SubmitPostOrderTransactionResponse;
 
 // export type GetAccountInfoResponse = {
 //     api_key: string;
