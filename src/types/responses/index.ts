@@ -33,8 +33,16 @@ export type PostOrderResponse = SubmitPostOrderTransactionResponse;
 //     tx_hash: string;
 // };
 
+export type TransactionStatus =
+    | 'building'
+    | 'held_for_order'
+    | 'submitted'
+    | 'submission_failed'
+    | 'confirmed';
+
 type DepositRecord = {
     created_at: string;
+    status: TransactionStatus;
     assets: Asset[];
     tx_hash: string;
 };
