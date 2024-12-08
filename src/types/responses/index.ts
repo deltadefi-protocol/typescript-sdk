@@ -14,8 +14,6 @@ export type SignInResponse = {
 //     tx_hash: string;
 // };
 
-// export type PostOrderResponse = SubmitPostOrderTransactionResponse;
-
 // export type GetAccountInfoResponse = {
 //     api_key: string;
 //     api_limit: string;
@@ -123,14 +121,16 @@ export type BuildPlaceOrderTransactionResponse = {
     tx_hex: string;
 };
 
-export type BuildCancelOrderTransactionResponse = {
-    tx_hex: string;
-};
-
 export type SubmitPlaceOrderTransactionResponse = {
     order: OrderJSON;
 };
 
+export type PostOrderResponse = SubmitPlaceOrderTransactionResponse;
+
+export type BuildCancelOrderTransactionResponse = {
+    tx_hex: string;
+};
+
 export type SubmitCancelOrderTransactionResponse = {
-    txhash: string;
+    tx_hash: string;
 };

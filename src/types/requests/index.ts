@@ -16,8 +16,6 @@ export type SignInRequest = {
 //     signed_tx: string;
 // };
 
-// export type PostOrderRequest = BuildPostOrderTransactionRequest;
-
 // type MarketDepth = {
 //     price: number;
 //     quantity: number;
@@ -70,9 +68,15 @@ export type BuildPlaceOrderTransactionRequest = {
     basis_point?: number;
 };
 
+export type PostOrderRequest = BuildPlaceOrderTransactionRequest;
+
 export type SubmitPlaceOrderTransactionRequest = {
     order_id: string;
     signed_tx: string;
+};
+
+export type BuildCancelOrderTransactionRequest = {
+    order_id: string;
 };
 
 export type SubmitCancelOrderTransactionRequest = {
