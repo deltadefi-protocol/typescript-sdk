@@ -1,62 +1,50 @@
 import { Asset, UTxO } from '@meshsdk/core';
-import { TradingPair, TradingSide, TradingType } from '../constant';
+import { TradingSymbol, OrderSide, OrderType } from '../models/order';
 
+// SignInRequest to be refactored
 export type SignInRequest = {
     wallet_address: string;
     auth_key: string;
 };
 
-export type BuildSendRefScriptsTransactionRequest = {
-    input_utxos: Required<UTxO>[];
-    total_deposit_amount: Asset[];
-};
+// export type BuildSendRefScriptsTransactionRequest = {
+//     input_utxos: Required<UTxO>[];
+//     total_deposit_amount: Asset[];
+// };
 
-export type SubmitSendRefScriptsTransactionRequest = {
-    signed_tx: string;
-};
+// export type SubmitSendRefScriptsTransactionRequest = {
+//     signed_tx: string;
+// };
+
+// type MarketDepth = {
+//     price: number;
+//     quantity: number;
+// };
+
+// export type SubmitDeleteAccountTransactionRequest = {
+//     signed_tx: string;
+// };
 
 export type BuildDepositTransactionRequest = {
     deposit_amount: Asset[];
-    input_utxos: Required<UTxO>[];
+    input_utxos: UTxO[];
+};
+
+export type BuildWithdrawalTransactionRequest = {
+    withdrawal_amount: Asset[];
 };
 
 export type SubmitDepositTransactionRequest = {
     signed_tx: string;
 };
 
-export type BuildWithdrawalTransactionRequest = {
-    withdrawal_amount: Asset[];
-    input_utxos: Required<UTxO>[];
-};
-
 export type SubmitWithdrawalTransactionRequest = {
     signed_txs: string[];
 };
 
-export type BuildPostOrderTransactionRequest = {
-    pair: TradingPair;
-    side: TradingSide;
-    type: TradingType;
-    quantity: number;
-    price?: number;
-    basis_point?: number;
+export type GetMarketDepthRequest = {
+    pair: TradingSymbol;
 };
-
-export type SubmitPostOrderTransactionRequest = {
-    order_id: string;
-    signed_txs: string[];
-};
-
-export type PostOrderRequest = BuildPostOrderTransactionRequest;
-
-export type GetDepthRequest = {
-    pair: string;
-};
-
-// type MarketDepth = {
-//     price: number;
-//     quantity: number;
-// };
 
 export type GetMarketPriceRequest = {
     pair: string;
@@ -71,10 +59,26 @@ export type GetAggregatedPriceRequest = {
     end?: number; // timestamp
 };
 
-export type SubmitDeleteAccountTransactionRequest = {
+export type BuildPlaceOrderTransactionRequest = {
+    pair: TradingSymbol;
+    side: OrderSide;
+    type: OrderType;
+    quantity: number;
+    price?: number;
+    basis_point?: number;
+};
+
+export type PostOrderRequest = BuildPlaceOrderTransactionRequest;
+
+export type SubmitPlaceOrderTransactionRequest = {
+    order_id: string;
     signed_tx: string;
 };
 
-export type GetDepositInfoRequest = {
-    total_deposit_amount: Asset[];
+export type BuildCancelOrderTransactionRequest = {
+    order_id: string;
+};
+
+export type SubmitCancelOrderTransactionRequest = {
+    signed_tx: string;
 };

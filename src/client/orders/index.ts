@@ -1,10 +1,12 @@
 import { AxiosInstance } from 'axios';
 import {
-    BuildPostOrderTransactionRequest,
-    BuildPostOrderTransactionResponse,
-    CancelOrderResponse,
-    SubmitPostOrderTransactionRequest,
-    SubmitPostOrderTransactionResponse,
+    BuildCancelOrderTransactionResponse,
+    BuildPlaceOrderTransactionRequest,
+    BuildPlaceOrderTransactionResponse,
+    SubmitPlaceOrderTransactionRequest,
+    SubmitPlaceOrderTransactionResponse,
+    SubmitCancelOrderTransactionRequest,
+    SubmitCancelOrderTransactionResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -16,22 +18,31 @@ export class Orders extends Api {
         this.axiosInstance = axiosInstance;
     }
 
-    public buildPostOrderTransaction(
-        data: BuildPostOrderTransactionRequest,
-    ): Promise<BuildPostOrderTransactionResponse> {
+    public buildPlaceOrderTransaction(
+        data: BuildPlaceOrderTransactionRequest,
+    ): Promise<BuildPlaceOrderTransactionResponse> {
         const res = this.axiosInstance.post('/order/build', data);
         return this.resolveAxiosData(res);
     }
 
-    public submitPostOrderTransactionRequest(
-        data: SubmitPostOrderTransactionRequest,
-    ): Promise<SubmitPostOrderTransactionResponse> {
+    public buildCancelOrderTransaction(
+        orderId: string,
+    ): Promise<BuildCancelOrderTransactionResponse> {
+        const res = this.axiosInstance.delete(`/order/${orderId}/build`);
+        return this.resolveAxiosData(res);
+    }
+
+    public submitPlaceOrderTransactionRequest(
+        data: SubmitPlaceOrderTransactionRequest,
+    ): Promise<SubmitPlaceOrderTransactionResponse> {
         const res = this.axiosInstance.post('/order/submit', data);
         return this.resolveAxiosData(res);
     }
 
-    public cancelOrder(orderId: string): Promise<CancelOrderResponse> {
-        const res = this.axiosInstance.delete(`/order/${orderId}`);
+    public submitCancelOrderTransactionRequest(
+        data: SubmitCancelOrderTransactionRequest,
+    ): Promise<SubmitCancelOrderTransactionResponse> {
+        const res = this.axiosInstance.delete('/order/submit', { data });
         return this.resolveAxiosData(res);
     }
 }

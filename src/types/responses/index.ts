@@ -1,37 +1,80 @@
 import { Asset } from '@meshsdk/core';
-import { Order } from '../models';
+import { OrderJSON } from '../models/order';
 
 export type SignInResponse = {
     token: string;
     is_ready: boolean;
 };
 
-export type Balance = {
-    total: Record<string, bigint>;
-    available_for_trade: Record<string, bigint>;
-    available_for_withdrawal: Record<string, bigint>;
-    held_for_order: Record<string, bigint>;
-    spending_settling: Record<string, bigint>;
-    depositing_settling: Record<string, bigint>;
-};
+// export type BuildSendRefScriptsTransactionResponse = {
+//     tx_hex: string;
+// };
 
-export type GetBalanceResponse = {
-    balance: Balance;
-};
+// export type SubmitSendRefScriptsTransactionResponse = {
+//     tx_hash: string;
+// };
 
-export type GetOrdersResponse = {
-    orders: Order[];
-};
+// export type GetAccountInfoResponse = {
+//     api_key: string;
+//     api_limit: string;
+//     created_at: string;
+//     updated_at: string;
+//     wallet_address: string;
+//     is_ready: boolean;
+// };
 
-export type BuildSendRefScriptsTransactionResponse = {
-    tx_hex: string;
-};
+// export type BuildDeleteAccountTransactionResponse = {
+//     tx_hex: string;
+// };
 
-export type SubmitSendRefScriptsTransactionResponse = {
+// export type SubmitDeleteAccountTransactionResponse = {
+//     tx_hash: string;
+// };
+
+export type TransactionStatus =
+    | 'building'
+    | 'held_for_order'
+    | 'submitted'
+    | 'submission_failed'
+    | 'confirmed';
+
+type DepositRecord = {
+    created_at: string;
+    status: TransactionStatus;
+    assets: Asset[];
     tx_hash: string;
 };
 
+export type GetDepositRecordsResponse = DepositRecord[];
+
+export type GetOrderRecordResponse = {
+    Orders: OrderJSON[];
+};
+
+type WithdrawalRecord = {
+    created_at: string;
+    assets: Asset[];
+};
+
+export type GetWithdrawalRecordsResponse = WithdrawalRecord[];
+
+type AssetBalance = {
+    asset: string;
+    free: bigint;
+    locked: bigint;
+};
+
+export type GetAccountBalanceResponse = AssetBalance[];
+
+export type GenerateNewAPIKeyResponse = {
+    api_key: string;
+};
+
 export type BuildDepositTransactionResponse = {
+    tx_hex: string;
+};
+
+export type BuildWithdrawalTransactionResponse = {
     tx_hex: string;
 };
 
@@ -39,29 +82,12 @@ export type SubmitDepositTransactionResponse = {
     tx_hash: string;
 };
 
-export type BuildWithdrawalTransactionResponse = {
-    tx_hexes: string[];
-};
-
 export type SubmitWithdrawalTransactionResponse = {
     tx_hash: string;
 };
 
-export type BuildPostOrderTransactionResponse = {
-    order_id: string;
-    chained_txs: string[];
-    tx_hexes: string[];
-};
-
-export type SubmitPostOrderTransactionResponse = {
-    order: Order;
-    tx_hexes: string[];
-};
-
-export type PostOrderResponse = SubmitPostOrderTransactionResponse;
-
-export type CancelOrderResponse = {
-    message: string;
+export type GetTermsAndConditionResponse = {
+    value: string;
 };
 
 export type MarketDepth = {
@@ -69,7 +95,7 @@ export type MarketDepth = {
     quantity: number;
 };
 
-export type GetDepthResponse = {
+export type GetMarketDepthResponse = {
     bids: MarketDepth[];
     asks: MarketDepth[];
 };
@@ -87,30 +113,24 @@ export type Trade = {
     close: number;
     volume: number;
 };
+
 export type GetAggregatedPriceResponse = Trade[];
 
-export type GetAccountInfoResponse = {
-    api_key: string;
-    api_limit: string;
-    created_at: string;
-    updated_at: string;
-    wallet_address: string;
-    is_ready: boolean;
-};
-
-export type GetNewApiKeyResponse = {
-    api_key: string;
-};
-
-export type BuildDeleteAccountTransactionResponse = {
+export type BuildPlaceOrderTransactionResponse = {
+    order_id: string;
     tx_hex: string;
 };
 
-export type SubmitDeleteAccountTransactionResponse = {
-    tx_hash: string;
+export type SubmitPlaceOrderTransactionResponse = {
+    order: OrderJSON;
 };
 
-export type GetDepositInfoResponse = {
-    total_deposit: { amount: Asset[]; post_deposit_balance: Balance };
-    suggested_deposit: { amount: Asset[]; post_deposit_balance: Balance };
+export type PostOrderResponse = SubmitPlaceOrderTransactionResponse;
+
+export type BuildCancelOrderTransactionResponse = {
+    tx_hex: string;
+};
+
+export type SubmitCancelOrderTransactionResponse = {
+    tx_hash: string;
 };
