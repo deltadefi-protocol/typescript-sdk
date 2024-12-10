@@ -11,7 +11,7 @@ export class App extends Api {
     }
 
     public getTermsAndCondition(): Promise<GetTermsAndConditionResponse> {
-        const res = this.axiosInstance.get('/terms-and-conditions');
+        const res = this.axiosInstance.get('/app/terms-and-conditions');
         return this.resolveAxiosData(res);
     }
 }
