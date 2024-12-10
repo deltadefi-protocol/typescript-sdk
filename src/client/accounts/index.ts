@@ -28,11 +28,11 @@ export class Accounts extends Api {
 
     // SignIn to be refactored
     public signIn(data: SignInRequest): Promise<SignInResponse> {
-        const { auth_key, wallet_address } = data;
+        const { x_api_key, wallet_address } = data;
         const res = this.axiosInstance.post(
             '/accounts/signin',
             { wallet_address },
-            { headers: { auth_key } },
+            { headers: { x_api_key } },
         );
         return this.resolveAxiosData(res);
     }

@@ -7,14 +7,14 @@ dotenv.config();
 
 const skipApiTests = process.env.SKIP_API_TESTS === 'true';
 const wallet_address = process.env.WALLET_ADDRESS || '';
-const auth_key = process.env.AUTH_KEY || '';
+const x_api_key = process.env.X_API_KEY || '';
 const apiKey = process.env.API_KEY || '';
 
 describe('Account APIs', () => {
     test('Sign In', async () => {
         if (skipApiTests) return;
         const api = new ApiClient({ network: 'preprod' });
-        const res = await api.accounts.signIn({ wallet_address, auth_key });
+        const res = await api.accounts.signIn({ wallet_address, x_api_key });
         expect(res.token).not.toBe('');
     });
     test('Get Orders', async () => {
