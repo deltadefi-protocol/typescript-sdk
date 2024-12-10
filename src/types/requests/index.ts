@@ -4,7 +4,7 @@ import { TradingSymbol, OrderSide, OrderType } from '../models/order';
 // SignInRequest to be refactored
 export type SignInRequest = {
     wallet_address: string;
-    auth_key: string;
+    x_api_key: string;
 };
 
 // export type BuildSendRefScriptsTransactionRequest = {
