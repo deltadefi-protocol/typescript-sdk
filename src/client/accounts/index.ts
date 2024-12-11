@@ -32,7 +32,7 @@ export class Accounts extends Api {
         const res = this.axiosInstance.post(
             '/accounts/signin',
             { wallet_address },
-            { headers: { x_api_key } },
+            { headers: { 'X-API-KEY': x_api_key } },
         );
         return this.resolveAxiosData(res);
     }
