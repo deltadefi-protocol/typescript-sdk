@@ -1,6 +1,6 @@
 export type TradingSymbol = 'ADAUSDX';
 
-export type OrderStatus = 'building' | 'open' | 'closed' | 'failed';
+export type OrderStatus = 'building' | 'open' | 'closed' | 'failed' | 'cancelled';
 
 export type OrderSide = 'buy' | 'sell';
 
