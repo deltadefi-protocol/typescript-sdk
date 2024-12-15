@@ -20,7 +20,7 @@ describe('Account APIs', () => {
     test('Get Orders', async () => {
         if (skipApiTests) return;
         const api = new ApiClient({ apiKey, network: 'preprod' });
-        const res = await api.accounts.getOrders();
+        const res = await api.accounts.getOrderRecords();
         console.log(res);
     });
 });
