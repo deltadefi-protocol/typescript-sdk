@@ -3,26 +3,13 @@ import { TradingSymbol, OrderSide, OrderType } from '../models/order';
 
 // SignInRequest to be refactored
 export type SignInRequest = {
-    wallet_address: string;
     x_api_key: string;
+    wallet_address: string;
 };
-
-// export type BuildSendRefScriptsTransactionRequest = {
-//     input_utxos: Required<UTxO>[];
-//     total_deposit_amount: Asset[];
-// };
-
-// export type SubmitSendRefScriptsTransactionRequest = {
-//     signed_tx: string;
-// };
 
 // type MarketDepth = {
 //     price: number;
 //     quantity: number;
-// };
-
-// export type SubmitDeleteAccountTransactionRequest = {
-//     signed_tx: string;
 // };
 
 export type BuildDepositTransactionRequest = {
@@ -30,16 +17,16 @@ export type BuildDepositTransactionRequest = {
     input_utxos: UTxO[];
 };
 
-export type BuildWithdrawalTransactionRequest = {
-    withdrawal_amount: Asset[];
-};
-
 export type SubmitDepositTransactionRequest = {
     signed_tx: string;
 };
 
+export type BuildWithdrawalTransactionRequest = {
+    withdrawal_amount: Asset[];
+};
+
 export type SubmitWithdrawalTransactionRequest = {
-    signed_txs: string[];
+    signed_tx: string;
 };
 
 export type GetMarketDepthRequest = {

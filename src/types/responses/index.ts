@@ -3,7 +3,7 @@ import { OrderJSON } from '../models/order';
 
 export type SignInResponse = {
     token: string;
-    is_ready: boolean;
+    is_first_time: boolean;
 };
 
 // export type BuildSendRefScriptsTransactionResponse = {
