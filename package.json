@@ -29,7 +29,7 @@
     "scripts": {
         "build": "tsup src/index.ts --format esm,cjs --dts",
         "clean": "rm -rf dist && rm -rf node_modules",
-        "ci": "npm run && npm run lint && npm run build",
+        "ci": "npm install && npm run lint && npm run build",
         "pub": "npm run ci && npm publish --access public",
         "lint": "eslint \"src/*.ts\" --fix",
         "test": "jest",
