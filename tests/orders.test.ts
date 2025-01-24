@@ -20,7 +20,7 @@ describe('Orders APIs', () => {
         if (skipApiTests) return;
         const api = new ApiClient({ apiKey, signingKey, network: 'preprod' });
         const buildRes = await api.orders.buildPlaceOrderTransaction({
-            pair: 'ADAUSDX',
+            symbol: 'ADAUSDX',
             side: 'sell',
             type: 'limit',
             quantity: 1000_000_000,
@@ -49,7 +49,7 @@ describe('Orders APIs', () => {
         if (skipApiTests) return;
         const api = new ApiClient({ apiKey, signingKey, network: 'preprod' });
         const buildRes = await api.postOrder({
-            pair: 'ADAUSDX',
+            symbol: 'ADAUSDX',
             side: 'sell',
             type: 'limit',
             quantity: 1000_000_000,

@@ -47,12 +47,12 @@ export type GetAggregatedPriceRequest = {
 };
 
 export type BuildPlaceOrderTransactionRequest = {
-    pair: TradingSymbol;
+    symbol: TradingSymbol;
     side: OrderSide;
     type: OrderType;
     quantity: number;
     price?: number;
-    basis_point?: number;
+    max_slippage_basis_point?: number;
 };
 
 export type PostOrderRequest = BuildPlaceOrderTransactionRequest;

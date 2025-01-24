@@ -38,7 +38,7 @@ export type TransactionStatus =
     | 'submission_failed'
     | 'confirmed';
 
-type DepositRecord = {
+export type DepositRecord = {
     created_at: string;
     status: TransactionStatus;
     assets: Asset[];
@@ -51,14 +51,14 @@ export type GetOrderRecordResponse = {
     Orders: OrderJSON[];
 };
 
-type WithdrawalRecord = {
+export type WithdrawalRecord = {
     created_at: string;
     assets: Asset[];
 };
 
 export type GetWithdrawalRecordsResponse = WithdrawalRecord[];
 
-type AssetBalance = {
+export type AssetBalance = {
     asset: string;
     free: bigint;
     locked: bigint;
