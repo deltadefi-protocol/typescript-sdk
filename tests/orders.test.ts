@@ -30,7 +30,7 @@ describe('Orders APIs', () => {
         const unsignedTx = buildRes.tx_hex;
         const signedTx = api.wallet!.signTx(unsignedTx);
         console.log('signed txs', signedTx);
-        const res = await api.orders.submitPlaceOrderTransactionRequest({
+        const res = await api.orders.submitPlaceOrderTransaction({
             order_id: buildRes.order_id,
             signed_tx: signedTx,
         });
@@ -40,7 +40,7 @@ describe('Orders APIs', () => {
         const unsignedCancelTx = cancelRes.tx_hex;
         const signedCancelTx = api.wallet!.signTx(unsignedCancelTx);
         console.log('signed cancel txs', signedCancelTx);
-        const cancelRes2 = await api.orders.submitCancelOrderTransactionRequest({
+        const cancelRes2 = await api.orders.submitCancelOrderTransaction({
             signed_tx: signedCancelTx,
         });
         console.log('cancel order response', cancelRes2);
@@ -60,7 +60,7 @@ describe('Orders APIs', () => {
         const unsignedCancelTx = cancelRes.tx_hex;
         const signedCancelTx = api.wallet!.signTx(unsignedCancelTx);
         console.log('signed cancel txs', signedCancelTx);
-        const cancelRes2 = await api.orders.submitCancelOrderTransactionRequest({
+        const cancelRes2 = await api.orders.submitCancelOrderTransaction({
             signed_tx: signedCancelTx,
         });
         console.log('cancel order response', cancelRes2);

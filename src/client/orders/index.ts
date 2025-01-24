@@ -32,14 +32,14 @@ export class Orders extends Api {
         return this.resolveAxiosData(res);
     }
 
-    public submitPlaceOrderTransactionRequest(
+    public submitPlaceOrderTransaction(
         data: SubmitPlaceOrderTransactionRequest,
     ): Promise<SubmitPlaceOrderTransactionResponse> {
         const res = this.axiosInstance.post('/order/submit', data);
         return this.resolveAxiosData(res);
     }
 
-    public submitCancelOrderTransactionRequest(
+    public submitCancelOrderTransaction(
         data: SubmitCancelOrderTransactionRequest,
     ): Promise<SubmitCancelOrderTransactionResponse> {
         const res = this.axiosInstance.delete('/order/submit', { data });
