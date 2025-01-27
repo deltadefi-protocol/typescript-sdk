@@ -1,4 +1,5 @@
 import { AxiosInstance } from 'axios';
+import { toSnake } from 'snake-camel';
 import {
     SignInRequest,
     SignInResponse,
@@ -107,7 +108,7 @@ export class Accounts extends Api {
     ): Promise<BuildDepositTransactionResponse> {
         const res = this.axiosInstance.post('/accounts/deposit/build', {
             deposit_amount: data.deposit_amount,
-            input_utxos: data.input_utxos,
+            input_utxos: data.input_utxos.map(toSnake),
         });
         return this.resolveAxiosData(res);
     }
