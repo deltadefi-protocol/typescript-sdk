@@ -12,13 +12,13 @@ export class DeFiWallet {
         });
     }
 
-    public signTx(txHex: string): string {
-        const signedTx = this.wallet.signTx(txHex, true);
+    public async signTx(txHex: string): Promise<string> {
+        const signedTx = await this.wallet.signTx(txHex, true);
         return signedTx;
     }
 
-    public signTxs(txHexes: string[]): string[] {
-        const signedTxs = this.wallet.signTxs(txHexes, true);
+    public async signTxs(txHexes: string[]): Promise<string[]> {
+        const signedTxs = await this.wallet.signTxs(txHexes, true);
         return signedTxs;
     }
 }

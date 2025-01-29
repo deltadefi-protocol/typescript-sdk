@@ -57,7 +57,7 @@ export class ApiClient {
             throw new Error('Wallet is not initialized');
         }
         const buildRes = await this.orders.buildPlaceOrderTransaction(data);
-        const signedTx = this.wallet.signTx(buildRes.tx_hex);
+        const signedTx = await this.wallet.signTx(buildRes.tx_hex);
         const submitRes: PostOrderResponse = await this.orders.submitPlaceOrderTransaction({
             order_id: buildRes.order_id,
             signed_tx: signedTx,
