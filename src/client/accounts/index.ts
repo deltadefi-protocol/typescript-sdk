@@ -16,15 +16,17 @@ import {
     GetWithdrawalRecordsResponse,
     GetAccountBalanceResponse,
     GenerateNewAPIKeyResponse,
+    AccountBalance,
+    // AccountStream,
+    // AccountBalanceStream,
 } from '../../types';
 import { Api } from '../api';
 
 export class Accounts extends Api {
-    private axiosInstance: AxiosInstance;
+    balance: AccountBalance[] = [];
 
-    constructor(axiosInstance: AxiosInstance) {
+    constructor(private axiosInstance: AxiosInstance, private wsURL: string, private jwt: string) {
         super();
-        this.axiosInstance = axiosInstance;
     }
 
     // SignIn to be refactored
@@ -37,46 +39,6 @@ export class Accounts extends Api {
         );
         return this.resolveAxiosData(res);
     }
-
-    // public updateBalance(): Promise<GetBalanceResponse> {
-    //     const res = this.axiosInstance.get('/accounts/balance/update');
-    //     return this.resolveAxiosData(res);
-    // }
-
-    // public buildSendRefScriptsTransaction(
-    //     data: BuildSendRefScriptsTransactionRequest,
-    // ): Promise<BuildSendRefScriptsTransactionResponse> {
-    //     const input_utxos = convertUTxOs(data.input_utxos);
-    //     const res = this.axiosInstance.post('/accounts/ref-scripts/build', {
-    //         input_utxos,
-    //         total_deposit_amount: data.total_deposit_amount,
-    //     });
-    //     return this.resolveAxiosData(res);
-    // }
-
-    // public submitSendRefScriptsTransaction(
-    //     data: SubmitSendRefScriptsTransactionRequest,
-    // ): Promise<SubmitSendRefScriptsTransactionResponse> {
-    //     const res = this.axiosInstance.post('/accounts/ref-scripts/submit', data);
-    //     return this.resolveAxiosData(res);
-    // }
-
-    // public getAccountInfo(): Promise<GetAccountInfoResponse> {
-    //     const res = this.axiosInstance.get('/accounts/info');
-    //     return this.resolveAxiosData(res);
-    // }
-
-    // public buildDeleteAccountTransaction(): Promise<BuildDeleteAccountTransactionResponse> {
-    //     const res = this.axiosInstance.post('/accounts/delete/build', {});
-    //     return this.resolveAxiosData(res);
-    // }
-
-    // public submitDeleteAccountTransaction(
-    //     data: SubmitDeleteAccountTransactionRequest,
-    // ): Promise<SubmitDeleteAccountTransactionResponse> {
-    //     const res = this.axiosInstance.post('/accounts/delete/submit', data);
-    //     return this.resolveAxiosData(res);
-    // }
 
     public getDepositRecords(): Promise<GetDepositRecordsResponse> {
         const res = this.axiosInstance.get('/accounts/deposit-records');
@@ -135,4 +97,17 @@ export class Accounts extends Api {
         const res = this.axiosInstance.post('/accounts/withdrawal/submit', data);
         return this.resolveAxiosData(res);
     }
+
+    // public async subscribe(): Promise<void> {
+    //     if (!this.jwt) {
+    //         throw new Error('Cannot subscribe account without signin');
+    //     }
+    //     const ws = new DeltaDeFiWS(`${this.wsURL}?token=${this.jwt}`);
+
+    //     const wsAccountBalance = JSON.parse(ws.data || '') as AccountStream;
+    //     if (wsAccountBalance.type !== 'Account' || wsAccountBalance.sub_type !== 'balance') {
+    //         return;
+    //     }
+    //     this.balance = (wsAccountBalance as AccountBalanceStream).balance;
+    // }
 }

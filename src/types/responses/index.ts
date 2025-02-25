@@ -1,5 +1,5 @@
 import { Asset } from '@meshsdk/core';
-import { OrderJSON } from '../models/order';
+import { OrderJSON, AccountBalance } from '../models';
 
 export type SignInResponse = {
     token: string;
@@ -58,13 +58,7 @@ export type WithdrawalRecord = {
 
 export type GetWithdrawalRecordsResponse = WithdrawalRecord[];
 
-export type AssetBalance = {
-    asset: string;
-    free: bigint;
-    locked: bigint;
-};
-
-export type GetAccountBalanceResponse = AssetBalance[];
+export type GetAccountBalanceResponse = AccountBalance[];
 
 export type GenerateNewAPIKeyResponse = {
     api_key: string;

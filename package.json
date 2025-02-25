@@ -1,7 +1,7 @@
 {
     "name": "@deltadefi-protocol/typescript-sdk",
     "description": "The Typescript SDK for interacting with DeltaDeFi protocol",
-    "version": "0.3.5",
+    "version": "0.3.8",
     "main": "./dist/index.cjs",
     "browser": "./dist/index.js",
     "module": "./dist/index.js",
@@ -41,7 +41,8 @@
     "dependencies": {
         "@meshsdk/core": "^1.9.0-beta.0",
         "axios": "^1.4.0",
-        "snake-camel": "^1.0.9"
+        "snake-camel": "^1.0.9",
+        "ws": "^8.18.0"
     },
     "devDependencies": {
         "@commitlint/cli": "^17.4.3",
@@ -50,6 +51,7 @@
         "@types/jest": "^29.5.12",
         "@types/node": "^20.4.10",
         "@types/pg": "^8.10.2",
+        "@types/ws": "^8.5.14",
         "@typescript-eslint/eslint-plugin": "^5.59.1",
         "@typescript-eslint/parser": "^5.59.1",
         "commitlint": "^17.4.3",
