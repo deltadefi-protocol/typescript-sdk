@@ -31,12 +31,7 @@ export type SignInResponse = {
 //     tx_hash: string;
 // };
 
-export type TransactionStatus =
-    | 'building'
-    | 'held_for_order'
-    | 'submitted'
-    | 'submission_failed'
-    | 'confirmed';
+export type TransactionStatus = 'building' | 'submitted' | 'submission_failed' | 'confirmed';
 
 export type DepositRecord = {
     created_at: string;
@@ -53,6 +48,7 @@ export type GetOrderRecordResponse = {
 
 export type WithdrawalRecord = {
     created_at: string;
+    status: TransactionStatus;
     assets: Asset[];
 };
 
@@ -62,6 +58,7 @@ export type GetAccountBalanceResponse = AccountBalance[];
 
 export type GenerateNewAPIKeyResponse = {
     api_key: string;
+    created_at: string;
 };
 
 export type BuildDepositTransactionResponse = {
@@ -80,9 +77,7 @@ export type SubmitWithdrawalTransactionResponse = {
     tx_hash: string;
 };
 
-export type GetTermsAndConditionResponse = {
-    value: string;
-};
+export type GetTermsAndConditionResponse = string;
 
 export type MarketDepth = {
     price: number;
@@ -127,4 +122,14 @@ export type BuildCancelOrderTransactionResponse = {
 
 export type SubmitCancelOrderTransactionResponse = {
     tx_hash: string;
+};
+
+export type GetAPIKeyResponse = {
+    api_key: string;
+    created_at: string;
+};
+
+export type GetHydraCycleResponse = {
+    start: string;
+    end: string;
 };

@@ -17,6 +17,7 @@ import {
     GetAccountBalanceResponse,
     GenerateNewAPIKeyResponse,
     AccountBalance,
+    GetAPIKeyResponse,
     // AccountStream,
     // AccountBalanceStream,
 } from '../../types';
@@ -62,6 +63,11 @@ export class Accounts extends Api {
 
     public createNewApiKey(): Promise<GenerateNewAPIKeyResponse> {
         const res = this.axiosInstance.get('/accounts/new-api-key');
+        return this.resolveAxiosData(res);
+    }
+
+    public getApiKey(): Promise<GetAPIKeyResponse> {
+        const res = this.axiosInstance.get('/accounts/api-key');
         return this.resolveAxiosData(res);
     }
 
