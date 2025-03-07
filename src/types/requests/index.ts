@@ -76,8 +76,8 @@ export type SubmitCancelOrderTransactionRequest = {
     signed_tx: string;
 };
 
-export type OrderStatus = 'open' | 'closed';
+export type Status = 'open' | 'closed';
 
 export type GetOrderRecordRequest = {
-    status?: OrderStatus;
+    status?: Status;
 };
