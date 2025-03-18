@@ -1,7 +1,7 @@
 {
     "name": "@deltadefi-protocol/typescript-sdk",
     "description": "The Typescript SDK for interacting with DeltaDeFi protocol",
-    "version": "0.3.9",
+    "version": "0.3.10",
     "main": "./dist/index.cjs",
     "browser": "./dist/index.js",
     "module": "./dist/index.js",
