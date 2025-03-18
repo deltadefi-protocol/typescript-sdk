@@ -5,23 +5,25 @@ import { Orders } from './orders';
 import { Markets } from './markets';
 import { DeFiWallet } from './wallet';
 
+/**
+ * Represents the API client for interacting with the DeltaDefi API.
+ */
 export class ApiClient {
     private axiosInstance: AxiosInstance;
-
     private wsURL: string;
-
     private jwt: string = '';
-
     public networkId: 0 | 1 = 0;
-
     public accounts: Accounts;
-
     public orders: Orders;
-
     public markets: Markets;
-
     public wallet?: DeFiWallet;
 
+    /**
+     * Creates an instance of ApiClient.
+     * @param config - The API configuration.
+     * @param providedBaseURL - Optional base URL for the API.
+     * @param providedWsURL - Optional WebSocket URL for the API.
+     */
     constructor(
         { network, jwt, apiKey, signingKey }: ApiConfig,
         providedBaseURL?: string,
@@ -70,6 +72,12 @@ export class ApiClient {
         this.markets = new Markets(this.axiosInstance);
     }
 
+    /**
+     * Posts an order.
+     * @param data - The post order request data.
+     * @returns A promise that resolves to the post order response.
+     * @throws An error if the wallet is not initialized.
+     */
     public async postOrder(data: PostOrderRequest): Promise<PostOrderResponse> {
         if (!this.wallet) {
             throw new Error('Wallet is not initialized');

@@ -10,14 +10,26 @@ import {
 } from '../../types';
 import { Api } from '../api';
 
+/**
+ * Represents the Orders class.
+ */
 export class Orders extends Api {
     private axiosInstance: AxiosInstance;
 
+    /**
+     * Creates an instance of Orders.
+     * @param axiosInstance - The Axios instance for making HTTP requests.
+     */
     constructor(axiosInstance: AxiosInstance) {
         super();
         this.axiosInstance = axiosInstance;
     }
 
+    /**
+     * Builds a place order transaction.
+     * @param data - The build place order transaction request data.
+     * @returns A promise that resolves to the build place order transaction response.
+     */
     public buildPlaceOrderTransaction(
         data: BuildPlaceOrderTransactionRequest,
     ): Promise<BuildPlaceOrderTransactionResponse> {
@@ -25,6 +37,11 @@ export class Orders extends Api {
         return this.resolveAxiosData(res);
     }
 
+    /**
+     * Builds a cancel order transaction.
+     * @param orderId - The ID of the order to cancel.
+     * @returns A promise that resolves to the build cancel order transaction response.
+     */
     public buildCancelOrderTransaction(
         orderId: string,
     ): Promise<BuildCancelOrderTransactionResponse> {
@@ -32,6 +49,11 @@ export class Orders extends Api {
         return this.resolveAxiosData(res);
     }
 
+    /**
+     * Submits a place order transaction.
+     * @param data - The submit place order transaction request data.
+     * @returns A promise that resolves to the submit place order transaction response.
+     */
     public submitPlaceOrderTransaction(
         data: SubmitPlaceOrderTransactionRequest,
     ): Promise<SubmitPlaceOrderTransactionResponse> {
@@ -39,6 +61,11 @@ export class Orders extends Api {
         return this.resolveAxiosData(res);
     }
 
+    /**
+     * Submits a cancel order transaction.
+     * @param data - The submit cancel order transaction request data.
+     * @returns A promise that resolves to the submit cancel order transaction response.
+     */
     public submitCancelOrderTransaction(
         data: SubmitCancelOrderTransactionRequest,
     ): Promise<SubmitCancelOrderTransactionResponse> {
