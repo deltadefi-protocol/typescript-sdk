@@ -7,7 +7,7 @@ The UTxO Orderbook TypeScript SDK provides a convenient way to interact with the
 To install the SDK, use npm:
 
 ```sh
-npm install deltadefi-typescript-sdk
+npm i @deltadefi-protocol/typescript-sdk
 ```
 
 ## Usage
