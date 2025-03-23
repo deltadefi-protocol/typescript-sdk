@@ -58,7 +58,7 @@ export type BuildPlaceOrderTransactionRequest = {
     quantity: number;
     price?: number;
     max_slippage_basis_point?: number;
-    max_slippage: boolean;
+    limit_slippage?: boolean;
 };
 
 export type PostOrderRequest = BuildPlaceOrderTransactionRequest;

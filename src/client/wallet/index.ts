@@ -22,6 +22,22 @@ export class DeFiWallet {
         });
     }
 
+    static async new(key: AppWalletKeyType, networkId: 0 | 1, accountIndex = 0, keyIndex = 0) {
+        const wallet = new MeshWallet({
+            networkId,
+            key,
+            accountIndex,
+            keyIndex,
+        });
+
+        await wallet.init();
+        return wallet;
+    }
+
+    public async init() {
+        await this.wallet.init();
+    }
+
     /**
      * Signs a transaction.
      * @param txHex - The transaction hex string.
