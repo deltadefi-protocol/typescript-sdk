@@ -3,6 +3,8 @@ import { OrderJSON, AccountBalance } from '../models';
 
 export type SignInResponse = {
     token: string;
+    encrypted_operation_key: string;
+    operation_key_hash: string;
     is_first_time: boolean;
 };
 

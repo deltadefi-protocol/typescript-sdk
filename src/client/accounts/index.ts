@@ -43,10 +43,21 @@ export class Accounts extends Api {
      * @returns A promise that resolves to the sign-in response.
      */
     public signIn(data: SignInRequest): Promise<SignInResponse> {
-        const { x_api_key, wallet_address } = data;
+        const {
+            x_api_key,
+            wallet_address,
+            encrypted_operation_key,
+            operation_key_hash,
+            is_script_operation_key,
+        } = data;
         const res = this.axiosInstance.post(
             '/accounts/signin',
-            { wallet_address },
+            {
+                wallet_address,
+                encrypted_operation_key,
+                operation_key_hash,
+                is_script_operation_key,
+            },
             { headers: { 'X-API-KEY': x_api_key } },
         );
         return this.resolveAxiosData(res);

@@ -5,6 +5,9 @@ import { TradingSymbol, OrderSide, OrderType } from '../models/order';
 export type SignInRequest = {
     x_api_key: string;
     wallet_address: string;
+    encrypted_operation_key?: string;
+    operation_key_hash?: string;
+    is_script_operation_key?: boolean;
 };
 
 // type MarketDepth = {

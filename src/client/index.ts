@@ -10,12 +10,19 @@ import { DeFiWallet } from './wallet';
  */
 export class ApiClient {
     private axiosInstance: AxiosInstance;
+
     private wsURL: string;
+
     private jwt: string = '';
+
     public networkId: 0 | 1 = 0;
+
     public accounts: Accounts;
+
     public orders: Orders;
+
     public markets: Markets;
+
     public wallet?: DeFiWallet;
 
     /**
