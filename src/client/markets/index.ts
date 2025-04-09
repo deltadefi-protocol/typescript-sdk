@@ -30,8 +30,8 @@ export class Markets extends Api {
      * @returns A promise that resolves to the market depth response.
      */
     public getDepth(data: GetMarketDepthRequest): Promise<GetMarketDepthResponse> {
-        const { pair } = data;
-        const res = this.axiosInstance.get(`/market/depth?pair=${pair}`);
+        const { symbol } = data;
+        const res = this.axiosInstance.get(`/market/depth?symbol=${symbol}`);
         return this.resolveAxiosData(res);
     }
 
@@ -41,8 +41,8 @@ export class Markets extends Api {
      * @returns A promise that resolves to the market price response.
      */
     public getMarketPrice(data: GetMarketPriceRequest): Promise<GetMarketPriceResponse> {
-        const { pair } = data;
-        const res = this.axiosInstance.get(`/market/market-price?pair=${pair}`);
+        const { symbol } = data;
+        const res = this.axiosInstance.get(`/market/market-price?symbol=${symbol}`);
         return this.resolveAxiosData(res);
     }
 
