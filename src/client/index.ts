@@ -48,7 +48,7 @@ export class ApiClient {
                 baseURL = 'https://api.deltadefi.io';
                 wsURL = 'wss://api-dev.deltadefi.io';
             } else {
-                baseURL = 'https://api.deltadefi.io';
+                baseURL = 'https://api-dev.deltadefi.io';
                 wsURL = 'wss://api-dev.deltadefi.io';
             }
         }
