@@ -38,11 +38,11 @@ export type SubmitWithdrawalTransactionRequest = {
 };
 
 export type GetMarketDepthRequest = {
-    pair: TradingSymbol;
+    symbol: TradingSymbol;
 };
 
 export type GetMarketPriceRequest = {
-    pair: TradingSymbol;
+    symbol: TradingSymbol;
 };
 
 export type Interval = '15m' | '30m' | '1h' | '1d' | '1w' | '1M';
