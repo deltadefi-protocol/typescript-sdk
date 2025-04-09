@@ -29,24 +29,6 @@ const apiClient = new ApiClient({
 });
 ```
 
-### Sign In
-
-```typescript
-const signInData: SignInRequest = {
-    x_api_key: 'your-api-key',
-    wallet_address: 'your-wallet-address',
-};
-
-apiClient.accounts
-    .signIn(signInData)
-    .then((response) => {
-        console.log('Sign-in successful:', response);
-    })
-    .catch((error) => {
-        console.error('Error during sign-in:', error);
-    });
-```
-
 ### Orders
 
 ```typescript
