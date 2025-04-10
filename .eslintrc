@@ -24,7 +24,8 @@
         "import/extensions": "off",
         "camelcase": "off",
         "prettier/prettier": 0,
-        "no-console": "off"
+        "no-console": "off",
+        "no-underscore-dangle": ["error", { "allow": ["_encryptedData"] }]
     },
     "settings": {
         "import/resolver": {
