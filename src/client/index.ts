@@ -98,3 +98,5 @@ export class ApiClient {
         return submitRes;
     }
 }
+
+export { encryptWithCipher, decryptWithCipher } from './components/encryption';
