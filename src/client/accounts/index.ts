@@ -42,9 +42,8 @@ export class Accounts extends Api {
      * @param data - The sign-in request data.
      * @returns A promise that resolves to the sign-in response.
      */
-    public signIn(data: SignInRequest): Promise<SignInResponse> {
+    public signIn(data: SignInRequest, x_api_key: string): Promise<SignInResponse> {
         const {
-            x_api_key,
             wallet_address,
             encrypted_operation_key,
             operation_key_hash,
