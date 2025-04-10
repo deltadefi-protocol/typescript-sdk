@@ -40,9 +40,10 @@ export class Accounts extends Api {
     /**
      * Signs in a user.
      * @param data - The sign-in request data.
+     * @param apiKey - The API key for authentication.
      * @returns A promise that resolves to the sign-in response.
      */
-    public signIn(data: SignInRequest, x_api_key: string): Promise<SignInResponse> {
+    public signIn(data: SignInRequest, apiKey: string): Promise<SignInResponse> {
         const {
             wallet_address,
             encrypted_operation_key,
@@ -57,7 +58,7 @@ export class Accounts extends Api {
                 operation_key_hash,
                 is_script_operation_key,
             },
-            { headers: { 'X-API-KEY': x_api_key } },
+            { headers: { 'X-API-KEY': apiKey } },
         );
         return this.resolveAxiosData(res);
     }
