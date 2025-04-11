@@ -18,6 +18,7 @@ import {
     GenerateNewAPIKeyResponse,
     AccountBalance,
     GetAPIKeyResponse,
+    GetOperationKeyResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -40,11 +41,11 @@ export class Accounts extends Api {
     /**
      * Signs in a user.
      * @param data - The sign-in request data.
-     * @param apiKey - The API key for authentication.
      * @returns A promise that resolves to the sign-in response.
      */
-    public signIn(data: SignInRequest, apiKey: string): Promise<SignInResponse> {
+    public signIn(data: SignInRequest): Promise<SignInResponse> {
         const {
+            x_api_key,
             wallet_address,
             encrypted_operation_key,
             operation_key_hash,
@@ -58,8 +59,17 @@ export class Accounts extends Api {
                 operation_key_hash,
                 is_script_operation_key,
             },
-            { headers: { 'X-API-KEY': apiKey } },
+            { headers: { 'X-API-KEY': x_api_key } },
         );
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Retrieves encryption operation key
+     * @returns A promise that resolves to the operation key response.
+     */
+    public getOperationKey(): Promise<GetOperationKeyResponse> {
+        const res = this.axiosInstance.get('/accounts/operation-key');
         return this.resolveAxiosData(res);
     }
 
