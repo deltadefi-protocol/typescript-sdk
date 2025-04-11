@@ -67,6 +67,8 @@ jobs:
               with:
                   node-version: 20
                   registry-url: https://registry.npmjs.org/
+            - name: Debug npm config
+              run: npm config list
             - run: npm run ci
             - run: npm publish --access public
               env:
