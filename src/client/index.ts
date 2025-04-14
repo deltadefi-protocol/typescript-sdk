@@ -36,8 +36,8 @@ export class ApiClient {
         providedBaseURL?: string,
         providedWsURL?: string,
     ) {
-        let baseURL = 'https://api-dev.deltadefi.io';
-        let wsURL = 'wss://api-dev.deltadefi.io';
+        let baseURL = 'https://api-staging.deltadefi.io';
+        let wsURL = 'wss://api-staging.deltadefi.io';
         const headers: ApiHeaders = {
             'Content-Type': 'application/json',
         };
