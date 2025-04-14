@@ -46,10 +46,10 @@ export class ApiClient {
             if (network === 'mainnet') {
                 // TODO: input production link once available
                 baseURL = 'https://api.deltadefi.io';
-                wsURL = 'wss://api-dev.deltadefi.io';
+                wsURL = 'wss://api-staging.deltadefi.io';
             } else {
-                baseURL = 'https://api-dev.deltadefi.io';
-                wsURL = 'wss://api-dev.deltadefi.io';
+                baseURL = 'https://api-staging.deltadefi.io';
+                wsURL = 'wss://api-staging.deltadefi.io';
             }
         }
         if (jwt) {
