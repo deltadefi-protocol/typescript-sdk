@@ -4,11 +4,8 @@
 name: Node.js Package
 
 on:
-    pull_request:
-        types:
-            - closed
-        branches:
-            - main
+    release:
+        types: [published]
 
 jobs:
     build:
@@ -20,46 +17,8 @@ jobs:
                   node-version: 20
             - run: npm run ci
 
-    check-version:
-        runs-on: ubuntu-latest
-        if: github.event.pull_request.merged == true
-        outputs:
-            version-updated: ${{ steps.compare-versions.outputs.version-updated }}
-        steps:
-            - name: Checkout main branch at commit before merge
-              uses: actions/checkout@v4
-              with:
-                  ref: ${{ github.event.pull_request.base.sha }}
-
-            - name: Get package version from main branch before merge
-              id: pre-merge-version
-              run: |
-                  PRE_MERGE_VERSION=$(node -p "require('./package.json').version")
-                  echo "pre_merge_version=$PRE_MERGE_VERSION" >> "$GITHUB_OUTPUT"
-
-            - name: Checkout main branch at commit after merge
-              uses: actions/checkout@v4
-              with:
-                  ref: 'main'
-
-            - name: Get package version from main branch after merge
-              id: post-merge-version
-              run: |
-                  POST_MERGE_VERSION=$(node -p "require('./package.json').version")
-                  echo "post_merge_version=$POST_MERGE_VERSION" >> "$GITHUB_OUTPUT"
-
-            - name: Compare versions
-              id: compare-versions
-              run: |
-                  if [[ "${{ steps.pre-merge-version.outputs.pre_merge_version }}" != "${{ steps.post-merge-version.outputs.post_merge_version }}" ]]; then
-                      echo "version-updated=true" >> "$GITHUB_OUTPUT"
-                  else
-                      echo "version-updated=false" >> "$GITHUB_OUTPUT"
-                  fi
-
     publish-sdk:
-        needs: [build, check-version]
-        if: needs.check-version.outputs.version-updated == 'true'
+        needs: [build]
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
