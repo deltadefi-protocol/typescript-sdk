@@ -79,8 +79,10 @@ export type SubmitCancelOrderTransactionRequest = {
     signed_tx: string;
 };
 
-export type Status = 'open' | 'closed';
+export type Status = 'openOrder' | 'orderHistory' | 'tradingHistory';
 
 export type GetOrderRecordRequest = {
-    status?: Status;
+    status: Status; // Must be either 'openOrder' | 'orderHistory' | 'tradingHistory'
+    limit: number; // default number is 10 while number must be between 1 and 250
+    page: number; // default number is 1 while number must be between 1 and 1000
 };

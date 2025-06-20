@@ -11,6 +11,7 @@ import {
     BuildWithdrawalTransactionResponse,
     SubmitWithdrawalTransactionRequest,
     SubmitWithdrawalTransactionResponse,
+    GetOrderRecordRequest,
     GetOrderRecordResponse,
     GetDepositRecordsResponse,
     GetWithdrawalRecordsResponse,
@@ -95,8 +96,8 @@ export class Accounts extends Api {
      * Retrieves order records.
      * @returns A promise that resolves to the order records response.
      */
-    public getOrderRecords(): Promise<GetOrderRecordResponse> {
-        const res = this.axiosInstance.get('/accounts/order-records');
+    public getOrderRecords(data: GetOrderRecordRequest): Promise<GetOrderRecordResponse> {
+        const res = this.axiosInstance.get('/accounts/order-records', { params: data });
         return this.resolveAxiosData(res);
     }
 

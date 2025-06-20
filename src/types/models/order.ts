@@ -1,6 +1,12 @@
-export type TradingSymbol = 'ADAUSDX';
+export type TradingSymbol = 'ADAUSDM';
 
-export type OrderStatus = 'building' | 'processing' | 'open' | 'closed' | 'failed' | 'cancelled';
+export type OrderStatus =
+    | 'open'
+    | 'fully_filled'
+    | 'partially_filled'
+    | 'cancelled'
+    | 'partially_cancelled'
+    | 'failed';
 
 export type OrderSide = 'buy' | 'sell';
 
@@ -46,4 +52,18 @@ export type OrderJSON = {
     create_time: number;
     update_time: number;
     fills?: OrderExecutionRecordJSON[];
+};
+
+export type OrderFillingRecordJSON = {
+    execution_id: string;
+    order_id: string;
+    status: OrderStatus;
+    symbol: TradingSymbol;
+    executed_qty: string;
+    side: OrderSide;
+    type: OrderType;
+    fee_charged: string;
+    fee_unit: string;
+    executed_price: number;
+    created_time: number;
 };

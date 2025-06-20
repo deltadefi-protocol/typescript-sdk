@@ -1,5 +1,4 @@
-import { Asset } from '@meshsdk/core';
-import { OrderJSON, AccountBalance } from '../models';
+import { OrderJSON, AccountBalance, OrderFillingRecordJSON } from '../models';
 
 export type SignInResponse = {
     token: string;
@@ -40,23 +39,30 @@ export type GetOperationKeyResponse = {
 
 export type TransactionStatus = 'building' | 'submitted' | 'submission_failed' | 'confirmed';
 
+export type AssetRecord = {
+    asset: string;
+    asset_unit: string;
+    qty: number;
+};
+
 export type DepositRecord = {
     created_at: string;
     status: TransactionStatus;
-    assets: Asset[];
+    assets: AssetRecord[];
     tx_hash: string;
 };
 
 export type GetDepositRecordsResponse = DepositRecord[];
 
 export type GetOrderRecordResponse = {
-    Orders: OrderJSON[];
+    orders: OrderJSON[];
+    order_filling_records: OrderFillingRecordJSON[];
 };
 
 export type WithdrawalRecord = {
     created_at: string;
     status: TransactionStatus;
-    assets: Asset[];
+    assets: AssetRecord[];
 };
 
 export type GetWithdrawalRecordsResponse = WithdrawalRecord[];
@@ -127,9 +133,7 @@ export type BuildCancelOrderTransactionResponse = {
     tx_hex: string;
 };
 
-export type SubmitCancelOrderTransactionResponse = {
-    tx_hash: string;
-};
+export type SubmitCancelOrderTransactionResponse = object;
 
 export type GetAPIKeyResponse = {
     api_key: string;
