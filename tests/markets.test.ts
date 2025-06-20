@@ -13,7 +13,7 @@ describe('GetDepthResponse', () => {
     test('should have correct structure and non-negative values', async () => {
         if (skipApiTests) return;
         const api = new ApiClient({ apiKey, network: 'preprod' });
-        const res = await api.markets.getDepth({ symbol: 'ADAUSDX' });
+        const res = await api.markets.getDepth({ symbol: 'ADAUSDM' });
 
         console.log('response', res);
 
@@ -41,7 +41,7 @@ describe('GetMarketPriceRequest', () => {
     test('Buying price should have correct data format and non-negative vaule', async () => {
         if (skipApiTests) return;
         const api = new ApiClient({ apiKey, network: 'preprod' });
-        const res = await api.markets.getMarketPrice({ symbol: 'ADAUSDX' });
+        const res = await api.markets.getMarketPrice({ symbol: 'ADAUSDM' });
 
         console.log('response', res);
 
@@ -54,7 +54,7 @@ describe('GetMarketPriceRequest', () => {
     test('Selling price should have correct data format and non-negative vaule', async () => {
         if (skipApiTests) return;
         const api = new ApiClient({ apiKey, network: 'preprod' });
-        const res = await api.markets.getMarketPrice({ symbol: 'ADAUSDX' });
+        const res = await api.markets.getMarketPrice({ symbol: 'ADAUSDM' });
 
         console.log('response', res);
 

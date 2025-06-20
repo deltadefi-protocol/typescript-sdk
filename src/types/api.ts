@@ -1,7 +1,7 @@
-import { AppWalletKeyType } from '@meshsdk/core';
+import { MeshWallet } from '@meshsdk/core';
 import { AuthHeaders } from './auth';
 
 export type ApiConfig = {
     network?: 'preprod' | 'mainnet';
-    signingKey?: AppWalletKeyType;
+    masterWallet?: MeshWallet;
 } & AuthHeaders;

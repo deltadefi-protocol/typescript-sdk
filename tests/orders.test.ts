@@ -2,7 +2,6 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-extraneous-dependencies */
 import dotenv from 'dotenv';
-import { AppWalletKeyType } from '@meshsdk/core';
 import { ApiClient } from '../src';
 
 dotenv.config();
@@ -10,60 +9,21 @@ dotenv.config();
 const skipApiTests = process.env.SKIP_API_TESTS === 'true';
 const apiKey = process.env.API_KEY || '';
 
-const signingKey: AppWalletKeyType = {
-    type: 'mnemonic',
-    words: (process.env.MNEMONIC || '').split(',') || [],
-};
-
 describe('Orders APIs', () => {
     test('Orders should be successfully placed and cancelled programmatically', async () => {
         if (skipApiTests) return;
-        const api = new ApiClient({ apiKey, signingKey, network: 'preprod' });
-        const buildRes = await api.orders.buildPlaceOrderTransaction({
-            symbol: 'ADAUSDX',
+        const api = new ApiClient({ apiKey, network: 'preprod' });
+        const postOrderRes = await api.postOrder({
+            symbol: 'ADAUSDM',
             side: 'sell',
             type: 'limit',
             quantity: 1000_000_000,
             price: 0.62,
         });
-        console.log('build order response', buildRes);
-        const unsignedTx = buildRes.tx_hex;
-        const signedTx = await api.wallet!.signTx(unsignedTx);
-        console.log('signed txs', signedTx);
-        const res = await api.orders.submitPlaceOrderTransaction({
-            order_id: buildRes.order_id,
-            signed_tx: signedTx,
-        });
-        console.log('response', res);
-        const cancelRes = await api.orders.buildCancelOrderTransaction(buildRes.order_id);
+        console.log('Post order response', postOrderRes);
+
+        const cancelRes = await api.cancelOrder(postOrderRes.order.order_id);
         console.log('cancel order response', cancelRes);
-        const unsignedCancelTx = cancelRes.tx_hex;
-        const signedCancelTx = await api.wallet!.signTx(unsignedCancelTx);
-        console.log('signed cancel txs', signedCancelTx);
-        const cancelRes2 = await api.orders.submitCancelOrderTransaction({
-            signed_tx: signedCancelTx,
-        });
-        console.log('cancel order response', cancelRes2);
-    });
-    test('Orders should be successfully placed and cancelled programmatically in one api', async () => {
-        if (skipApiTests) return;
-        const api = new ApiClient({ apiKey, signingKey, network: 'preprod' });
-        const buildRes = await api.postOrder({
-            symbol: 'ADAUSDX',
-            side: 'sell',
-            type: 'limit',
-            quantity: 1000_000_000,
-            price: 0.62,
-        });
-        const cancelRes = await api.orders.buildCancelOrderTransaction(buildRes.order.order_id);
-        console.log('cancel order response', cancelRes);
-        const unsignedCancelTx = cancelRes.tx_hex;
-        const signedCancelTx = await api.wallet!.signTx(unsignedCancelTx);
-        console.log('signed cancel txs', signedCancelTx);
-        const cancelRes2 = await api.orders.submitCancelOrderTransaction({
-            signed_tx: signedCancelTx,
-        });
-        console.log('cancel order response', cancelRes2);
     });
     // const sleep = (ms: number) =>
     //     new Promise((resolve) => {

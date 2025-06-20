@@ -1,9 +1,10 @@
+import { MeshWallet } from '@meshsdk/core';
 import axios, { AxiosInstance } from 'axios';
 import { ApiConfig, ApiHeaders, PostOrderRequest, PostOrderResponse } from '../types';
 import { Accounts } from './accounts';
 import { Orders } from './orders';
 import { Markets } from './markets';
-import { DeFiWallet } from './wallet';
+import { decryptWithCipher } from './components/encryption';
 
 /**
  * Represents the API client for interacting with the DeltaDefi API.
@@ -23,7 +24,9 @@ export class ApiClient {
 
     public markets: Markets;
 
-    public wallet?: DeFiWallet;
+    public masterWallet?: MeshWallet;
+
+    public operationWallet?: MeshWallet;
 
     /**
      * Creates an instance of ApiClient.
@@ -32,7 +35,7 @@ export class ApiClient {
      * @param providedWsURL - Optional WebSocket URL for the API.
      */
     constructor(
-        { network, jwt, apiKey, signingKey }: ApiConfig,
+        { network, jwt, apiKey, masterWallet }: ApiConfig,
         providedBaseURL?: string,
         providedWsURL?: string,
     ) {
@@ -59,8 +62,8 @@ export class ApiClient {
         if (apiKey) {
             headers['X-API-KEY'] = apiKey;
         }
-        if (signingKey) {
-            this.wallet = new DeFiWallet(signingKey, this.networkId);
+        if (masterWallet) {
+            this.masterWallet = masterWallet;
         }
         if (providedBaseURL) {
             baseURL = providedBaseURL;
@@ -80,22 +83,59 @@ export class ApiClient {
     }
 
     /**
+     * Initializes the operation wallet with the provided encryption password.
+     * @param password - The password used to decrypt the operation key.
+     */
+    public async loadOperationKey(password: string) {
+        const { encrypted_operation_key: encryptedOperationKey } =
+            await this.accounts.getOperationKey();
+        const operationKey = await decryptWithCipher({
+            encryptedDataJSON: encryptedOperationKey,
+            key: password,
+        });
+        this.operationWallet = new MeshWallet({
+            key: {
+                type: 'root',
+                bech32: operationKey,
+            },
+            networkId: this.networkId,
+        });
+    }
+
+    /**
      * Posts an order.
      * @param data - The post order request data.
      * @returns A promise that resolves to the post order response.
      * @throws An error if the wallet is not initialized.
      */
     public async postOrder(data: PostOrderRequest): Promise<PostOrderResponse> {
-        if (!this.wallet) {
-            throw new Error('Wallet is not initialized');
+        if (!this.operationWallet) {
+            throw new Error('Operation wallet is not initialized');
         }
         const buildRes = await this.orders.buildPlaceOrderTransaction(data);
-        const signedTx = await this.wallet.signTx(buildRes.tx_hex);
+        const signedTx = await this.operationWallet.signTx(buildRes.tx_hex);
         const submitRes: PostOrderResponse = await this.orders.submitPlaceOrderTransaction({
             order_id: buildRes.order_id,
             signed_tx: signedTx,
         });
         return submitRes;
+    }
+
+    /**
+     * Cancels an order.
+     * @param orderId - The ID of the order to cancel.
+     * @returns A promise that resolves to a message indicating the order was cancelled successfully.
+     */
+    public async cancelOrder(orderId: string) {
+        if (!this.operationWallet) {
+            throw new Error('Operation wallet is not initialized');
+        }
+        const buildRes = await this.orders.buildCancelOrderTransaction(orderId);
+        const signedTx = await this.operationWallet.signTx(buildRes.tx_hex);
+        await this.orders.submitCancelOrderTransaction({
+            signed_tx: signedTx,
+        });
+        return { message: 'Order cancelled successfully', orderId };
     }
 }
 
