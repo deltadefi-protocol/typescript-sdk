@@ -1,6 +1,6 @@
 # UTxO Orderbook TypeScript SDK
 
-The UTxO Orderbook TypeScript SDK provides a convenient way to interact with the DeltaDefi API. It includes classes and methods for managing accounts, orders, markets, and wallets.
+The UTxO Orderbook TypeScript SDK provides a convenient way to interact with the DeltaDefi API. It includes classes and methods for managing accounts, orders, markets.
 
 ## Installation
 
@@ -15,7 +15,7 @@ npm i @deltadefi-protocol/typescript-sdk
 ### Importing the SDK
 
 ```typescript
-import { ApiClient } from 'deltadefi-typescript-sdk';
+import { ApiClient } from '@deltadefi-protocol/sdk';
 ```
 
 ### Creating an Instance
@@ -25,15 +25,16 @@ const apiClient = new ApiClient({
     network: 'preprod',
     jwt: 'your-jwt-token',
     apiKey: 'your-api-key',
-    signingKey: 'your-signing-key',
 });
 ```
 
 ### Orders
 
 ```typescript
+await apiClient.loadOperationKey(<tradingPassword>)
+
 const postOrderData: PostOrderRequest = {
-    symbol: 'ADAUSDX',
+    symbol: 'ADAUSDM',
     side: 'buy',
     type: 'limit',
     quantity: 100,
@@ -55,7 +56,7 @@ apiClient
 
 ```typescript
 const marketDepthData: GetMarketDepthRequest = {
-    pair: 'ADAUSDX',
+    pair: 'ADAUSDM',
 };
 
 apiClient.markets
@@ -65,21 +66,6 @@ apiClient.markets
     })
     .catch((error) => {
         console.error('Error getting market depth:', error);
-    });
-```
-
-### Wallet
-
-```typescript
-const txHex = 'your-transaction-hex';
-
-apiClient.wallet
-    ?.signTx(txHex)
-    .then((signedTx) => {
-        console.log('Signed transaction:', signedTx);
-    })
-    .catch((error) => {
-        console.error('Error signing transaction:', error);
     });
 ```
 
