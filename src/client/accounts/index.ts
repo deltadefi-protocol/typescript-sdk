@@ -20,6 +20,10 @@ import {
     AccountBalance,
     GetAPIKeyResponse,
     GetOperationKeyResponse,
+    BuildTransferalTransactionRequest,
+    BuildTransferalTransactionResponse,
+    SubmitTransferalTransactionRequest,
+    SubmitTransferalTransactionResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -158,6 +162,18 @@ export class Accounts extends Api {
     }
 
     /**
+     * Builds a transferal transaction.
+     * @param data - The build transferal transaction request data.
+     * @returns A promise that resolves to the build transferal transaction response.
+     */
+    public buildTransferalTransaction(
+        data: BuildTransferalTransactionRequest,
+    ): Promise<BuildTransferalTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/transferal/build', data);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
      * Submits a deposit transaction.
      * @param data - The submit deposit transaction request data.
      * @returns A promise that resolves to the submit deposit transaction response.
@@ -178,6 +194,18 @@ export class Accounts extends Api {
         data: SubmitWithdrawalTransactionRequest,
     ): Promise<SubmitWithdrawalTransactionResponse> {
         const res = this.axiosInstance.post('/accounts/withdrawal/submit', data);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Submits a transferal transaction.
+     * @param data - The submit transferal transaction request data.
+     * @returns A promise that resolves to the submit transferal transaction response.
+     */
+    public submittransferalTransaction(
+        data: SubmitTransferalTransactionRequest,
+    ): Promise<SubmitTransferalTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/transferal/submit', data);
         return this.resolveAxiosData(res);
     }
 }

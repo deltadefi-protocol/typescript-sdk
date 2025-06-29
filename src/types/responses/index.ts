@@ -82,11 +82,19 @@ export type BuildWithdrawalTransactionResponse = {
     tx_hex: string;
 };
 
+export type BuildTransferalTransactionResponse = {
+    tx_hex: string;
+};
+
 export type SubmitDepositTransactionResponse = {
     tx_hash: string;
 };
 
 export type SubmitWithdrawalTransactionResponse = {
+    tx_hash: string;
+};
+
+export type SubmitTransferalTransactionResponse = {
     tx_hash: string;
 };
 
