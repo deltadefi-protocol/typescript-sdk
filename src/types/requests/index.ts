@@ -39,7 +39,7 @@ export type SubmitWithdrawalTransactionRequest = {
 
 export type BuildTransferalTransactionRequest = {
     transferal_amount: Asset[];
-    to_address: string
+    to_address: string;
 };
 
 export type SubmitTransferalTransactionRequest = {

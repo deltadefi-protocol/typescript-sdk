@@ -141,8 +141,6 @@ export type BuildCancelOrderTransactionResponse = {
     tx_hex: string;
 };
 
-export type SubmitCancelOrderTransactionResponse = object;
-
 export type GetAPIKeyResponse = {
     api_key: string;
     created_at: string;

@@ -1,6 +1,7 @@
 export type TradingSymbol = 'ADAUSDM';
 
 export type OrderStatus =
+    | 'processing'
     | 'open'
     | 'fully_filled'
     | 'partially_filled'

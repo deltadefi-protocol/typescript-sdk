@@ -6,7 +6,6 @@ import {
     SubmitPlaceOrderTransactionRequest,
     SubmitPlaceOrderTransactionResponse,
     SubmitCancelOrderTransactionRequest,
-    SubmitCancelOrderTransactionResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -64,11 +63,11 @@ export class Orders extends Api {
     /**
      * Submits a cancel order transaction.
      * @param data - The submit cancel order transaction request data.
-     * @returns A promise that resolves to the submit cancel order transaction response.
+     * @returns The transaction hash of cancelled order.
      */
-    public submitCancelOrderTransaction(
+    public async submitCancelOrderTransaction(
         data: SubmitCancelOrderTransactionRequest,
-    ): Promise<SubmitCancelOrderTransactionResponse> {
+    ): Promise<object> {
         const res = this.axiosInstance.delete('/order/submit', { data });
         return this.resolveAxiosData(res);
     }
