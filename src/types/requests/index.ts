@@ -54,7 +54,7 @@ export type GetMarketPriceRequest = {
     symbol: TradingSymbol;
 };
 
-export type Interval = '15m' | '30m' | '1h' | '1d' | '1w' | '1M';
+export type Interval = '5m' | '15m' | '30m' | '1h' | '1d';
 
 export type GetAggregatedPriceRequest = {
     pair: string;

@@ -56,7 +56,7 @@ export class Markets extends Api {
     ): Promise<GetAggregatedPriceResponse> {
         const { pair, interval, start, end } = data;
         const res = this.axiosInstance.get(
-            `/market/aggregate/${pair}?interval=${interval}&start=${start || ''}&end=${end || ''}`,
+            `/market/graph/${pair}?interval=${interval}&start=${start || ''}&end=${end || ''}`,
         );
         return this.resolveAxiosData(res);
     }

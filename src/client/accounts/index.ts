@@ -98,10 +98,21 @@ export class Accounts extends Api {
 
     /**
      * Retrieves order records.
+     * @param data - The order records request parameters.
      * @returns A promise that resolves to the order records response.
      */
     public getOrderRecords(data: GetOrderRecordRequest): Promise<GetOrderRecordResponse> {
         const res = this.axiosInstance.get('/accounts/order-records', { params: data });
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Retrieves a single order record by order ID.
+     * @param orderId - The ID of the order to retrieve.
+     * @returns A promise that resolves to the order record response.
+     */
+    public getOrderRecord(orderId: string): Promise<GetOrderRecordResponse> {
+        const res = this.axiosInstance.get(`/accounts/order/${orderId}`);
         return this.resolveAxiosData(res);
     }
 

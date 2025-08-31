@@ -98,7 +98,6 @@ export type SubmitTransferalTransactionResponse = {
     tx_hash: string;
 };
 
-export type GetTermsAndConditionResponse = string;
 
 export type MarketDepth = {
     price: number;
@@ -146,7 +145,3 @@ export type GetAPIKeyResponse = {
     created_at: string;
 };
 
-export type GetHydraCycleResponse = {
-    start: string;
-    end: string;
-};
