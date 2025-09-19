@@ -1,8 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { Api } from '../api';
 import {
-    GetMarketDepthRequest,
-    GetMarketDepthResponse,
     GetMarketPriceRequest,
     GetMarketPriceResponse,
     GetAggregatedPriceResponse,
@@ -24,16 +22,16 @@ export class Markets extends Api {
         this.axiosInstance = axiosInstance;
     }
 
-    /**
-     * Retrieves the market depth.
-     * @param data - The market depth request data.
-     * @returns A promise that resolves to the market depth response.
-     */
-    public getDepth(data: GetMarketDepthRequest): Promise<GetMarketDepthResponse> {
-        const { symbol } = data;
-        const res = this.axiosInstance.get(`/market/depth?symbol=${symbol}`);
-        return this.resolveAxiosData(res);
-    }
+    // /**
+    //  * Retrieves the market depth.
+    //  * @param data - The market depth request data.
+    //  * @returns A promise that resolves to the market depth response.
+    //  */
+    // public getDepth(data: GetMarketDepthRequest): Promise<GetMarketDepthResponse> {
+    //     const { symbol } = data;
+    //     const res = this.axiosInstance.get(`/market/depth?symbol=${symbol}`);
+    //     return this.resolveAxiosData(res);
+    // }
 
     /**
      * Retrieves the market price.

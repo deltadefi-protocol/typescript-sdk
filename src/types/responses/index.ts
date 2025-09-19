@@ -98,16 +98,15 @@ export type SubmitTransferalTransactionResponse = {
     tx_hash: string;
 };
 
-
 export type MarketDepth = {
     price: number;
     quantity: number;
 };
 
-export type GetMarketDepthResponse = {
-    bids: MarketDepth[];
-    asks: MarketDepth[];
-};
+// export type GetMarketDepthResponse = {
+//     bids: MarketDepth[];
+//     asks: MarketDepth[];
+// };
 
 export type GetMarketPriceResponse = {
     price: number;
@@ -144,4 +143,3 @@ export type GetAPIKeyResponse = {
     api_key: string;
     created_at: string;
 };
-
