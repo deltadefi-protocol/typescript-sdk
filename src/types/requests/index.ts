@@ -46,9 +46,9 @@ export type SubmitTransferalTransactionRequest = {
     signed_tx: string;
 };
 
-export type GetMarketDepthRequest = {
-    symbol: TradingSymbol;
-};
+// export type GetMarketDepthRequest = {
+//     symbol: TradingSymbol;
+// };
 
 export type GetMarketPriceRequest = {
     symbol: TradingSymbol;
