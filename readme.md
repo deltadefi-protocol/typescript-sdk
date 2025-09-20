@@ -7,7 +7,7 @@ The UTxO Orderbook TypeScript SDK provides a convenient way to interact with the
 To install the SDK, use npm:
 
 ```sh
-npm i @deltadefi-protocol/typescript-sdk
+npm i @deltadefi-protocol/sdk
 ```
 
 ## Usage
@@ -55,17 +55,17 @@ apiClient
 ### Markets
 
 ```typescript
-const marketDepthData: GetMarketDepthRequest = {
-    pair: 'ADAUSDM',
+const marketPriceRequest: GetMarketPriceRequest = {
+    symbol: "ADAUSDM",
 };
 
 apiClient.markets
-    .getDepth(marketDepthData)
+    .getMarketPrice(marketPriceRequest)
     .then((response) => {
-        console.log('Market depth:', response);
+        console.log('Market price:', response);
     })
     .catch((error) => {
-        console.error('Error getting market depth:', error);
+        console.error('Error getting market price:', error);
     });
 ```
 
