@@ -87,7 +87,7 @@ export type BuildTransferalTransactionResponse = {
 };
 
 export type BuildTransferalRequestTransactionResponse = {
-    signed_tx: string;
+    tx_hex: string;
 };
 
 export type SubmitDepositTransactionResponse = {
@@ -158,5 +158,5 @@ export type GetTransferalRecordsResponse = {
 };
 
 export type GetTransferalRecordByTxHashResponse = {
-    transferal_record: TransferalRecord[];
+    transferal_record: TransferalRecord;
 };

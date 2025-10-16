@@ -1,4 +1,4 @@
-import { Asset } from '@meshsdk/core';
+import { Asset } from '../requests';
 
 export type AccountBalance = {
     asset: string;
