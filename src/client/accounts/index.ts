@@ -125,9 +125,9 @@ export class Accounts extends Api {
     }
 
     /**
-     * Retrieves a single order record by order ID.
-     * @param orderId - The ID of the order to retrieve.
-     * @returns A promise that resolves to the order record response.
+     * Retrieves transferal records.
+     * @param data - The transferal records request parameters.
+     * @returns A promise that resolves to the transferal records response.
      */
     public getTransferalRecords(
         data: GetTransferalRecordsRequest,
@@ -137,9 +137,9 @@ export class Accounts extends Api {
     }
 
     /**
-     * Retrieves a single order record by order ID.
-     * @param orderId - The ID of the order to retrieve.
-     * @returns A promise that resolves to the order record response.
+     * Retrieves a single transferal record by transaction hash.
+     * @param txHash - The transaction hash of the transferal record to retrieve.
+     * @returns A promise that resolves to the transferal record response.
      */
     public getTransferalRecordByTxHash(
         data: GetTransferalRecordByTxHashRequest,
