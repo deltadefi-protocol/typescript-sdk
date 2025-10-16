@@ -1,4 +1,4 @@
-import { OrderJSON, AccountBalance, OrderFillingRecordJSON } from '../models';
+import { OrderJSON, AccountBalance, OrderFillingRecordJSON, TransferalRecord } from '../models';
 
 export type SignInResponse = {
     token: string;
@@ -86,6 +86,10 @@ export type BuildTransferalTransactionResponse = {
     tx_hex: string;
 };
 
+export type BuildTransferalRequestTransactionResponse = {
+    tx_hex: string;
+};
+
 export type SubmitDepositTransactionResponse = {
     tx_hash: string;
 };
@@ -95,6 +99,10 @@ export type SubmitWithdrawalTransactionResponse = {
 };
 
 export type SubmitTransferalTransactionResponse = {
+    tx_hash: string;
+};
+
+export type SubmitTransferalRequestTransactionResponse = {
     tx_hash: string;
 };
 
@@ -142,4 +150,13 @@ export type BuildCancelOrderTransactionResponse = {
 export type GetAPIKeyResponse = {
     api_key: string;
     created_at: string;
+};
+
+export type GetTransferalRecordsResponse = {
+    in: TransferalRecord[];
+    out: TransferalRecord[];
+};
+
+export type GetTransferalRecordByTxHashResponse = {
+    transferal_record: TransferalRecord;
 };
