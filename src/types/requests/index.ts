@@ -46,6 +46,15 @@ export type SubmitTransferalTransactionRequest = {
     signed_tx: string;
 };
 
+export type BuildTransferalRequestTransactionRequest = {
+    transferal_amount: Asset[];
+    from_address: string;
+};
+
+export type SubmitTransferalRequestTransactionRequest = {
+    signed_tx: string;
+};
+
 // export type GetMarketDepthRequest = {
 //     symbol: TradingSymbol;
 // };

@@ -24,6 +24,10 @@ import {
     BuildTransferalTransactionResponse,
     SubmitTransferalTransactionRequest,
     SubmitTransferalTransactionResponse,
+    BuildTransferalRequestTransactionRequest,
+    BuildTransferalRequestTransactionResponse,
+    SubmitTransferalRequestTransactionRequest,
+    SubmitTransferalRequestTransactionResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -185,6 +189,18 @@ export class Accounts extends Api {
     }
 
     /**
+     * Builds a transferal request transaction.
+     * @param data - The build transferal transaction request data.
+     * @returns A promise that resolves to the build transferal transaction response.
+     */
+    public buildTransferalRequestTransaction(
+        data: BuildTransferalRequestTransactionRequest,
+    ): Promise<BuildTransferalRequestTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/request-transferal/build', data);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
      * Submits a deposit transaction.
      * @param data - The submit deposit transaction request data.
      * @returns A promise that resolves to the submit deposit transaction response.
@@ -213,10 +229,22 @@ export class Accounts extends Api {
      * @param data - The submit transferal transaction request data.
      * @returns A promise that resolves to the submit transferal transaction response.
      */
-    public submittransferalTransaction(
+    public submitTransferalTransaction(
         data: SubmitTransferalTransactionRequest,
     ): Promise<SubmitTransferalTransactionResponse> {
         const res = this.axiosInstance.post('/accounts/transferal/submit', data);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Submits a transferal requesttransaction.
+     * @param data - The submit transferal transaction request data.
+     * @returns A promise that resolves to the submit transferal transaction response.
+     */
+    public submitTransferalRequestTransaction(
+        data: SubmitTransferalRequestTransactionRequest,
+    ): Promise<SubmitTransferalRequestTransactionResponse> {
+        const res = this.axiosInstance.post('/accounts/request-transferal/submit', data);
         return this.resolveAxiosData(res);
     }
 }

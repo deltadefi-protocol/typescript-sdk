@@ -86,6 +86,10 @@ export type BuildTransferalTransactionResponse = {
     tx_hex: string;
 };
 
+export type BuildTransferalRequestTransactionResponse = {
+    signed_tx: string;
+};
+
 export type SubmitDepositTransactionResponse = {
     tx_hash: string;
 };
@@ -95,6 +99,10 @@ export type SubmitWithdrawalTransactionResponse = {
 };
 
 export type SubmitTransferalTransactionResponse = {
+    tx_hash: string;
+};
+
+export type SubmitTransferalRequestTransactionResponse = {
     tx_hash: string;
 };
 
