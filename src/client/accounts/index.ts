@@ -28,6 +28,10 @@ import {
     BuildTransferalRequestTransactionResponse,
     SubmitTransferalRequestTransactionRequest,
     SubmitTransferalRequestTransactionResponse,
+    GetTransferalRecordsResponse,
+    GetTransferalRecordsRequest,
+    GetTransferalRecordByTxHashRequest,
+    GetTransferalRecordByTxHashResponse,
 } from '../../types';
 import { Api } from '../api';
 
@@ -117,6 +121,30 @@ export class Accounts extends Api {
      */
     public getOrderRecord(orderId: string): Promise<GetOrderRecordResponse> {
         const res = this.axiosInstance.get(`/accounts/order/${orderId}`);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Retrieves a single order record by order ID.
+     * @param orderId - The ID of the order to retrieve.
+     * @returns A promise that resolves to the order record response.
+     */
+    public getTransferalRecords(
+        data: GetTransferalRecordsRequest,
+    ): Promise<GetTransferalRecordsResponse> {
+        const res = this.axiosInstance.get(`/accounts/transferal-records`, { params: data });
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Retrieves a single order record by order ID.
+     * @param orderId - The ID of the order to retrieve.
+     * @returns A promise that resolves to the order record response.
+     */
+    public getTransferalRecordByTxHash(
+        data: GetTransferalRecordByTxHashRequest,
+    ): Promise<GetTransferalRecordByTxHashResponse> {
+        const res = this.axiosInstance.get(`/accounts/transferal-records/${data.tx_hash}`);
         return this.resolveAxiosData(res);
     }
 

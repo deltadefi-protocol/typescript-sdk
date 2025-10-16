@@ -2,7 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import dotenv from 'dotenv';
 import { ApiClient } from '../src';
-import { MarketDepth } from '../src/types';
+// import { MarketDepth } from '../src/types';
 
 dotenv.config();
 
