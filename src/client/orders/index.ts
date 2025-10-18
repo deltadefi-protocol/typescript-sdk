@@ -6,6 +6,9 @@ import {
     SubmitPlaceOrderTransactionRequest,
     SubmitPlaceOrderTransactionResponse,
     SubmitCancelOrderTransactionRequest,
+    BuildCancelAllOrdersTransactionResponse,
+    SubmitCancelAllOrdersTransactionResponse,
+    SubmitCancelAllOrdersTransactionRequest,
 } from '../../types';
 import { Api } from '../api';
 
@@ -49,6 +52,15 @@ export class Orders extends Api {
     }
 
     /**
+     * Builds cancel all orders transactions.
+     * @returns A promise that resolves to the build cancel all orders transaction response.
+     */
+    public buildCancelAllOrdersTransaction(): Promise<BuildCancelAllOrdersTransactionResponse> {
+        const res = this.axiosInstance.delete(`/order/cancel-all/build`);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
      * Submits a place order transaction.
      * @param data - The submit place order transaction request data.
      * @returns A promise that resolves to the submit place order transaction response.
@@ -68,6 +80,18 @@ export class Orders extends Api {
     public async submitCancelOrderTransaction(
         data: SubmitCancelOrderTransactionRequest,
     ): Promise<object> {
+        const res = this.axiosInstance.delete('/order/submit', { data });
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Submits cancel all orders transaction.
+     * @param data - The submit cancel all orders transaction request data.
+     * @returns The transaction hash of cancelled all orders.
+     */
+    public async submitCancelAllOrdersTransaction(
+        data: SubmitCancelAllOrdersTransactionRequest,
+    ): Promise<SubmitCancelAllOrdersTransactionResponse> {
         const res = this.axiosInstance.delete('/order/submit', { data });
         return this.resolveAxiosData(res);
     }

@@ -1,6 +1,6 @@
 import { UTxO } from '@meshsdk/core';
 import { TradingSymbol, OrderSide, OrderType } from '../models/order';
-import { TransferStatus } from '../models/account';
+import { Asset, TransferStatus } from '../models';
 
 // SignInRequest to be refactored
 export type SignInRequest = {
@@ -15,11 +15,6 @@ export type SignInRequest = {
 //     price: number;
 //     quantity: number;
 // };
-
-export type Asset = {
-    unit: string;
-    quantity: string;
-};
 
 export type BuildDepositTransactionRequest = {
     deposit_amount: Asset[];
@@ -81,6 +76,7 @@ export type BuildPlaceOrderTransactionRequest = {
     price?: number;
     max_slippage_basis_point?: number;
     limit_slippage?: boolean;
+    post_only?: boolean;
 };
 
 export type PostOrderRequest = BuildPlaceOrderTransactionRequest;
@@ -92,6 +88,10 @@ export type SubmitPlaceOrderTransactionRequest = {
 
 export type SubmitCancelOrderTransactionRequest = {
     signed_tx: string;
+};
+
+export type SubmitCancelAllOrdersTransactionRequest = {
+    signed_txs: string[];
 };
 
 export type Status = 'openOrder' | 'orderHistory' | 'tradingHistory';

@@ -1,4 +1,7 @@
-import { Asset } from '../requests';
+export type Asset = {
+    unit: string;
+    quantity: string;
+};
 
 export type AccountBalance = {
     asset: string;

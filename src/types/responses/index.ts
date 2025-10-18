@@ -147,6 +147,13 @@ export type BuildCancelOrderTransactionResponse = {
     tx_hex: string;
 };
 
+export type BuildCancelAllOrdersTransactionResponse = {
+    tx_hexes: string[];
+};
+export type SubmitCancelAllOrdersTransactionResponse = {
+    cancelled_order_ids: string[];
+};
+
 export type GetAPIKeyResponse = {
     api_key: string;
     created_at: string;
