@@ -92,7 +92,7 @@ export class Orders extends Api {
     public async submitCancelAllOrdersTransaction(
         data: SubmitCancelAllOrdersTransactionRequest,
     ): Promise<SubmitCancelAllOrdersTransactionResponse> {
-        const res = this.axiosInstance.delete('/order/submit', { data });
+        const res = this.axiosInstance.delete('/order/cancel-all/submit', { data });
         return this.resolveAxiosData(res);
     }
 }
