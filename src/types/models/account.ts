@@ -1,13 +1,16 @@
-export type Asset = {
-    unit: string;
-    quantity: string;
-};
+import { TransferStatus } from '../requests';
 
 export type AccountBalance = {
     asset: string;
     asset_unit: string;
     free: bigint;
     locked: bigint;
+};
+
+export type TransferalAsset = {
+    asset: string;
+    asset_unit: string;
+    qty: bigint;
 };
 
 export type AccountStream = {
@@ -21,8 +24,6 @@ export type AccountBalanceStream = {
     balance: AccountBalance[];
 };
 
-export type TransferStatus = 'pending' | 'confirmed';
-
 export type TransferalType = 'normal' | 'deposit' | `withdrawal`;
 
 export type TransferDirection = 'incoming' | 'outgoing';
@@ -30,7 +31,8 @@ export type TransferDirection = 'incoming' | 'outgoing';
 export type TransferalRecord = {
     created_at: string;
     status: TransferStatus;
-    assets: Asset[];
+    assets: TransferalAsset[];
+    transferal_type: TransferalType;
     tx_hash: string;
     direction: TransferDirection;
 };
