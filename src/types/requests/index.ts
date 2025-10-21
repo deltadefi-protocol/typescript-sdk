@@ -1,6 +1,6 @@
 import { UTxO } from '@meshsdk/core';
 import { TradingSymbol, OrderSide, OrderType } from '../models/order';
-import { Asset, TransferStatus } from '../models';
+import { TransferalType } from '../models/account';
 
 // SignInRequest to be refactored
 export type SignInRequest = {
@@ -15,6 +15,11 @@ export type SignInRequest = {
 //     price: number;
 //     quantity: number;
 // };
+
+export type Asset = {
+    unit: string;
+    quantity: string;
+};
 
 export type BuildDepositTransactionRequest = {
     deposit_amount: Asset[];
@@ -36,6 +41,7 @@ export type SubmitWithdrawalTransactionRequest = {
 export type BuildTransferalTransactionRequest = {
     transferal_amount: Asset[];
     to_address: string;
+    transferal_type: TransferalType;
 };
 
 export type SubmitTransferalTransactionRequest = {
@@ -45,6 +51,7 @@ export type SubmitTransferalTransactionRequest = {
 export type BuildTransferalRequestTransactionRequest = {
     transferal_amount: Asset[];
     from_address: string;
+    transferal_type: TransferalType;
 };
 
 export type SubmitTransferalRequestTransactionRequest = {
@@ -101,6 +108,8 @@ export type GetOrderRecordRequest = {
     limit?: number; // default number is 10 while number must be between 1 and 250
     page?: number; // default number is 1 while number must be between 1 and 1000
 };
+
+export type TransferStatus = 'pending' | 'confirmed';
 
 export type GetTransferalRecordsRequest = {
     status: TransferStatus; // Must be either 'pending' | 'confirmed'
