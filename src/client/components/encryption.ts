@@ -30,7 +30,10 @@ export async function encryptWithCipher({
     algorithm?: string;
     initializationVectorSize?: number;
 }) {
-    // Derive a cryptographic key from the input key using SHA-256
+    // Generate a random salt for PBKDF2
+    const salt = crypto.getRandomValues(new Uint8Array(initializationVectorSize));
+
+    // Derive a cryptographic key from the input key using PBKDF2
     const keyMaterial = await crypto.subtle.importKey(
         'raw',
         new TextEncoder().encode(key),
@@ -42,7 +45,7 @@ export async function encryptWithCipher({
     const cryptoKey = await crypto.subtle.deriveKey(
         {
             name: 'PBKDF2',
-            salt: new Uint8Array(initializationVectorSize), // Use a fixed salt for simplicity
+            salt,
             iterations: 100000,
             hash: 'SHA-256',
         },
@@ -62,9 +65,10 @@ export async function encryptWithCipher({
         new TextEncoder().encode(data),
     );
 
-    // Return the encrypted data as a base64 string
+    // Return the encrypted data as a base64 string with salt included
     return JSON.stringify({
         iv: Buffer.from(iv).toString('base64'),
+        salt: Buffer.from(salt).toString('base64'),
         ciphertext: Buffer.from(encrypted).toString('base64'),
     });
 }
@@ -77,12 +81,27 @@ export async function decryptWithCipher({
     key: string;
     algorithm?: string;
 }) {
+    // Parse the encrypted data JSON - salt is optional for backward compatibility
     const _encryptedData: {
         iv: string;
+        salt?: string;
         ciphertext: string;
     } = JSON.parse(encryptedDataJSON);
 
-    // Derive a cryptographic key from the input key using SHA-256
+    // Decode IV from base64
+    const decodedIv = Buffer.from(_encryptedData.iv, 'base64');
+
+    // Handle salt - support both new format (with salt) and legacy format (without salt)
+    let salt: BufferSource;
+    if (_encryptedData.salt && _encryptedData.salt !== '') {
+        // New format: use the provided salt
+        salt = Buffer.from(_encryptedData.salt, 'base64');
+    } else {
+        // Legacy format: use zero-filled salt of IV length for backward compatibility
+        salt = new Uint8Array(decodedIv.length);
+    }
+
+    // Derive a cryptographic key from the input key using PBKDF2
     const keyMaterial = await crypto.subtle.importKey(
         'raw',
         new TextEncoder().encode(key),
@@ -94,7 +113,7 @@ export async function decryptWithCipher({
     const cryptoKey = await crypto.subtle.deriveKey(
         {
             name: 'PBKDF2',
-            salt: new Uint8Array(Buffer.from(_encryptedData.iv, 'base64').length), // Use the same salt size as IV
+            salt,
             iterations: 100000,
             hash: 'SHA-256',
         },
@@ -104,8 +123,7 @@ export async function decryptWithCipher({
         ['decrypt'],
     );
 
-    // Decode the IV and encrypted data from base64
-    const decodedIv = Buffer.from(_encryptedData.iv, 'base64');
+    // Decode the ciphertext from base64
     const decodedEncryptedData = Buffer.from(_encryptedData.ciphertext, 'base64');
 
     // Decrypt the data
