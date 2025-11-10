@@ -16,7 +16,7 @@ export class ApiClient {
 
     private jwt: string = '';
 
-    public networkId: 0 | 1 = 0;
+    public networkId: 0 | 1 = 1;
 
     public accounts: Accounts;
 
@@ -39,20 +39,19 @@ export class ApiClient {
         providedBaseURL?: string,
         providedWsURL?: string,
     ) {
-        let baseURL = 'https://api-staging.deltadefi.io';
-        let wsURL = 'wss://api-staging.deltadefi.io';
+        let baseURL = 'https://api.deltadefi.io';
+        let wsURL = 'wss://stream.deltadefi.io';
         const headers: ApiHeaders = {
             'Content-Type': 'application/json',
         };
         if (network) {
             this.networkId = network === 'mainnet' ? 1 : 0;
             if (network === 'mainnet') {
-                // TODO: input production link once available
                 baseURL = 'https://api.deltadefi.io';
-                wsURL = 'wss://api.deltadefi.io';
+                wsURL = 'wss://stream.deltadefi.io';
             } else {
                 baseURL = 'https://api-staging.deltadefi.io';
-                wsURL = 'wss://api-staging.deltadefi.io';
+                wsURL = 'wss://stream-staging.deltadefi.io';
             }
         }
         if (jwt) {
@@ -136,6 +135,22 @@ export class ApiClient {
             signed_tx: signedTx,
         });
         return { message: 'Order cancelled successfully', orderId };
+    }
+
+    /**
+     * Cancels all open orders.
+     * @returns A promise that resolves to a message indicating the orders were cancelled successfully.
+     */
+    public async cancelAllOrders() {
+        if (!this.operationWallet) {
+            throw new Error('Operation wallet is not initialized');
+        }
+        const buildRes = await this.orders.buildCancelAllOrdersTransaction();
+        const signedTxs = await this.operationWallet.signTxs(buildRes.tx_hexes);
+        await this.orders.submitCancelAllOrdersTransaction({
+            signed_txs: signedTxs,
+        });
+        return { message: 'All orders cancelled successfully' };
     }
 }
 

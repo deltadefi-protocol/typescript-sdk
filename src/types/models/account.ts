@@ -1,5 +1,3 @@
-import { TransferStatus } from '../requests';
-
 export type AccountBalance = {
     asset: string;
     asset_unit: string;
@@ -23,6 +21,8 @@ export type AccountBalanceStream = {
     sub_type: 'balance';
     balance: AccountBalance[];
 };
+
+export type TransferStatus = 'pending' | 'confirmed';
 
 export type TransferalType = 'normal' | 'deposit' | `withdrawal`;
 

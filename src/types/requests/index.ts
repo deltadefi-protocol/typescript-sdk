@@ -1,6 +1,6 @@
 import { UTxO } from '@meshsdk/core';
 import { TradingSymbol, OrderSide, OrderType } from '../models/order';
-import { TransferalType } from '../models/account';
+import { TransferalType, TransferStatus } from '../models/account';
 
 // SignInRequest to be refactored
 export type SignInRequest = {
@@ -108,8 +108,6 @@ export type GetOrderRecordRequest = {
     limit?: number; // default number is 10 while number must be between 1 and 250
     page?: number; // default number is 1 while number must be between 1 and 1000
 };
-
-export type TransferStatus = 'pending' | 'confirmed';
 
 export type GetTransferalRecordsRequest = {
     status: TransferStatus; // Must be either 'pending' | 'confirmed'
