@@ -160,8 +160,9 @@ export type GetAPIKeyResponse = {
 };
 
 export type GetTransferalRecordsResponse = {
-    in: TransferalRecord[];
-    out: TransferalRecord[];
+    data: TransferalRecord[];
+    total_count: number;
+    total_page: number;
 };
 
 export type GetTransferalRecordByTxHashResponse = {

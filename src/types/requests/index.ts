@@ -110,9 +110,9 @@ export type GetOrderRecordRequest = {
 };
 
 export type GetTransferalRecordsRequest = {
-    status: TransferStatus; // Must be either 'pending' | 'confirmed'
-    limit?: number; // default number is 10 while number must be between 1 and 250
-    page?: number; // default number is 1 while number must be between 1 and 1000
+    status?: TransferStatus; // Optional: filter by 'pending' or 'confirmed'
+    limit?: number; // Optional: default is 10
+    page?: number; // Optional: default is 1
 };
 
 export type GetTransferalRecordByTxHashRequest = {
