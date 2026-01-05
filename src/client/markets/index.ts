@@ -52,9 +52,9 @@ export class Markets extends Api {
     public getAggregatedPrice(
         data: GetAggregatedPriceRequest,
     ): Promise<GetAggregatedPriceResponse> {
-        const { pair, interval, start, end } = data;
+        const { symbol, interval, start, end } = data;
         const res = this.axiosInstance.get(
-            `/market/graph/${pair}?interval=${interval}&start=${start || ''}&end=${end || ''}`,
+            `/market/aggregate/${symbol}?interval=${interval}&start=${start || ''}&end=${end || ''}`,
         );
         return this.resolveAxiosData(res);
     }

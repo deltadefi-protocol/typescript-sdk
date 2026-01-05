@@ -1,10 +1,13 @@
 import { OrderJSON, AccountBalance, OrderFillingRecordJSON, TransferalRecord } from '../models';
 
+/**
+ * @deprecated This response is for frontend web app only. SDK users should use X-API-KEY authentication instead.
+ */
 export type SignInResponse = {
+    user_id: string;
     token: string;
-    encrypted_operation_key: string;
-    operation_key_hash: string;
     is_first_time: boolean;
+    is_onboarding_ready: boolean;
 };
 
 export type GetOperationKeyResponse = {
@@ -52,11 +55,30 @@ export type DepositRecord = {
     tx_hash: string;
 };
 
-export type GetDepositRecordsResponse = DepositRecord[];
+export type PaginatedResponse<T> = {
+    data: T[];
+    total_count: number;
+    total_page: number;
+};
 
+export type GetDepositRecordsResponse = PaginatedResponse<DepositRecord>;
+
+/**
+ * @deprecated Use GetOpenOrdersResponse, GetTradeOrdersResponse, or GetTradesResponse instead.
+ */
 export type GetOrderRecordResponse = {
     orders: OrderJSON[];
     order_filling_records: OrderFillingRecordJSON[];
+};
+
+export type GetOpenOrdersResponse = PaginatedResponse<OrderJSON>;
+
+export type GetTradeOrdersResponse = PaginatedResponse<OrderJSON>;
+
+export type GetTradesResponse = PaginatedResponse<OrderFillingRecordJSON>;
+
+export type GetOrderByIdResponse = {
+    order: OrderJSON;
 };
 
 export type WithdrawalRecord = {
@@ -65,7 +87,7 @@ export type WithdrawalRecord = {
     assets: AssetRecord[];
 };
 
-export type GetWithdrawalRecordsResponse = WithdrawalRecord[];
+export type GetWithdrawalRecordsResponse = PaginatedResponse<WithdrawalRecord>;
 
 export type GetAccountBalanceResponse = AccountBalance[];
 
@@ -147,10 +169,19 @@ export type BuildCancelOrderTransactionResponse = {
     tx_hex: string;
 };
 
+export type CancelOrderResponse = {
+    order_id: string;
+};
+
 export type BuildCancelAllOrdersTransactionResponse = {
     tx_hexes: string[];
 };
+
 export type SubmitCancelAllOrdersTransactionResponse = {
+    cancelled_order_ids: string[];
+};
+
+export type CancelAllOrdersResponse = {
     cancelled_order_ids: string[];
 };
 
@@ -167,4 +198,21 @@ export type GetTransferalRecordsResponse = {
 
 export type GetTransferalRecordByTxHashResponse = {
     transferal_record: TransferalRecord;
+};
+
+export type SpotAccount = {
+    wallet_address: string;
+    operation_key_hash: string;
+    created_at: string;
+    updated_at: string;
+};
+
+export type GetSpotAccountResponse = SpotAccount;
+
+export type CreateSpotAccountResponse = SpotAccount;
+
+export type UpdateSpotAccountResponse = SpotAccount;
+
+export type GetMaxDepositResponse = {
+    max_deposit: string;
 };

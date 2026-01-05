@@ -9,6 +9,9 @@ import {
     BuildCancelAllOrdersTransactionResponse,
     SubmitCancelAllOrdersTransactionResponse,
     SubmitCancelAllOrdersTransactionRequest,
+    CancelOrderResponse,
+    CancelAllOrdersResponse,
+    CancelAllOrdersRequest,
 } from '../../types';
 import { Api } from '../api';
 
@@ -40,6 +43,27 @@ export class Orders extends Api {
     }
 
     /**
+     * Cancels an order by ID.
+     * @param orderId - The ID of the order to cancel.
+     * @returns A promise that resolves to the cancel order response.
+     */
+    public cancelOrder(orderId: string): Promise<CancelOrderResponse> {
+        const res = this.axiosInstance.post(`/order/${orderId}/cancel`);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Cancels all open orders for a symbol.
+     * @param data - The cancel all orders request containing the symbol.
+     * @returns A promise that resolves to the cancel all orders response.
+     */
+    public cancelAllOrders(data: CancelAllOrdersRequest): Promise<CancelAllOrdersResponse> {
+        const res = this.axiosInstance.post('/order/cancel-all', data);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * @deprecated Use cancelOrder() instead. This method will be removed in a future version.
      * Builds a cancel order transaction.
      * @param orderId - The ID of the order to cancel.
      * @returns A promise that resolves to the build cancel order transaction response.
@@ -52,6 +76,7 @@ export class Orders extends Api {
     }
 
     /**
+     * @deprecated Use cancelAllOrders() instead. This method will be removed in a future version.
      * Builds cancel all orders transactions.
      * @returns A promise that resolves to the build cancel all orders transaction response.
      */
@@ -73,6 +98,7 @@ export class Orders extends Api {
     }
 
     /**
+     * @deprecated Use cancelOrder() instead. This method will be removed in a future version.
      * Submits a cancel order transaction.
      * @param data - The submit cancel order transaction request data.
      * @returns The transaction hash of cancelled order.
@@ -85,6 +111,7 @@ export class Orders extends Api {
     }
 
     /**
+     * @deprecated Use cancelAllOrders() instead. This method will be removed in a future version.
      * Submits cancel all orders transaction.
      * @param data - The submit cancel all orders transaction request data.
      * @returns The transaction hash of cancelled all orders.

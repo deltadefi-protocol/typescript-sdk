@@ -1,6 +1,14 @@
 import { MeshWallet } from '@meshsdk/core';
 import axios, { AxiosInstance } from 'axios';
-import { ApiConfig, ApiHeaders, PostOrderRequest, PostOrderResponse } from '../types';
+import {
+    ApiConfig,
+    ApiHeaders,
+    PostOrderRequest,
+    PostOrderResponse,
+    CancelOrderResponse,
+    CancelAllOrdersResponse,
+    TradingSymbol,
+} from '../types';
 import { Accounts } from './accounts';
 import { Orders } from './orders';
 import { Markets } from './markets';
@@ -123,34 +131,19 @@ export class ApiClient {
     /**
      * Cancels an order.
      * @param orderId - The ID of the order to cancel.
-     * @returns A promise that resolves to a message indicating the order was cancelled successfully.
+     * @returns A promise that resolves to the cancel order response.
      */
-    public async cancelOrder(orderId: string) {
-        if (!this.operationWallet) {
-            throw new Error('Operation wallet is not initialized');
-        }
-        const buildRes = await this.orders.buildCancelOrderTransaction(orderId);
-        const signedTx = await this.operationWallet.signTx(buildRes.tx_hex);
-        await this.orders.submitCancelOrderTransaction({
-            signed_tx: signedTx,
-        });
-        return { message: 'Order cancelled successfully', orderId };
+    public async cancelOrder(orderId: string): Promise<CancelOrderResponse> {
+        return this.orders.cancelOrder(orderId);
     }
 
     /**
-     * Cancels all open orders.
-     * @returns A promise that resolves to a message indicating the orders were cancelled successfully.
+     * Cancels all open orders for a symbol.
+     * @param symbol - The trading symbol to cancel orders for.
+     * @returns A promise that resolves to the cancel all orders response.
      */
-    public async cancelAllOrders() {
-        if (!this.operationWallet) {
-            throw new Error('Operation wallet is not initialized');
-        }
-        const buildRes = await this.orders.buildCancelAllOrdersTransaction();
-        const signedTxs = await this.operationWallet.signTxs(buildRes.tx_hexes);
-        await this.orders.submitCancelAllOrdersTransaction({
-            signed_txs: signedTxs,
-        });
-        return { message: 'All orders cancelled successfully' };
+    public async cancelAllOrders(symbol: TradingSymbol): Promise<CancelAllOrdersResponse> {
+        return this.orders.cancelAllOrders({ symbol });
     }
 }
 

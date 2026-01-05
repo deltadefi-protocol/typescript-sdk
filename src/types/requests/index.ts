@@ -69,7 +69,7 @@ export type GetMarketPriceRequest = {
 export type Interval = '5m' | '15m' | '30m' | '1h' | '1d';
 
 export type GetAggregatedPriceRequest = {
-    pair: string;
+    symbol: TradingSymbol;
     interval: Interval;
     start?: number; // timestamp
     end?: number; // timestamp
@@ -79,10 +79,10 @@ export type BuildPlaceOrderTransactionRequest = {
     symbol: TradingSymbol;
     side: OrderSide;
     type: OrderType;
-    quantity: number;
-    price?: number;
+    base_quantity?: string;
+    quote_quantity?: string;
+    price?: string;
     max_slippage_basis_point?: number;
-    limit_slippage?: boolean;
     post_only?: boolean;
 };
 
@@ -101,12 +101,41 @@ export type SubmitCancelAllOrdersTransactionRequest = {
     signed_txs: string[];
 };
 
+export type CancelAllOrdersRequest = {
+    symbol: TradingSymbol;
+};
+
 export type Status = 'openOrder' | 'orderHistory' | 'tradingHistory';
 
+/**
+ * @deprecated Use GetOpenOrdersRequest, GetTradeOrdersRequest, or GetTradesRequest instead.
+ */
 export type GetOrderRecordRequest = {
     status: Status; // Must be either 'openOrder' | 'orderHistory' | 'tradingHistory'
     limit?: number; // default number is 10 while number must be between 1 and 250
     page?: number; // default number is 1 while number must be between 1 and 1000
+};
+
+export type GetOpenOrdersRequest = {
+    symbol: TradingSymbol;
+    limit?: number;
+    page?: number;
+};
+
+export type GetTradeOrdersRequest = {
+    symbol: TradingSymbol;
+    limit?: number;
+    page?: number;
+};
+
+export type GetTradesRequest = {
+    symbol: TradingSymbol;
+    limit?: number;
+    page?: number;
+};
+
+export type GetOrderByIdRequest = {
+    id: string;
 };
 
 export type GetTransferalRecordsRequest = {
@@ -117,4 +146,22 @@ export type GetTransferalRecordsRequest = {
 
 export type GetTransferalRecordByTxHashRequest = {
     tx_hash: string;
+};
+
+export type CreateSpotAccountRequest = {
+    operation_key_hash: string;
+};
+
+export type UpdateSpotAccountRequest = {
+    operation_key_hash?: string;
+};
+
+export type GetDepositRecordsRequest = {
+    page?: number;
+    limit?: number;
+};
+
+export type GetWithdrawalRecordsRequest = {
+    page?: number;
+    limit?: number;
 };

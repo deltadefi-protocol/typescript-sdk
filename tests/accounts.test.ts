@@ -6,23 +6,27 @@ import { ApiClient } from '../src';
 dotenv.config();
 
 const skipApiTests = process.env.SKIP_API_TESTS === 'true';
-const wallet_address = process.env.WALLET_ADDRESS || '';
 const apiKey = process.env.API_KEY || '';
 
 describe('Account APIs', () => {
-    test('Sign In', async () => {
+    // Note: signIn is for frontend web app only.
+    // SDK users authenticate via X-API-KEY header automatically.
+
+    test('Get Open Orders', async () => {
         if (skipApiTests) return;
         const api = new ApiClient({ apiKey, network: 'preprod' });
-        const res = await api.accounts.signIn({
-            x_api_key: apiKey,
-            wallet_address,
-        });
-        expect(res.token).not.toBe('');
+        const res = await api.accounts.getOpenOrders({ symbol: 'ADAUSDM' });
+        expect(res).toHaveProperty('data');
+        expect(res).toHaveProperty('total_count');
+        expect(res).toHaveProperty('total_page');
+        console.log('Open orders:', res);
     });
-    test('Get Orders', async () => {
+
+    test('Get Account Balance', async () => {
         if (skipApiTests) return;
         const api = new ApiClient({ apiKey, network: 'preprod' });
-        const res = await api.accounts.getOrderRecords({ status: 'openOrder' });
-        console.log(res);
+        const res = await api.accounts.getAccountBalance();
+        expect(Array.isArray(res)).toBe(true);
+        console.log('Account balance:', res);
     });
 });

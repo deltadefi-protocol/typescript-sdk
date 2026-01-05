@@ -32,6 +32,22 @@ import {
     GetTransferalRecordsRequest,
     GetTransferalRecordByTxHashRequest,
     GetTransferalRecordByTxHashResponse,
+    GetOpenOrdersRequest,
+    GetOpenOrdersResponse,
+    GetTradeOrdersRequest,
+    GetTradeOrdersResponse,
+    GetTradesRequest,
+    GetTradesResponse,
+    GetOrderByIdRequest,
+    GetOrderByIdResponse,
+    GetSpotAccountResponse,
+    CreateSpotAccountRequest,
+    CreateSpotAccountResponse,
+    UpdateSpotAccountRequest,
+    UpdateSpotAccountResponse,
+    GetMaxDepositResponse,
+    GetDepositRecordsRequest,
+    GetWithdrawalRecordsRequest,
 } from '../../types';
 import { Api } from '../api';
 
@@ -52,6 +68,7 @@ export class Accounts extends Api {
     }
 
     /**
+     * @deprecated This method is for frontend web app only. SDK users should use X-API-KEY authentication instead.
      * Signs in a user.
      * @param data - The sign-in request data.
      * @returns A promise that resolves to the sign-in response.
@@ -88,23 +105,68 @@ export class Accounts extends Api {
 
     /**
      * Retrieves deposit records.
+     * @param data - Optional pagination parameters.
      * @returns A promise that resolves to the deposit records response.
      */
-    public getDepositRecords(): Promise<GetDepositRecordsResponse> {
-        const res = this.axiosInstance.get('/accounts/deposit-records');
+    public getDepositRecords(data?: GetDepositRecordsRequest): Promise<GetDepositRecordsResponse> {
+        const res = this.axiosInstance.get('/accounts/deposit-records', { params: data });
         return this.resolveAxiosData(res);
     }
 
     /**
      * Retrieves withdrawal records.
+     * @param data - Optional pagination parameters.
      * @returns A promise that resolves to the withdrawal records response.
      */
-    public getWithdrawalRecords(): Promise<GetWithdrawalRecordsResponse> {
-        const res = this.axiosInstance.get('/accounts/withdrawal-records');
+    public getWithdrawalRecords(
+        data?: GetWithdrawalRecordsRequest,
+    ): Promise<GetWithdrawalRecordsResponse> {
+        const res = this.axiosInstance.get('/accounts/withdrawal-records', { params: data });
         return this.resolveAxiosData(res);
     }
 
     /**
+     * Retrieves open orders for a symbol.
+     * @param data - The open orders request parameters.
+     * @returns A promise that resolves to the open orders response.
+     */
+    public getOpenOrders(data: GetOpenOrdersRequest): Promise<GetOpenOrdersResponse> {
+        const res = this.axiosInstance.get('/accounts/open-orders', { params: data });
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Retrieves trade orders (orders with executions) for a symbol.
+     * @param data - The trade orders request parameters.
+     * @returns A promise that resolves to the trade orders response.
+     */
+    public getTradeOrders(data: GetTradeOrdersRequest): Promise<GetTradeOrdersResponse> {
+        const res = this.axiosInstance.get('/accounts/trade-orders', { params: data });
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Retrieves execution records (trades) for a symbol.
+     * @param data - The trades request parameters.
+     * @returns A promise that resolves to the trades response.
+     */
+    public getTrades(data: GetTradesRequest): Promise<GetTradesResponse> {
+        const res = this.axiosInstance.get('/accounts/trades', { params: data });
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Retrieves a single order by ID.
+     * @param data - The order ID request.
+     * @returns A promise that resolves to the order response.
+     */
+    public getOrderById(data: GetOrderByIdRequest): Promise<GetOrderByIdResponse> {
+        const res = this.axiosInstance.get('/account/order', { params: data });
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * @deprecated Use getOpenOrders(), getTradeOrders(), or getTrades() instead.
      * Retrieves order records.
      * @param data - The order records request parameters.
      * @returns A promise that resolves to the order records response.
@@ -115,6 +177,7 @@ export class Accounts extends Api {
     }
 
     /**
+     * @deprecated Use getOrderById() instead.
      * Retrieves a single order record by order ID.
      * @param orderId - The ID of the order to retrieve.
      * @returns A promise that resolves to the order record response.
@@ -273,6 +336,44 @@ export class Accounts extends Api {
         data: SubmitTransferalRequestTransactionRequest,
     ): Promise<SubmitTransferalRequestTransactionResponse> {
         const res = this.axiosInstance.post('/accounts/request-transferal/submit', data);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Retrieves the spot account details.
+     * @returns A promise that resolves to the spot account response.
+     */
+    public getSpotAccount(): Promise<GetSpotAccountResponse> {
+        const res = this.axiosInstance.get('/accounts/spot-account');
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Creates a spot account.
+     * @param data - The create spot account request data.
+     * @returns A promise that resolves to the create spot account response.
+     */
+    public createSpotAccount(data: CreateSpotAccountRequest): Promise<CreateSpotAccountResponse> {
+        const res = this.axiosInstance.post('/accounts/spot-account', data);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Updates the spot account.
+     * @param data - The update spot account request data.
+     * @returns A promise that resolves to the update spot account response.
+     */
+    public updateSpotAccount(data: UpdateSpotAccountRequest): Promise<UpdateSpotAccountResponse> {
+        const res = this.axiosInstance.patch('/accounts/spot-account', data);
+        return this.resolveAxiosData(res);
+    }
+
+    /**
+     * Retrieves the maximum deposit amount.
+     * @returns A promise that resolves to the max deposit response.
+     */
+    public getMaxDeposit(): Promise<GetMaxDepositResponse> {
+        const res = this.axiosInstance.get('/accounts/max-deposit');
         return this.resolveAxiosData(res);
     }
 }
