@@ -7,7 +7,8 @@ export type OrderStatus =
     | 'partially_filled'
     | 'cancelled'
     | 'partially_cancelled'
-    | 'failed';
+    | 'failed'
+    | 'closed';
 
 export type OrderSide = 'buy' | 'sell';
 
