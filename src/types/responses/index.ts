@@ -174,7 +174,8 @@ export type SubmitCancelAllOrdersTransactionResponse = {
 };
 
 export type CancelAllOrdersResponse = {
-    cancelled_order_ids: string[];
+    symbol: string;
+    order_ids: string[];
 };
 
 export type GetAPIKeyResponse = {
