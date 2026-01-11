@@ -45,7 +45,7 @@ export type TransactionStatus = 'building' | 'submitted' | 'submission_failed' |
 export type AssetRecord = {
     asset: string;
     asset_unit: string;
-    qty: number;
+    qty: string;
 };
 
 export type DepositRecord = {

@@ -1,14 +1,14 @@
 export type AccountBalance = {
     asset: string;
     asset_unit: string;
-    free: number;
-    locked: number;
+    free: string;
+    locked: string;
 };
 
 export type TransferalAsset = {
     asset: string;
     asset_unit: string;
-    qty: number;
+    qty: string;
 };
 
 export type AccountStream = {
