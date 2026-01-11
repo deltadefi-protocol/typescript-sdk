@@ -1,6 +1,7 @@
 export type TradingSymbol = 'ADAUSDM';
 
 export type OrderStatus =
+    | 'building'
     | 'processing'
     | 'open'
     | 'fully_filled'
@@ -29,7 +30,7 @@ export type OrderExecutionRole = 'maker' | 'taker';
 export type OrderExecutionRecordJSON = {
     id: string;
     order_id: string;
-    execution_price: number;
+    execution_price: string;
     filled_amount: string;
     fee_unit: string;
     fee_amount: string;
@@ -67,5 +68,5 @@ export type OrderFillingRecordJSON = {
     fee_charged: string;
     fee_unit: string;
     executed_price: number;
-    created_time: number;
+    create_time: number;
 };

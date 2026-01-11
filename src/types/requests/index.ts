@@ -68,21 +68,24 @@ export type GetMarketPriceRequest = {
 
 export type Interval = '5m' | '15m' | '30m' | '1h' | '1d';
 
+export type OrderBy = 'asc' | 'desc';
+
 export type GetAggregatedPriceRequest = {
     symbol: TradingSymbol;
     interval: Interval;
-    start?: number; // timestamp
-    end?: number; // timestamp
+    start: string; // Unix timestamp string
+    end: string; // Unix timestamp string
+    order_by?: OrderBy;
 };
 
 export type BuildPlaceOrderTransactionRequest = {
     symbol: TradingSymbol;
     side: OrderSide;
     type: OrderType;
-    base_quantity?: string;
-    quote_quantity?: string;
-    price?: string;
+    quantity: number;
+    price?: number;
     max_slippage_basis_point?: number;
+    limit_slippage?: boolean;
     post_only?: boolean;
 };
 
@@ -149,11 +152,15 @@ export type GetTransferalRecordByTxHashRequest = {
 };
 
 export type CreateSpotAccountRequest = {
+    user_id: string;
+    encrypted_operation_key: string;
     operation_key_hash: string;
+    is_script_operation_key: boolean;
 };
 
 export type UpdateSpotAccountRequest = {
-    operation_key_hash?: string;
+    user_id: string;
+    encrypted_operation_key: string;
 };
 
 export type GetDepositRecordsRequest = {

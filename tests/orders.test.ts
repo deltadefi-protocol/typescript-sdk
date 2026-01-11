@@ -20,8 +20,8 @@ describe('Orders APIs', () => {
                 symbol: 'ADAUSDM',
                 side: 'buy',
                 type: 'limit',
-                base_quantity: '10000000',
-                price: '0.62',
+                quantity: 10000000,
+                price: 0.62,
             });
             console.log('Post order response', postOrderRes);
 

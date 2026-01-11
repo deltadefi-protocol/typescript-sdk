@@ -161,7 +161,7 @@ export class Accounts extends Api {
      * @returns A promise that resolves to the order response.
      */
     public getOrderById(data: GetOrderByIdRequest): Promise<GetOrderByIdResponse> {
-        const res = this.axiosInstance.get('/account/order', { params: data });
+        const res = this.axiosInstance.get(`/accounts/order/${data.id}`);
         return this.resolveAxiosData(res);
     }
 
@@ -364,7 +364,7 @@ export class Accounts extends Api {
      * @returns A promise that resolves to the update spot account response.
      */
     public updateSpotAccount(data: UpdateSpotAccountRequest): Promise<UpdateSpotAccountResponse> {
-        const res = this.axiosInstance.patch('/accounts/spot-account', data);
+        const res = this.axiosInstance.put('/accounts/spot-account', data);
         return this.resolveAxiosData(res);
     }
 

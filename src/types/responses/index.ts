@@ -78,7 +78,7 @@ export type GetTradeOrdersResponse = PaginatedResponse<OrderJSON>;
 export type GetTradesResponse = PaginatedResponse<OrderFillingRecordJSON>;
 
 export type GetOrderByIdResponse = {
-    order: OrderJSON;
+    order_json: OrderJSON;
 };
 
 export type WithdrawalRecord = {
@@ -142,17 +142,17 @@ export type GetMarketPriceResponse = {
     price: number;
 };
 
-export type Trade = {
-    time: string;
-    symbol: string;
-    open: number;
-    high: number;
-    low: number;
-    close: number;
-    volume: number;
+export type AggregatedOHLC = {
+    t: number; // timestamp (epoch seconds)
+    s: string; // symbol
+    o: number; // open
+    h: number; // high
+    l: number; // low
+    c: number; // close
+    v: number; // volume
 };
 
-export type GetAggregatedPriceResponse = Trade[];
+export type GetAggregatedPriceResponse = AggregatedOHLC[];
 
 export type BuildPlaceOrderTransactionResponse = {
     order_id: string;
@@ -196,22 +196,23 @@ export type GetTransferalRecordsResponse = {
     total_page: number;
 };
 
-export type GetTransferalRecordByTxHashResponse = {
-    transferal_record: TransferalRecord;
-};
+export type GetTransferalRecordByTxHashResponse = TransferalRecord;
 
 export type SpotAccount = {
-    wallet_address: string;
+    account_id: string;
+    account_type: string;
+    encrypted_operation_key: string;
     operation_key_hash: string;
     created_at: string;
-    updated_at: string;
 };
 
 export type GetSpotAccountResponse = SpotAccount;
 
 export type CreateSpotAccountResponse = SpotAccount;
 
-export type UpdateSpotAccountResponse = SpotAccount;
+export type UpdateSpotAccountResponse = SpotAccount & {
+    updated_at: string;
+};
 
 export type GetMaxDepositResponse = {
     max_deposit: string;
