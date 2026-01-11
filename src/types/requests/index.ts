@@ -82,10 +82,10 @@ export type BuildPlaceOrderTransactionRequest = {
     symbol: TradingSymbol;
     side: OrderSide;
     type: OrderType;
-    quantity: number;
-    price?: number;
-    max_slippage_basis_point?: number;
-    limit_slippage?: boolean;
+    base_quantity?: string;
+    quote_quantity?: string;
+    price?: string;
+    max_slippage_basis_point?: string;
     post_only?: boolean;
 };
 
@@ -106,17 +106,6 @@ export type SubmitCancelAllOrdersTransactionRequest = {
 
 export type CancelAllOrdersRequest = {
     symbol: TradingSymbol;
-};
-
-export type Status = 'openOrder' | 'orderHistory' | 'tradingHistory';
-
-/**
- * @deprecated Use GetOpenOrdersRequest, GetTradeOrdersRequest, or GetTradesRequest instead.
- */
-export type GetOrderRecordRequest = {
-    status: Status; // Must be either 'openOrder' | 'orderHistory' | 'tradingHistory'
-    limit?: number; // default number is 10 while number must be between 1 and 250
-    page?: number; // default number is 1 while number must be between 1 and 1000
 };
 
 export type GetOpenOrdersRequest = {

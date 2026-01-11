@@ -1,4 +1,4 @@
-import { OrderJSON, AccountBalance, OrderFillingRecordJSON, TransferalRecord } from '../models';
+import { OrderResponse, AccountBalance, OrderExecutionRecordResponse, TransferalRecord } from '../models';
 
 /**
  * @deprecated This response is for frontend web app only. SDK users should use X-API-KEY authentication instead.
@@ -63,22 +63,14 @@ export type PaginatedResponse<T> = {
 
 export type GetDepositRecordsResponse = PaginatedResponse<DepositRecord>;
 
-/**
- * @deprecated Use GetOpenOrdersResponse, GetTradeOrdersResponse, or GetTradesResponse instead.
- */
-export type GetOrderRecordResponse = {
-    orders: OrderJSON[];
-    order_filling_records: OrderFillingRecordJSON[];
-};
+export type GetOpenOrdersResponse = PaginatedResponse<OrderResponse>;
 
-export type GetOpenOrdersResponse = PaginatedResponse<OrderJSON>;
+export type GetTradeOrdersResponse = PaginatedResponse<OrderResponse>;
 
-export type GetTradeOrdersResponse = PaginatedResponse<OrderJSON>;
-
-export type GetTradesResponse = PaginatedResponse<OrderFillingRecordJSON>;
+export type GetTradesResponse = PaginatedResponse<OrderExecutionRecordResponse>;
 
 export type GetOrderByIdResponse = {
-    order_json: OrderJSON;
+    order: OrderResponse;
 };
 
 export type WithdrawalRecord = {
@@ -160,7 +152,7 @@ export type BuildPlaceOrderTransactionResponse = {
 };
 
 export type SubmitPlaceOrderTransactionResponse = {
-    order: OrderJSON;
+    order: OrderResponse;
 };
 
 export type PostOrderResponse = SubmitPlaceOrderTransactionResponse;

@@ -11,8 +11,6 @@ import {
     BuildWithdrawalTransactionResponse,
     SubmitWithdrawalTransactionRequest,
     SubmitWithdrawalTransactionResponse,
-    GetOrderRecordRequest,
-    GetOrderRecordResponse,
     GetDepositRecordsResponse,
     GetWithdrawalRecordsResponse,
     GetAccountBalanceResponse,
@@ -162,28 +160,6 @@ export class Accounts extends Api {
      */
     public getOrderById(data: GetOrderByIdRequest): Promise<GetOrderByIdResponse> {
         const res = this.axiosInstance.get(`/accounts/order/${data.id}`);
-        return this.resolveAxiosData(res);
-    }
-
-    /**
-     * @deprecated Use getOpenOrders(), getTradeOrders(), or getTrades() instead.
-     * Retrieves order records.
-     * @param data - The order records request parameters.
-     * @returns A promise that resolves to the order records response.
-     */
-    public getOrderRecords(data: GetOrderRecordRequest): Promise<GetOrderRecordResponse> {
-        const res = this.axiosInstance.get('/accounts/order-records', { params: data });
-        return this.resolveAxiosData(res);
-    }
-
-    /**
-     * @deprecated Use getOrderById() instead.
-     * Retrieves a single order record by order ID.
-     * @param orderId - The ID of the order to retrieve.
-     * @returns A promise that resolves to the order record response.
-     */
-    public getOrderRecord(orderId: string): Promise<GetOrderRecordResponse> {
-        const res = this.axiosInstance.get(`/accounts/order/${orderId}`);
         return this.resolveAxiosData(res);
     }
 
