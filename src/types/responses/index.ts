@@ -151,11 +151,9 @@ export type BuildPlaceOrderTransactionResponse = {
     tx_hex: string;
 };
 
-export type SubmitPlaceOrderTransactionResponse = {
-    order: OrderResponse;
-};
+export type SubmitPlaceOrderTransactionResponse = OrderResponse;
 
-export type PostOrderResponse = SubmitPlaceOrderTransactionResponse;
+export type PostOrderResponse = OrderResponse;
 
 export type BuildCancelOrderTransactionResponse = {
     tx_hex: string;
