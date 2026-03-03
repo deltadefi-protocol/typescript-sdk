@@ -1,4 +1,9 @@
-import { OrderResponse, AccountBalance, OrderExecutionRecordResponse, TransferalRecord } from '../models';
+import {
+    OrderResponse,
+    AccountBalance,
+    OrderExecutionRecordResponse,
+    TransferalRecord,
+} from '../models';
 
 /**
  * @deprecated This response is for frontend web app only. SDK users should use X-API-KEY authentication instead.
@@ -69,9 +74,7 @@ export type GetTradeOrdersResponse = PaginatedResponse<OrderResponse>;
 
 export type GetTradesResponse = PaginatedResponse<OrderExecutionRecordResponse>;
 
-export type GetOrderByIdResponse = {
-    order: OrderResponse;
-};
+export type GetOrderByIdResponse = OrderResponse;
 
 export type WithdrawalRecord = {
     created_at: string;

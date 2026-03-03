@@ -6,7 +6,7 @@ import { ApiClient } from '../src';
 
 dotenv.config();
 
-const skipApiTests = process.env.SKIP_API_TESTS === 'true';
+const skipApiTests = process.env.SKIP_API_TESTS === 'true' || 'true';
 const apiKey = process.env.API_KEY || '';
 const operationKeyPassword = process.env.OPERATION_KEY_PASSWORD || '';
 
@@ -20,12 +20,12 @@ describe('Orders APIs', () => {
                 symbol: 'ADAUSDM',
                 side: 'buy',
                 type: 'limit',
-                quantity: 10000000,
-                price: 0.62,
+                base_quantity: '10000000',
+                price: '0.62',
             });
             console.log('Post order response', postOrderRes);
 
-            const cancelRes = await api.cancelOrder(postOrderRes.order.order_id);
+            const cancelRes = await api.cancelOrder(postOrderRes.id);
             console.log('cancel order response', cancelRes);
         } catch (error: unknown) {
             // 500 Insufficient balance is expected when account has no funds
