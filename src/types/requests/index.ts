@@ -24,6 +24,8 @@ export type Asset = {
 export type BuildDepositTransactionRequest = {
     deposit_amount: Asset[];
     input_utxos: UTxO[];
+    deposit_type?: 'vault';
+    vault_id?: string;
 };
 
 export type SubmitDepositTransactionRequest = {
@@ -32,6 +34,8 @@ export type SubmitDepositTransactionRequest = {
 
 export type BuildWithdrawalTransactionRequest = {
     withdrawal_amount: Asset[];
+    withdraw_type?: 'vault';
+    vault_id?: string;
 };
 
 export type SubmitWithdrawalTransactionRequest = {
