@@ -225,6 +225,8 @@ export class Accounts extends Api {
         const res = this.axiosInstance.post('/accounts/deposit/build', {
             deposit_amount: data.deposit_amount,
             input_utxos: data.input_utxos.map(toSnake),
+            ...(data.deposit_type && { deposit_type: data.deposit_type }),
+            ...(data.vault_id && { vault_id: data.vault_id }),
         });
         return this.resolveAxiosData(res);
     }
@@ -239,6 +241,8 @@ export class Accounts extends Api {
     ): Promise<BuildWithdrawalTransactionResponse> {
         const res = this.axiosInstance.post('/accounts/withdrawal/build', {
             withdrawal_amount: data.withdrawal_amount,
+            ...(data.withdraw_type && { withdraw_type: data.withdraw_type }),
+            ...(data.vault_id && { vault_id: data.vault_id }),
         });
         return this.resolveAxiosData(res);
     }
